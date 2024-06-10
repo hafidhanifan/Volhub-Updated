@@ -63,3 +63,32 @@ Route::delete('admin/delete-kegiatan/{id}', [AdminController::class, 'deleteKegi
 Route::get('/admin/setting', [AdminController::class, 'showSettingPage'])->name('admin.setting');
 Route::get('/admin/edit-setting/{id}', [AdminController::class, 'showEditSettingPage'])->name('admin.edit-setting-page');
 Route::put('admin/edit-setting/{id}', [AdminController::class, 'editSettingAction'])->name('admin.edit-setting-action');
+
+//Route untuk User
+Route::get('/user', function () {
+    return view('user/layout/index');
+});
+Route::get('/login', function () {
+    return view('user/layout/login');
+});
+Route::get('/signup', function () {
+    return view('user/layout/signup');
+});
+Route::get('/profile', function () {
+    return view('user/layout/profile');
+});
+Route::get('/daftarVolunteer', function () {
+    return view('user/layout/daftar-volunteer');
+});
+Route::get('/detailKegiatan', function () {
+    return view('user/layout/detail-kegiatan');
+});
+Route::get('/editDataDiri', function () {
+    return view('user/layout/edit-data-diri');
+});
+Route::get('/editPengaturanAkun', function () {
+    return view('user/layout/edit-pengaturan-akun');
+});
+Route::get('/editSkill', function () {
+    return view('user/layout/edit-skill');
+});
