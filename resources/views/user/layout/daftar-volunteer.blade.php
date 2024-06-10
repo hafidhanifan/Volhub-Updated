@@ -4,20 +4,24 @@
     <main>
       <div class="layout-wrapper">
         <section class="sidebar">
+          @if(auth()->check())
+                @php
+                    $user = auth()->user();
+                @endphp
           <div class="profile">
             <div class="profile__image">
               <img src="{{ asset('img/profile-img2.png') }}" alt="" />
             </div>
             <div class="profile__data">
               <div class="profile__data-name">
-                <p>Dinda Farras</p>
+                <p>{{$user->nama_user}}</p>
               </div>
               <div class="profile__data-location">
                 <i class="fa-solid fa-location-dot"></i>
-                <p>Jakarta, Indonesia</p>
+                <p>{{$user->domisili}}, Indonesia</p>
               </div>
               <div class="profile__data-button">
-                <button>Kegiatan</button>
+                <a href= "{{ route('user.detail-profile-page', ['id' => $user->id]) }}" >Kegiatan</a>
               </div>
             </div>
           </div>
@@ -28,11 +32,10 @@
             <div class="skill__item">
               <ul>
                 <li>Social Media Specialist</li>
-                <li>Content Writer</li>
-                <li>Script Writer</li>
               </ul>
             </div>
           </div>
+          @endif
         </section>
         <section class="content">
           <div class="content__header">
@@ -51,20 +54,24 @@
             <div id="overlay" class="overlay"></div>
           </div>
           <div class="content__body">
+            <?php $no = 1 ?>
+            @foreach($kegiatan as $kegiatan)
             <div class="content__body-item">
               <div class="content__item-image">
-                <img src="img/program-3.jpg" alt="" />
+                @if ($kegiatan->gambar)
+                  <img src="{{ Storage::url($kegiatan->gambar) }}" alt="Gambar Kegiatan" />
+                @endif
                 <div class="content__item-image-text">
-                  <p>Kegiatan <span>Offline</span></p>
+                  <p>{{ $kegiatan->sistem_kegiatan }}</p>
                 </div>
               </div>
               <div class="content__item-data">
                 <div class="content__data-title">
-                  <h1>Penanaman Hutan Mangrove di Pantai Baru</h1>
+                  <h1>{{ $kegiatan->nama_kegiatan }}</h1>
                 </div>
                 <div class="content__data-location">
                   <i class="fa-solid fa-location-dot"></i>
-                  <p>Kab.Bantul, Yogyakarta</p>
+                  <p>{{ $kegiatan->lokasi_kegiatan }}</p>
                 </div>
 
                 <div class="content__data-button">
@@ -72,116 +79,8 @@
                 </div>
               </div>
             </div>
+            @endforeach
 
-            <div class="content__body-item">
-              <div class="content__item-image">
-                <img src="img/program-3.jpg" alt="" />
-                <div class="content__item-image-text">
-                  <p>Kegiatan <span>Offline</span></p>
-                </div>
-              </div>
-              <div class="content__item-data">
-                <div class="content__data-title">
-                  <h1>Penanaman Hutan Mangrove di Pantai Baru</h1>
-                </div>
-                <div class="content__data-location">
-                  <i class="fa-solid fa-location-dot"></i>
-                  <p>Kab.Bantul, Yogyakarta</p>
-                </div>
-
-                <div class="content__data-button">
-                  <button>Detail</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="content__body-item">
-              <div class="content__item-image">
-                <img src="img/program-3.jpg" alt="" />
-                <div class="content__item-image-text">
-                  <p>Kegiatan <span>Offline</span></p>
-                </div>
-              </div>
-              <div class="content__item-data">
-                <div class="content__data-title">
-                  <h1>Penanaman Hutan Mangrove di Pantai Baru</h1>
-                </div>
-                <div class="content__data-location">
-                  <i class="fa-solid fa-location-dot"></i>
-                  <p>Kab.Bantul, Yogyakarta</p>
-                </div>
-
-                <div class="content__data-button">
-                  <button>Detail</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="content__body-item">
-              <div class="content__item-image">
-                <img src="img/program-3.jpg" alt="" />
-                <div class="content__item-image-text">
-                  <p>Kegiatan <span>Offline</span></p>
-                </div>
-              </div>
-              <div class="content__item-data">
-                <div class="content__data-title">
-                  <h1>Penanaman Hutan Mangrove di Pantai Baru</h1>
-                </div>
-                <div class="content__data-location">
-                  <i class="fa-solid fa-location-dot"></i>
-                  <p>Kab.Bantul, Yogyakarta</p>
-                </div>
-
-                <div class="content__data-button">
-                  <button>Detail</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="content__body-item">
-              <div class="content__item-image">
-                <img src="img/program-3.jpg" alt="" />
-                <div class="content__item-image-text">
-                  <p>Kegiatan <span>Offline</span></p>
-                </div>
-              </div>
-              <div class="content__item-data">
-                <div class="content__data-title">
-                  <h1>Penanaman Hutan Mangrove di Pantai Baru</h1>
-                </div>
-                <div class="content__data-location">
-                  <i class="fa-solid fa-location-dot"></i>
-                  <p>Kab.Bantul, Yogyakarta</p>
-                </div>
-
-                <div class="content__data-button">
-                  <button>Detail</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="content__body-item">
-              <div class="content__item-image">
-                <img src="img/program-3.jpg" alt="" />
-                <div class="content__item-image-text">
-                  <p>Kegiatan <span>Offline</span></p>
-                </div>
-              </div>
-              <div class="content__item-data">
-                <div class="content__data-title">
-                  <h1>Penanaman Hutan Mangrove di Pantai Baru</h1>
-                </div>
-                <div class="content__data-location">
-                  <i class="fa-solid fa-location-dot"></i>
-                  <p>Kab.Bantul, Yogyakarta</p>
-                </div>
-
-                <div class="content__data-button">
-                  <button>Detail</button>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
       </div>

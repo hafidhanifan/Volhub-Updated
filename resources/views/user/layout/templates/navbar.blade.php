@@ -10,14 +10,20 @@
         <li><a href="">Tentang Kami</a></li>
       </ul>
     </nav>
-    <div class="app-bar__sign-up">
-      <p>Sign Up</p>
-    </div>
-    <div class="app-bar__user-panel">
-      <a href=""><i class="fa-solid fa-bell notification-icon"></i></a>
-      <a href=""><i class="fa-solid fa-circle-user user-icon"></i></a>
-    </div>
-
+    @if(auth()->check())
+      @php
+          $user = auth()->user();
+      @endphp
+      <div class="app-bar__user-panel">
+        <a href=""><i class="fa-solid fa-bell notification-icon"></i></a>
+        <a href=""><i class="fa-solid fa-circle-user user-icon"></i></a>
+      </div>
+    @else
+      <div class="app-bar__sign-up">
+        <p>Sign Up</p>
+      </div>
+    @endif
+      
     <div class="mobile-nav">
       <li><a href="">Home</a></li>
       <li><a href="">Daftar Kegiatan</a></li>

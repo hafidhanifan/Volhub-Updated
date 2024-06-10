@@ -12,7 +12,19 @@
                         <p class="content-left__text-up">Selamat Datang!</p>
                         <p class="content-left__text-down">Cari lowongan volunteer lagi yuk!</p>
                     </div>
-                    <form>
+
+                    @if($errors->any())
+                  <div>
+                      <ul>
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>
+              @endif
+              
+                    <form {{ route('login.user') }} method="POST">
+                        @csrf
                         <div class="form-login">
                             <div class="form-login-container">
                                 <div class="form-login-item">
@@ -25,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="form-login-container__button">
-                                <button class="form-login-button__login">Login</button>
+                                <button class="form-login-button__login" type="submit">Login</button>
                                 <button class="form-login-button__signup">Buat Akun</button>
                             </div>
                         </div>

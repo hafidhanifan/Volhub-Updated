@@ -30,7 +30,9 @@
             <div class="edit-personal__headline">
               <h2>Data Diri</h2>
             </div>
-            <form>
+            <form action="{{ route('user.edit-profile-action', ['id' => $user->id]) }}" method="POST">
+              @csrf
+              @method('PUT')
               <div class="edit-personal__form__container">
                 <div class="edit-personal__form">
                   <div class="edit-personal__item">
@@ -39,8 +41,9 @@
                       class="edit-personal__input"
                       type="text"
                       id="skill"
-                      name="skill"
+                      name="nama_user"
                       required
+                      value="{{ old('user', $user->nama_user) }}"
                     />
                   </div>
                   <div class="edit-personal__item">
@@ -49,8 +52,8 @@
                       class="edit-personal__input"
                       type="text"
                       id="skill"
-                      name="skill"
-                      required
+                      name="bio"
+                      value="{{ old('user', $user->bio) }}"
                     />
                   </div>
                   <div class="edit-personal__item">
@@ -59,7 +62,8 @@
                       class="edit-personal__input"
                       type="text"
                       id="skill"
-                      name="skill"
+                      name="nomor_telephone"
+                      value="{{ old('user', $user->nomor_telephone) }}"
                       required
                     />
                   </div>
@@ -69,8 +73,8 @@
                       class="edit-personal__input"
                       type="text"
                       id="skill"
-                      name="skill"
-                      required
+                      name="usia"
+                      value="{{ old('user', $user->usia) }}"
                     />
                   </div>
                   <div class="edit-personal__item">
@@ -79,59 +83,58 @@
                       class="edit-personal__input"
                       type="text"
                       id="skill"
-                      name="skill"
-                      required
+                      name="domisili"
+                      value="{{ old('user', $user->domisili) }}"
                     />
                   </div>
                   <div class="edit-personal__item">
                     <label>Gender</label>
-                    <input
-                      class="edit-personal__input"
-                      type="text"
-                      id="skill"
-                      name="skill"
-                      required
-                    />
+                    <select name="gender">
+                      <option value="">Pilih Gender</option>
+                      @foreach($gender as $gender)
+                        <option value="{{ $gender }}">{{ ucfirst($gender) }}</option>
+                      @endforeach
+                    </select>
                   </div>
                   <div class="edit-personal__item">
                     <label>Pendidikan Terakhir</label>
-                    <input
-                      class="edit-personal__input"
-                      type="text"
-                      id="skill"
-                      name="skill"
-                      required
-                    />
+                    <select name="pendidikan_terakhir">
+                      <option value="">Pilih Pendidikan Terakhir</option>
+                      @foreach($pendidikanTerakhir as $pendidikan)
+                        <option value="{{ $pendidikan }}">{{ ucfirst($pendidikan) }}</option>
+                      @endforeach
+                    </select>
                   </div>
                   <div class="edit-personal__item">
                     <label>CV</label>
                     <input
                       class="edit-personal__input"
-                      type="text"
-                      id="skill"
-                      name="skill"
-                      required
+                      type="file"
+                      id="cv"
+                      name="cv"
+                      value="{{ old('user', $user->cv) }}"
                     />
+                    <button type="submit"></button>
                   </div>
                 </div>
               </div>
-            </form>
             <div class="edit-personal__headline">
               <h2>Tentang Saya</h2>
             </div>
-            <form>
+            <div>
               <div class="edit-personal__form__container">
                 <div class="edit-personal__form-deskripsi">
                   <textarea
                     class="edit-personal__input"
                     type="text"
-                    id="skill"
-                    name="skill"
+                    id="deskripsi"
+                    name="deskripsi"
                   ></textarea>
                 </div>
-                <button class="edit-personal__button">Simpan Perubahan</button>
+                <button class="edit-personal__button" type="submit">Simpan Perubahan</button>
               </div>
-            </form>
+            </div>
+          </form>
           </div>
         </div>
       </div>

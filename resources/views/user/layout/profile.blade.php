@@ -5,43 +5,43 @@
         <section class="abstract">
           <div class="abstract__profile">
             <div class="abstract__profile-image">
-              <img src="{{ asset('img/profile-img2.png') }}" alt="" />
+              <img src="" alt="" />
             </div>
             <div class="abstract__profile-summary">
               <div class="abstract__summary-header">
-                <h1>Dinda Farras G.</h1>
-                <p>Social Media Specialist | Content Writer</p>
+                <h1>{{ $user->nama_user }}</h1>
+                <p>{{ $user->bio }}</p>
               </div>
               <div class="abstract__summary-body">
                 <div class="abstract__body-telephone">
                   <h2>NOMER TELEPHONE</h2>
-                  <p>081234567890</p>
+                  <p>{{ $user->nomor_telephone }}</p>
                 </div>
                 <div class="abstract__body-email">
                   <h2>EMAIL</h2>
-                  <p>dinfarras@gmail.com</p>
+                  <p>{{ $user->email_user }}</p>
                 </div>
                 <div class="abstract__body-domisili">
                   <h2>DOMISILI</h2>
-                  <p>Jakarta, Indonesia</p>
+                  <p>{{ $user->domisili }}, Indonesia</p>
                 </div>
                 <div class="abstract__body-usia">
                   <h2>USIA</h2>
-                  <p>21 Tahun</p>
+                  <p>{{ $user->usia }} Tahun</p>
                 </div>
                 <div class="abstract__body-pendidikan">
                   <h2>PENDIDIKAN TERAKHIR</h2>
-                  <p>SMA/SMK</p>
+                  <p>{{ $user->pendidikan_terakhir }}</p>
                 </div>
                 <div class="abstract__body-cv">
                   <h2>CV</h2>
-                  <p>dinda_farras.pdf</p>
+                  <p>{{ $user->cv }}</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="abstract__button">
-            <button>Edit Profil</button>
+            <a href="{{ route('user.edit-profile-page', ['id' => $user->id]) }}">Edit Profil</a>
           </div>
         </section>
         <section class="about">
@@ -50,12 +50,7 @@
           </div>
           <div class="about__body">
             <p>
-              Lorem ipsum dolor sit amet consectetur. Mauris gravida at in
-              dapibus egestas blandit metus. Mi massa ullamcorper pretium mauris
-              tellus tempus ac ut malesuada. Cursus nisl vestibulum eget ornare
-              varius ut eu. Nunc massa arcu sed gravida. Velit augue integer
-              donec aliquam. Pellentesque integer duis volutpat integer ipsum
-              in.
+              {{$user->deskripsi}}
             </p>
           </div>
         </section>

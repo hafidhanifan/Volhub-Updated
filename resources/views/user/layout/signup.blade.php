@@ -12,12 +12,13 @@
               <p class="content-left__text-up">Buat Akun Pribadi</p>
               <p class="content-left__text-down">Jadilah bagian dari VolHub!</p>
             </div>
-            <form>
+            <form  action={{ route('register.user.action')}} method="POST">
+              @csrf
               <div class="form-signup">
                 <div class="form-signup-container">
                   <div class="form-signup-item">
                     <label for="nama">Nama Lengkap</label>
-                    <input type="text" id="nama" name="nama" required />
+                    <input type="text" id="nama" name="nama_user" required />
                   </div>
                   <div class="form-signup-item">
                     <label for="username">Username</label>
@@ -25,7 +26,7 @@
                   </div>
                   <div class="form-signup-item">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required />
+                    <input type="email" id="email" name="email_user" required />
                   </div>
                   <div class="form-signup-item">
                     <label for="password">Kata Sandi</label>
@@ -38,12 +39,12 @@
                   </div>
                   <div class="form-signup-item">
                     <label for="nomor">Nomor Handphone</label>
-                    <input type="text" id="nomor" name="nomor" required />
+                    <input type="text" id="nomor" name="nomor_telephone" required />
                   </div>
                   <div></div>
                 </div>
                 <div class="form-signup-container__button">
-                  <button class="form-signup-button__signup">Buat Akun</button>
+                  <button class="form-signup-button__signup" type="submit">Buat Akun</button>
                   <button class="form-signup-button__login">Masuk</button>
                 </div>
               </div>

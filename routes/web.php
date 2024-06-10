@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('admin.layout.login');
@@ -58,37 +59,55 @@ Route::get('/admin/edit-kegiatan/{id}', [AdminController::class, 'showEditKegiat
 Route::put('/admin/edit-kegiatan/{id}', [AdminController::class, 'editKegiatanAction'])->name('admin.edit-kegiatan-action');
 Route::delete('admin/delete-kegiatan/{id}', [AdminController::class, 'deleteKegiatanAction'])->name('admin.delete-kegiatan-action');
 
-
 // Route untuk Kelola Setting
 Route::get('/admin/setting', [AdminController::class, 'showSettingPage'])->name('admin.setting');
 Route::get('/admin/edit-setting/{id}', [AdminController::class, 'showEditSettingPage'])->name('admin.edit-setting-page');
 Route::put('admin/edit-setting/{id}', [AdminController::class, 'editSettingAction'])->name('admin.edit-setting-action');
 
 //Route untuk User
-Route::get('/user', function () {
-    return view('user/layout/index');
+Route::get('/user/login', [AuthController::class, 'showLoginUser'])->name('login.user');
+Route::post('/user/login', [AuthController::class, 'loginUser']);
+Route::get('/user/register', [AuthController::class, 'showRegisterUser'])->name('register.user');
+Route::post('/user/register', [AuthController::class, 'registerUserAction'])->name('register.user.action');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/user/daftar-volunteer', function () {
+        return view('user.layout.daftar-volunteer');
+    });
 });
-Route::get('/login', function () {
-    return view('user/layout/login');
-});
-Route::get('/signup', function () {
-    return view('user/layout/signup');
-});
-Route::get('/profile', function () {
-    return view('user/layout/profile');
-});
-Route::get('/daftarVolunteer', function () {
-    return view('user/layout/daftar-volunteer');
-});
-Route::get('/detailKegiatan', function () {
-    return view('user/layout/detail-kegiatan');
-});
-Route::get('/editDataDiri', function () {
-    return view('user/layout/edit-data-diri');
-});
-Route::get('/editPengaturanAkun', function () {
-    return view('user/layout/edit-pengaturan-akun');
-});
-Route::get('/editSkill', function () {
-    return view('user/layout/edit-skill');
-});
+
+// (User) Route untuk Daftar Kegiatan
+Route::get('/user/kegiatan/{id}', [UserController::class, 'showDaftarKegiatanPage'])->name('daftar.kegiatan');
+
+// (User) Route untuk Detail User
+Route::get('/user/detail-profile/{id}', [UserController::class, 'showDetailUserPage'])->name('user.detail-profile-page');
+Route::get('/user/edit-detail/{id}', [UserController::class, 'showEditUserPage'])->name('user.edit-profile-page');
+Route::put('user/edit-detail/{id}', [UserController::class, 'editUserAction'])->name('user.edit-profile-action');
+
+// Route::get('/user', function () {
+//     return view('user/layout/index');
+// });
+// Route::get('/login', function () {
+//     return view('user/layout/login');
+// });
+// Route::get('/signup', function () {
+//     return view('user/layout/signup');
+// });
+// Route::get('/profile', function () {
+//     return view('user/layout/profile');
+// });
+// Route::get('/daftarVolunteer', function () {
+//     return view('user/layout/daftar-volunteer');
+// });
+// Route::get('/detailKegiatan', function () {
+//     return view('user/layout/detail-kegiatan');
+// });
+// Route::get('/editDataDiri', function () {
+//     return view('user/layout/edit-data-diri');
+// });
+// Route::get('/editPengaturanAkun', function () {
+//     return view('user/layout/edit-pengaturan-akun');
+// });
+// Route::get('/editSkill', function () {
+//     return view('user/layout/edit-skill');
+// });
