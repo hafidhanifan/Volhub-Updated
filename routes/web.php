@@ -60,5 +60,6 @@ Route::delete('admin/delete-kegiatan/{id}', [AdminController::class, 'deleteKegi
 
 
 // Route untuk Kelola Setting
-Route::get('/admin/edit-setting/{id}', [AdminController::class, 'showSettingPage'])->name('admin.edit-setting-page');
+Route::get('/admin/setting', [AdminController::class, 'showSettingPage'])->name('admin.setting');
+Route::get('/admin/edit-setting/{id}', [AdminController::class, 'showEditSettingPage'])->name('admin.edit-setting-page');
 Route::put('admin/edit-setting/{id}', [AdminController::class, 'editSettingAction'])->name('admin.edit-setting-action');

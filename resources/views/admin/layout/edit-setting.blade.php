@@ -18,24 +18,26 @@
             <!-- end row -->
           </div>
           <!-- ========== title-wrapper end ========== -->
-          @foreach($setting as $setting)
-          <form class="form-elements-wrapper">
+          <form class="form-elements-wrapper" action="{{ route('admin.edit-setting-action', ['id' => $setting->id]) }}" method="POST">
+            @csrf
+            @method('PUT')
             <div class="row">
               <div class="col-lg-6">
                 <!-- input style start -->
                 <div class="card-style mb-30 d-flex flex-column">
                   <div class="input-style-1">
-                    <label>Username</label>
-                    <input type="none" placeholder="Username" name="username" value="{{ old('setting', $setting->username) }}" readonly/>
+                    <label>Masukkan Username</label>
+                    <input type="text" placeholder="Username" name="username" />
                   </div>
                   <div class="input-style-1">
                     <label>Masukkan Password</label>
-                    <input type="password" placeholder="Password" name="password" value="{{ old('setting', $setting->password) }}" readonly/>
+                    <input type="password" placeholder="Password" name="password"/>
                   </div>
-                  <a
-                    href="{{ route('admin.edit-setting-page', ['id' => $setting->id]) }}"
+                  <button
+                    href="#0"
                     class="main-btn-kategori primary-btn rounded-full btn-hover right-align"
-                    >Edit</a
+                    type="submit"
+                    >Simpan</button
                   >
                 </div>
 
@@ -45,7 +47,6 @@
             </div>
             <!-- end row -->
           </form>
-          @endforeach
         </div>
         <!-- end container -->
       </section>

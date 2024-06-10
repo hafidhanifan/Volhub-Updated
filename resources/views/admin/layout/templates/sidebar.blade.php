@@ -94,7 +94,7 @@
                 <a href="{{ url('/user') }}"> User </a>
               </li>
               <li>
-                <a href="{{ url('/user') }}"> Setting </a>
+                <a href="{{ route('admin.setting') }}"> Setting </a>
               </li>
             </ul>
           </li>
@@ -128,7 +128,7 @@
             </a>
             <ul id="ddmenu_3" class="collapse dropdown-nav">
               <li>
-                <a href=""> Logout </a>
+                <a href="{{ route('admin.logout') }}"> Logout </a>
               </li>
             </ul>
           </li>

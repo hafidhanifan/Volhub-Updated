@@ -7,6 +7,7 @@ use App\Models\Kriteria;
 use App\Models\Kategori;
 use App\Models\Kegiatan;
 use App\Models\Admin;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -254,14 +255,24 @@ class AdminController extends Controller
         return view('admin.layout.setting', compact('setting'));
     }
 
+    public function showEditSettingPage($id)
+    {
+        $setting = Admin::find($id);
+        return view('admin.layout.edit-setting', compact('setting'));
+    }
+
     public function editSettingAction(Request $request, $id)
     {
         $setting = Admin::find($id);
         $setting->username = $request->username;
         $setting->password = $request->password;
+        if ($request->filled('password')) {
+            // Enkripsi password
+            $setting->password = Hash::make($request->password);
+        }
         $setting->save();
 
-        return redirect()->route('admin.edit-setting-page', ['id' => $id])->with('success', 'Setting Admin berhasil diupdate.');
+        return redirect()->route('admin.setting', ['id' => $id])->with('success', 'Setting Admin berhasil diupdate.');
     }
     
 }
