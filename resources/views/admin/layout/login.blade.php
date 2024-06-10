@@ -84,58 +84,33 @@
                     customers.
                   </p>
 
-                  @if(Session::has('status'))
-                    </div class="alert alert-failed" role="alert">
-                      {{Session::get('message')}}
-                    </div>
-                  @endif
+                  @if($errors->any())
+                  <div>
+                      <ul>
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>
+              @endif
 
-                  <form action="{{ route('login_action') }}" method="POST">
+                  <form action="{{ route('login') }}" method="POST">
                     @csrf
                     <div class="row">
                       <div class="col-12">
                         <div class="input-style-1">
                           <label for="username">Username</label>
-                          <input type="text" placeholder="Username" name="username" id="username" required />
+                          <input type="text" placeholder="Username" name="username" required />
                         </div>
-                        @error('username')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
                       </div>
                       <!-- end col -->
                       <div class="col-12">
                         <div class="input-style-1">
                           <label for="password">Password</label>
-                          <input type="password" placeholder="Password" name="password" id="password" required />
+                          <input type="password" placeholder="Password" name="password" required />
                         </div>
                       </div>
                       <!-- end col -->
-                      <div class="col-xxl-6 col-lg-12 col-md-6">
-                        <div class="form-check checkbox-style mb-30">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="checkbox-remember"
-                          />
-                          <label
-                            class="form-check-label"
-                            for="checkbox-remember"
-                          >
-                            Remember me next time</label
-                          >
-                        </div>
-                      </div>
-                      <!-- end col -->
-                      <div class="col-xxl-6 col-lg-12 col-md-6">
-                        <div
-                          class="text-start text-md-end text-lg-start text-xxl-end mb-30"
-                        >
-                          <a href="reset-password.html" class="hover-underline">
-                            Forgot Password?
-                          </a>
-                        </div>
-                      </div>
                       <!-- end col -->
                       <div class="col-12">
                         <div

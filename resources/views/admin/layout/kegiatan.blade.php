@@ -56,18 +56,20 @@
                     >
                       <li>
                         <a
-                          href="#0"
+                          href="{{ route('admin.detail-kegiatan-page', ['id' => $kegiatan->id_kegiatan]) }}"
                           id="detailProject"
                           class="main-btn primary-btn btn-hover"
                         >
                           Detail
                         </a>
                       </li>
-                      <li>
-                        <button id="deleteProject">
-                          <i class="lni lni-trash-can text-danger"></i>
+                      <form action="{{ route('admin.delete-kegiatan-action', ['id' => $kegiatan->id_kegiatan]) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus kriteria ini?')" style="background:none; border:none; padding:0; cursor:pointer;">
+                            <i class="lni lni-trash-can text-danger"></i>
                         </button>
-                      </li>
+                    </form>
                     </ul>
                   </div>
                 </div>

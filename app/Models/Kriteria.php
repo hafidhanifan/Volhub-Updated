@@ -16,4 +16,9 @@ class Kriteria extends Model
         'nama_kriteria',
         'list_kriteria'
     ];
+
+    public function kegiatan()
+    {
+        return $this->belongsTo(Kegiatan::class, 'id_kegiatan');
+    }
 }

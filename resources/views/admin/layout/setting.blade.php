@@ -18,22 +18,20 @@
             <!-- end row -->
           </div>
           <!-- ========== title-wrapper end ========== -->
-          <div class="form-elements-wrapper">
+          <form class="form-elements-wrapper" action="{{ route('admin.edit-setting-action', ['id' => $setting->id]) }}" method="POST">
+            @csrf
+            @method('PUT')
             <div class="row">
               <div class="col-lg-6">
                 <!-- input style start -->
                 <div class="card-style mb-30 d-flex flex-column">
                   <div class="input-style-1">
                     <label>Masukkan Username</label>
-                    <input type="text" placeholder="Nama Kategori" />
+                    <input type="text" placeholder="Username" name="username" />
                   </div>
                   <div class="input-style-1">
                     <label>Masukkan Password</label>
-                    <input type="password" placeholder="Nama Kategori" />
-                  </div>
-                  <div class="input-style-1">
-                    <label>Konfirmasi Password</label>
-                    <input type="password" placeholder="Nama Kategori" />
+                    <input type="password" placeholder="Password" name="password"/>
                   </div>
                   <a
                     href="#0"
@@ -47,7 +45,7 @@
               <!-- end col -->
             </div>
             <!-- end row -->
-          </div>
+          </form>
         </div>
         <!-- end container -->
       </section>

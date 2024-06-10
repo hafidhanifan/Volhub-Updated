@@ -16,4 +16,9 @@ class Benefit extends Model
         'nama_benefit',
         'list_benefit'
     ];
+
+    public function kegiatan()
+    {
+        return $this->belongsTo(Kegiatan::class, 'id_kegiatan');
+    }
 }

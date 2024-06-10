@@ -1,15 +1,15 @@
 @include('admin.layout.templates.header')
 @include('admin.layout.templates.sidebar')
 @include('admin.layout.templates.navbar')  
-  <!-- ========== section start ========== -->
-   <section class="section">
-        <div class="container-fluid">
-          <!-- ========== title-wrapper start ========== -->
-          <div class="title-wrapper pt-30">
+<!-- ========== section start ========== -->
+  <section class="section">
+    <div class="container-fluid">
+      <!-- ========== title-wrapper start ========== -->
+      <div class="title-wrapper pt-30">
             <div class="row align-items-center">
               <div class="col-md-6">
                 <div class="title">
-                  <h2>Edit Project Volunteer</h2>
+                  <h2>Edit Project {{$kegiatan->nama_kegiatan}}</h2>
                 </div>
               </div>
               <!-- end col -->
@@ -34,60 +34,68 @@
           <!-- ========== title-wrapper end ========== -->
           <!-- ========== form-elements-wrapper start ========== -->
           <div class="form-elements-wrapper">
+            
             <div class="row">
               <div class="col-lg-6">
+                <form action="{{ route('admin.edit-kegiatan-action', ['id' => $kegiatan->id_kegiatan]) }}" method="POST">
+                  @csrf
+                  @method('PUT')
                 <!-- input style start -->
                 <div class="card-style mb-30">
                   <div class="input-style-1">
                     <label>Nama Kegiatan</label>
-                    <input type="text" placeholder="Penanaman Hutan Mangroove di Pantai Baru"/>
+                    <input value="{{ old('kegiatan', $kegiatan->nama_kegiatan) }}" type="text" name="nama_kegiatan"/>
                   </div>
                   <!-- end input -->
                   <div class="select-style-1">
                     <label>Kategori</label>
                     <div class="select-position">
-                      <select>
-                        <option value="">Pilih Kategori</option>
-                        <option value="">Pendidikan</option>
-                        <option value="">Kesehatan</option>
+                      <select name="kategori">
+                        <?php $no = 1 ?>
+                          <option value="">Pilih Kategori</option>
+                          @foreach($kategori as $kategori) 
+                            <option value="{{$kategori->id_kategori}}">{{ $kategori->nama_kategori }}</option>
+                          @endforeach
                       </select>
                     </div>
                   </div>
                   <!-- end input -->
                   <div class="select-style-1">
-                    <label>Sistem Kerja</label>
+                    <label>Sistem Kegiatan</label>
                     <div class="select-position">
-                      <select>
+                      <select name="sistem_kegiatan">
                         <option value="">Pilih Sistem Kerja</option>
-                        <option value="">Online</option>
-                        <option value="">Offline</option>
+                        @foreach($sistemKegiatan as $sistem)
+                          <option value="{{ $sistem }}">{{ ucfirst($sistem) }}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
                   <!-- end input -->
                   <div class="input-style-1">
                     <label>Tanggal Penutupan</label>
-                    <input type="date" />
+                    <input type="date" name="tgl_penutupan" value="{{ old('kegiatan', $kegiatan->tgl_penutupan) }}"/>
                   </div>
                   <!-- end input -->
                   <div class="input-style-1">
                     <label>Tanggal Kegiatan</label>
-                    <input type="date"/>
+                    <input type="date" name="tgl_kegiatan" value="{{ old('kegiatan', $kegiatan->tgl_kegiatan) }}"/>
                   </div>
                   <!-- end input -->
                   <div class="input-style-1">
                     <label>Lama Kegiatan</label>
-                    <input type="text" placeholder="1 Bulan"/>
+                    <input type="text" name="lama_kegiatan" value="{{ old('kegiatan', $kegiatan->lama_kegiatan) }}"/>
                   </div>
                   <!-- end input -->
                   <div class="input-style-1">
                     <label>Lokasi</label>
-                    <input type="text" placeholder="Yogyakarta"/>
+                    <input type="text" name="lokasi_kegiatan" value="{{ old('kegiatan', $kegiatan->lokasi_kegiatan) }}"/>
                   </div>
                   <!-- end input -->
                   <div class="input-style-1">
                     <label>Upload Gambar</label>
-                    <input type="text"/>
+                    <input type="file" name="gambar" value="{{ old('kegiatan', $kegiatan->gambar) }}"/>
+                    <button type="submit"></button>
                   </div>
                   <!-- end input -->
                 </div>
@@ -98,85 +106,67 @@
                 <div class="card-style mb-30">
                     <div class="input-style-1">
                       <label>Deskripsi</label>
-                      <textarea rows="5" placeholder="Lorem ipsum dolor sit amet consectetur. Mauris gravida at in dapibus egestas blandit metus. Mi massa ullamcorper pretium mauris tellus tempus ac ut malesuada. Cursus nisl vestibulum eget ornare varius ut eu. Nunc massa arcu sed gravida. Velit augue integer donec aliquam. Pellentesque integer duis volutpat integer ipsum in"></textarea>
+                      <textarea rows="5" name="deskripsi" value="{{ old('kegiatan', $kegiatan->deskripsi) }}"></textarea>
                     </div>
                     <!-- end textarea -->
                 </div>
                 <!-- ======= textarea style end ======= -->
-
-
                 
               </div>
               <!-- end col -->
+
+              
               <div class="col-lg-6">
-
-
-                <!-- input style start -->
-                <div class="card-style mb-30">
-                    <div class="input-style-1">
-                      <label>Kriteria</label>
-                      <input type="text" placeholder="Minimal sedang atau lulus SMA/SMK" />
+                 <!-- input style start -->
+                 <div class="card-style mb-30">
+                  <div class="select-style-1">
+                    <label>Kriteria</label>
+                    <div class="select-position">
+                      <select name="kriteria">
+                      <?php $no = 1 ?>
+                      <option value="">Pilih Kriteria</option>
+                      @foreach($kriteria as $kriteria) 
+                        <option value="{{$kriteria->id_kriteria}}">{{ $kriteria->nama_kriteria }}</option>
+                      @endforeach
+                      </select>
                     </div>
-                    <!-- end input -->
-                    <div class="input-style-1">
-                      <input type="text" placeholder="Berbahasa Inggris dengan lancar"/>
-                    </div>
-                    <!-- end input -->
-                    <div class="input-style-1">
-                      <input type="text" placeholder="Dapat berkeja secara tim maupun individu"/>
-                    </div>
-                    <!-- end input -->
-                    <div class="input-style-1">
-                      <input type="text" placeholder="Diutamakan berdomisili Yogyakarta"/>
-                    </div>
-                    <!-- end input -->
-                    <div class="input-style-1">
-                      <input type="text" placeholder="Memiliki transportasi pribadi"/>
-                    </div>
-                    <!-- end input -->  
-                </div>
+                  </div>
+                  <!-- end input -->
+              </div>
                 <!-- end card -->
                 <!-- ======= input style end ======= -->
 
-                <!-- input style start -->
-                <div class="card-style mb-30">
-                    <div class="input-style-1">
-                      <label>Benefit</label>
-                      <input type="text" placeholder="Asuransi Kesehatan"/>
+             <!-- input style start -->
+             <div class="card-style mb-30">
+              <div class="select-style-1">
+                    <label>Benefit</label>
+                    <div class="select-position">
+                      <select name="nama_benefit">
+                      <?php $no = 1 ?>
+                      <option value="">Pilih Benefit</option>
+                      @foreach($benefit as $benefit) 
+                        <option value="{{$benefit->id_benefit}}">{{ $benefit->nama_benefit }}</option>
+                      @endforeach
+                      </select>
                     </div>
-                    <!-- end input -->
-                    <div class="input-style-1">
-                      <input type="text" placeholder="Relasi yang Luas"/>
-                    </div>
-                    <!-- end input -->
-                    <div class="input-style-1">
-                      <input type="text" placeholder="Biaya transportasi"/>
-                    </div>
-                    <!-- end input -->
-                    <div class="input-style-1">
-                      <input type="text" placeholder="Fee"/>
-                    </div>
-                    <!-- end input -->
-                    <div class="input-style-1">
-                      <input type="text" placeholder="Sertifikat"/>
-                    </div>
-                    <!-- end input -->  
-                </div>
-                <!-- end card -->
-                <!-- ======= input style end ======= -->
+                  </div>
+                  <!-- end input -->
+
+            </div>
+          <!-- end card -->
+          <!-- ======= input style end ======= -->
 
               </div>
               <!-- end col -->
             </div>
             <!-- end row -->
+            
+            <button type="submit" href="#0" class="main-btn-kategori primary-btn btn-hover right-align">Edit Kegiatan</button>
+          </form>
           </div>
           <!-- ========== form-elements-wrapper end ========== -->
-
-
-
-
         </div>
         <!-- end container -->
-      </section>
+  </section>
       <!-- ========== section end ========== -->
 @include('admin.layout.templates.footer')

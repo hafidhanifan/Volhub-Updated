@@ -3,51 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;    
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-
+use App\Models\Admin;
 
 class AuthController extends Controller
-{  
-    public function login() 
+{
+    public function showLoginForm()
     {
-        return view('admin/layout/login');
+        return view('admin.layout.login');
     }
 
-    public function login_action (Request $request)
+    public function login(Request $request)
     {
-        // dd($request->all());
-        
-        $check = $request->validate([
-            'username' => ['required', 'string'],
-            'password' => ['required'],
-        ]);
+        $credentials = $request->only('username', 'password');
 
-        if (Auth::guard('admin')->attempt($check)) {
-            $request->session()->regenerate();
-    
-            return redirect()->intended('/dashboard');
-        } 
-        // else {
-        //     Session::flash('status', 'failed');
-        //     Session::flash('message', 'Username atau Password yang dimasukan salah!');
-
-        //     return redirect()->route('login');
-        // }
+        if (Auth::guard('admin')->attempt($credentials)) {
+            return redirect()->intended('/admin/dashboard');
+        }
 
         return back()->withErrors([
-            'username' => 'Salah!',
-        ])->onlyInput('username');
+            'username' => 'Username atau password salah.',
+        ]);
     }
-    // public function logout(Request $request)
-    // {
-    //     Auth::logout();
 
-    //     $request->session()->invalidate();
-
-    //     $request->session()->regenerateToken();
-
-    //     return redirect()->route('login');
-    // }
+    public function logout(Request $request)
+    {
+        Auth::guard('admin')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/admin/login');
+    }
 }

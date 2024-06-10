@@ -8,7 +8,7 @@
  <aside class="sidebar-nav-wrapper">
       <div class="navbar-logo">
         <a href="index.html">
-          <img src="assets/images/logo/logo.svg" alt="logo" />
+          <img src="{{ asset('/img/logo.png') }}" alt="logo" />
         </a>
       </div>
       <nav class="sidebar-nav">
@@ -94,7 +94,7 @@
                 <a href="{{ url('/user') }}"> User </a>
               </li>
               <li>
-                <a href="{{ url('/setting') }}"> Setting </a>
+                <a href="{{ url('/user') }}"> Setting </a>
               </li>
             </ul>
           </li>

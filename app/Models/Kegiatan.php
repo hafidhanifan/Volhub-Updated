@@ -25,4 +25,19 @@ class Kegiatan extends Model
         'tgl_kegiatan',
         'gambar'
     ];
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'id_kategori');
+    }
+
+    public function benefit()
+    {
+        return $this->belongsTo(Benefit::class, 'id_benefit');
+    }
+
+    public function kriteria()
+    {
+        return $this->belongsTo(Kriteria::class, 'id_kriteria');
+    }
 }
