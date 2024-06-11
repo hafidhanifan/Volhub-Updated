@@ -91,7 +91,7 @@
                 <a href="{{ url('/pendaftar') }}"> Pendaftar </a>
               </li>
               <li>
-                <a href="{{ url('/user') }}"> User </a>
+                <a href="{{ route('admin.user') }}"> User </a>
               </li>
               <li>
                 <a href="{{ route('admin.setting') }}"> Setting </a>

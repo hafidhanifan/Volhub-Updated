@@ -43,125 +43,32 @@
                         <!-- end table row-->
                       </thead>
                       <tbody>
+                        <?php $no = 1 ?>
+                        @foreach($user as $user)
                         <tr>
                           <td>
-                            <p>1</p>
+                            <p>{{$user->id}}</p>
                           </td>
                           <td class="min-width">
-                            <p>Esther Howard</p>
+                            <p>{{$user->nama_user}}</p>
                           </td>
                           <td class="min-width">
-                            <p><a href="#0">yourmail@gmail.com</a></p>
+                            <p><a href="#0">{{$user->email_user}}</a></p>
                           </td>
                           <td class="min-width">
-                            <p>Jakarta</p>
+                            <p>{{$user->domisili}}</p>
                           </td>
                           <td>
                             <div class="action">
                               <a
-                                href="#0"
+                                href="{{ route('admin.detail-user-page', ['id' => $user->id]) }}"
                                 class="main-btn primary-btn btn-hover"
                                 >Detail</a
                               >
                             </div>
                           </td>
                         </tr>
-                        <!-- end table row -->
-                        <tr>
-                          <td>
-                            <p>2</p>
-                          </td>
-                          <td class="min-width">
-                            <p>Esther Howard</p>
-                          </td>
-                          <td class="min-width">
-                            <p><a href="#0">yourmail@gmail.com</a></p>
-                          </td>
-                          <td class="min-width">
-                            <p>Jakarta</p>
-                          </td>
-                          <td>
-                            <div class="action">
-                              <a
-                                href="#0"
-                                class="main-btn primary-btn btn-hover"
-                                >Detail</a
-                              >
-                            </div>
-                          </td>
-                        </tr>
-                        <!-- end table row -->
-                        <tr>
-                          <td>
-                            <p>3</p>
-                          </td>
-                          <td class="min-width">
-                            <p>Esther Howard</p>
-                          </td>
-                          <td class="min-width">
-                            <p><a href="#0">yourmail@gmail.com</a></p>
-                          </td>
-                          <td class="min-width">
-                            <p>Jakarta</p>
-                          </td>
-                          <td>
-                            <div class="action">
-                              <a
-                                href="#0"
-                                class="main-btn primary-btn btn-hover"
-                                >Detail</a
-                              >
-                            </div>
-                          </td>
-                        </tr>
-                        <!-- end table row -->
-                        <tr>
-                          <td>
-                            <p>4</p>
-                          </td>
-                          <td class="min-width">
-                            <p>Esther Howard</p>
-                          </td>
-                          <td class="min-width">
-                            <p><a href="#0">yourmail@gmail.com</a></p>
-                          </td>
-                          <td class="min-width">
-                            <p>Jakarta</p>
-                          </td>
-                          <td>
-                            <div class="action">
-                              <a
-                                href="#0"
-                                class="main-btn primary-btn btn-hover"
-                                >Detail</a
-                              >
-                            </div>
-                          </td>
-                        </tr>
-                        <!-- end table row -->
-                        <tr>
-                          <td>
-                            <p>5</p>
-                          </td>
-                          <td class="min-width">
-                            <p>Esther Howard</p>
-                          </td>
-                          <td class="min-width">
-                            <p><a href="#0">yourmail@gmail.com</a></p>
-                          </td>
-                          <td class="min-width">
-                            <p>Jakarta</p>
-                          </td>
-                          <td>
-                            <div class="action">
-                              <a
-                                href="#0"
-                                class="main-btn primary-btn btn-hover"
-                                >Detail</a
-                              >
-                            </div>
-                          </td>
-                        </tr>
+                        @endforeach
                         <!-- end table row -->
                       </tbody>
                     </table>

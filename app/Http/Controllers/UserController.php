@@ -35,6 +35,12 @@ class UserController extends Controller
         return view('user.layout.edit-data-diri', compact('user', 'gender', 'pendidikanTerakhir'));
     }
 
+    public function showEditAkunPage($id)
+    {
+        $user = User::find($id);
+        return view('user.layout.edit-pengaturan-akun', compact('user'));
+    }
+
     public function editUserAction(Request $request, $id)
     {
         $user = User::find($id);
@@ -52,5 +58,30 @@ class UserController extends Controller
 
         return view('user.layout.profile', compact('user'))->with('success', 'User berhasil diupdate.');
     }
+    public function editAkunAction(Request $request, $id) 
+    {
+        $user = User::find($id);
+        $user->username = $request->username;
+        $user->password = $request->password;
+        $user->email_user = $request->email_user;
 
+        if ($request->filled('password')) {
+            // Enkripsi password
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return view('user.layout.profile', compact('user'))->with('success', 'User berhasil diupdate.');
+    }
+
+    //All About Kegiatan
+    public function showDetailKegiatanPage($id)
+    {
+        $kegiatan = Kegiatan::with(['kategori', 'kriteria', 'benefit'])->find($id);
+        if (!$kegiatan) {
+            return redirect()->route('user.daftar-volunteer')->with('error', 'Kegiatan tidak ditemukan.');
+        } 
+        return view('user.layout.detail-kegiatan', compact('kegiatan'));
+    }
 }

@@ -9,7 +9,7 @@
               <img src="{{ asset('img/volhub-small-logo.png') }}" alt="" />
             </div>
             <div class="detail-header__body-title">
-              <h1>Penanaman Hutan Mangrove di Pantai Baru</h1>
+              <h1>{{$kegiatan->nama_kegiatan}}</h1>
             </div>
           </div>
           <div class="detail-header__body-button">
@@ -54,12 +54,7 @@
           <article class="description__text">
             <h2>Deskripsi</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Temporibus nobis fugiat quasi, fugit laborum voluptas enim
-              quisquam ullam vitae nemo cupiditate architecto sint ex tempore
-              earum, quod eaque expedita ut delectus excepturi molestias magnam!
-              Corrupti in velit quisquam, repellendus voluptates cum
-              consequatur, fugit facere non autem eveniet quidem maiores est?
+              {{ $kegiatan->deskripsi }}
             </p>
           </article>
           <div class="description__criteria">
@@ -67,25 +62,7 @@
               <h2>Kriteria</h2>
               <article class="description__criteria-body">
                 <ul>
-                  <li>Lorem ipsum dolor sit amet consectetur.</li>
-                  <li>
-                    Lorem ipsum dolor sit amet consectetur. Aliquam volutpat
-                    quis vel imperdiet dui. Velit consequat adipiscing nunc
-                    integer neque.
-                  </li>
-                  <li>
-                    Lorem ipsum dolor sit amet consectetur. Adipiscing arcu a
-                    vulputate ut ullamcorper egestas id. Eu arcu sapien tempor
-                    aenean risus risus scelerisque consectetur nisl. Proin
-                    gravida magna scelerisque pellentesque mi euismod nisi
-                    ultrices. Lectus amet volutpat amet dictumst suscipit nulla
-                    non.
-                  </li>
-                  <li>
-                    Lorem ipsum dolor sit amet consectetur. Aliquam volutpat
-                    quis vel imperdiet dui. Velit consequat adipiscing nunc
-                    integer neque.
-                  </li>
+                  <li>{{ $kegiatan->kriteria->list_kriteria }}</li>
                 </ul>
               </article>
             </div>
@@ -99,52 +76,7 @@
                     <i class="fa-solid fa-check"></i>
                   </div>
                   <div class="description__benefit-item-text">
-                    <p>Asuransi Kesehatan</p>
-                  </div>
-                </div>
-
-                <div class="description__benefit-item">
-                  <div class="description__benefit-item-icon">
-                    <i class="fa-solid fa-check"></i>
-                  </div>
-                  <div class="description__benefit-item-text">
-                    <p>Asuransi Kesehatan</p>
-                  </div>
-                </div>
-
-                <div class="description__benefit-item">
-                  <div class="description__benefit-item-icon">
-                    <i class="fa-solid fa-check"></i>
-                  </div>
-                  <div class="description__benefit-item-text">
-                    <p>Asuransi Kesehatan</p>
-                  </div>
-                </div>
-
-                <div class="description__benefit-item">
-                  <div class="description__benefit-item-icon">
-                    <i class="fa-solid fa-check"></i>
-                  </div>
-                  <div class="description__benefit-item-text">
-                    <p>Asuransi Kesehatan</p>
-                  </div>
-                </div>
-
-                <div class="description__benefit-item">
-                  <div class="description__benefit-item-icon">
-                    <i class="fa-solid fa-check"></i>
-                  </div>
-                  <div class="description__benefit-item-text">
-                    <p>Asuransi Kesehatan</p>
-                  </div>
-                </div>
-
-                <div class="description__benefit-item">
-                  <div class="description__benefit-item-icon">
-                    <i class="fa-solid fa-check"></i>
-                  </div>
-                  <div class="description__benefit-item-text">
-                    <p>Asuransi Kesehatan</p>
+                    <p>{{ $kegiatan->benefit->list_benefit }}</p>
                   </div>
                 </div>
               </div>
@@ -157,23 +89,23 @@
             <article class="information__text">
               <div class="information__text-closed">
                 <h3>Penutupan</h3>
-                <p><span>20 September 2024</span></p>
+                <p><span>{{ $kegiatan->tgl_penutupan }}</span></p>
               </div>
               <div class="information__text-start">
                 <h3>Tanggal Pelaksanan</h3>
-                <p>5 Oktober 2024</p>
+                <p>{{ $kegiatan->tgl_kegiatan }}</p>
               </div>
               <div class="information__text-duration">
                 <h3>Pelaksanaan</h3>
-                <p>1 Bulan</p>
+                <p>{{ $kegiatan->lama_kegiatan }}</p>
               </div>
               <div class="information__text-system">
                 <h3>Sistem Kerja</h3>
-                <p>Offline</p>
+                <p>{{$kegiatan->sistem_kegiatan}}</p>
               </div>
               <div class="information__text-location">
                 <h3>Lokasi</h3>
-                <p>Yogyakarta, Indonesia</p>
+                <p>{{ $kegiatan->lokasi_kegiatan}}, Indonesia</p>
               </div>
             </article>
           </div>
@@ -183,7 +115,7 @@
       <section class="recommendation">
         <div class="recommendation__header">
           <h2>Rekomendasi</h2>
-          <p>See All</p>
+          <p>Selengkapnya</p>
         </div>
         <div class="content__body">
           <div class="content__body-item">

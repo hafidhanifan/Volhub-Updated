@@ -7,13 +7,13 @@
           <nav class="edit-profile__navigation">
             <ul>
               <li>
-                <a href=""><i class="fa-solid fa-user"></i>Profile</a>
+                <a href="{{ route('user.edit-profile-page', ['id' => $user->id]) }}"><i class="fa-solid fa-user"></i>Profile</a>
               </li>
               <li>
                 <a href=""><i class="fa-solid fa-brain"></i>Kemampuan</a>
               </li>
               <li>
-                <a href=""><i class="fa-solid fa-gear"></i>Pengaturan Akun</a>
+                <a href="{{ route('user.edit-akun-page', ['id' => $user->id]) }}"><i class="fa-solid fa-gear"></i>Pengaturan Akun</a>
               </li>
             </ul>
           </nav>
@@ -23,7 +23,9 @@
             <div class="edit-akun__headline">
               <h2>Pengaturan Akun</h2>
             </div>
-            <form>
+            <form action="{{ route('user.edit-akun-action', ['id' => $user->id]) }}" method="POST">
+              @csrf
+              @method('PUT')
               <div class="edit-akun__form__container">
                 <div class="edit-akun__form">
                   <div class="edit-akun__item">
@@ -31,8 +33,9 @@
                     <input
                       class="edit-akun__input"
                       type="text"
-                      id="skill"
-                      name="skill"
+                      id="username"
+                      name="username"
+                      value="{{ old('user', $user->username) }}"
                       required
                     />
                   </div>
@@ -40,9 +43,10 @@
                     <label>Email</label>
                     <input
                       class="edit-akun__input"
-                      type="text"
-                      id="skill"
-                      name="skill"
+                      type="email"
+                      id="email"
+                      name="email_user"
+                      value="{{ old('user', $user->email_user) }}"
                       required
                     />
                   </div>
@@ -50,9 +54,10 @@
                     <label>Kata Sandi</label>
                     <input
                       class="edit-akun__input"
-                      type="text"
-                      id="skill"
-                      name="skill"
+                      type="password"
+                      id="password"
+                      name="password"
+                      value="{{ old('user', $user->password) }}"
                       required
                     />
                   </div>

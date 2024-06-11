@@ -7,6 +7,7 @@ use App\Models\Kriteria;
 use App\Models\Kategori;
 use App\Models\Kegiatan;
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
@@ -246,6 +247,22 @@ class AdminController extends Controller
         } else {
             return back()->with('error', 'Kegiatan tidak ditemukan');
         }
+    }
+
+    //All About User
+    public function showUserPage()
+    {
+        $user = User::all();
+        return view('admin.layout.user', compact('user'));
+    }
+
+    public function showDetailUserPage($id)
+    {
+        $user = User::find($id);
+        if (!$user) {
+            return redirect()->route('admin.user')->with('error', 'User tidak ditemukan.');
+        } 
+        return view('admin.layout.detail-user', compact('user'));
     }
 
     // All About Setting

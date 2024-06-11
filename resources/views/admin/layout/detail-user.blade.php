@@ -50,23 +50,23 @@
                   <div class="profile-data">
                     <div class="profile-user-name">
                       <h3 class="text-gray mb-10">Nama</h3>
-                      <p class="fw-bold text-black">Dinda Farras G</p>
+                      <p class="fw-bold text-black">{{$user->nama_user}}</p>
                     </div>
                     <div class="profile-user-domisili">
                       <h3 class="text-gray mb-10">Domisili</h3>
-                      <p class="fw-bold text-black">Jakarta, Indonesia</p>
+                      <p class="fw-bold text-black">{{$user->domisili}} Indonesia</p>
                     </div>
                     <div class="profile-user-gender">
                       <h3 class="text-gray mb-10">Gender</h3>
-                      <p class="fw-bold text-black">Perempuan</p>
+                      <p class="fw-bold text-black">{{$user->gender}}</p>
                     </div>
                     <div class="profile-user-pendidikan">
                       <h3 class="text-gray mb-10">Pendidikan Terakhir</h3>
-                      <p class="fw-bold text-black">SMA?SMK</p>
+                      <p class="fw-bold text-black">{{$user->pendidikan_terakhir}}</p>
                     </div>
                     <div class="profile-user-usia">
                       <h3 class="text-gray mb-10">Usia</h3>
-                      <p class="fw-bold text-black">21 Tahun</p>
+                      <p class="fw-bold text-black">{{$user->usia}} Tahun</p>
                     </div>
                   </div>
                 </div>
@@ -94,11 +94,11 @@
 
                   <div class="profile-user-name">
                     <h3>Email</h3>
-                    <p>dindafarras@gmail.com</p>
+                    <p>{{$user->email_user}}</p>
                   </div>
                   <div class="profile-user-domisili mt-20">
                     <h3>Kontak</h3>
-                    <p>08123456789</p>
+                    <p>{{$user->nomor_telephone}}</p>
                 </div>
                 <!-- end card -->
               </div>
@@ -123,14 +123,14 @@
             <div class="address-item">
               <h5 class="text-bold">Bio</h5>
               <p class="text-sm">
-                Social Media Specialist | Content Writer
+                {{$user->bio}}
               </p>
             </div>
           </div>
           <div class="address-item">
             <h5 class="text-bold">Deskripsi</h5>
             <p class="text-sm">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime iusto eaque tempore vel assumenda enim amet doloribus fugit hic sint quod laudantium blanditiis eligendi quae quo fuga, voluptatibus odio temporibus placeat omnis reprehenderit officia a velit architecto. Nobis nemo nulla, similique cum debitis, eveniet voluptatem numquam consequuntur nostrum deserunt vero?
+              {{$user->deskripsi}}
             </p>
           </div>
         </div>

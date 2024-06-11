@@ -20,9 +20,11 @@
                 <i class="fa-solid fa-location-dot"></i>
                 <p>{{$user->domisili}}, Indonesia</p>
               </div>
-              <div class="profile__data-button">
-                <a href= "{{ route('user.detail-profile-page', ['id' => $user->id]) }}" >Kegiatan</a>
-              </div>
+              <form  action="{{ route('user.detail-profile-page', ['id' => $user->id]) }}" method="POST" class="profile__data-button">
+                @csrf
+                @method('GET')
+                <button>Kegiatan</button>
+              </form>
             </div>
           </div>
           <div class="skill">
@@ -74,9 +76,11 @@
                   <p>{{ $kegiatan->lokasi_kegiatan }}</p>
                 </div>
 
-                <div class="content__data-button">
+                <form action="{{ route('user.detail-kegiatan-page', ['id' => $kegiatan->id_kegiatan]) }}" method="POST" class="content__data-button">
+                  @csrf
+                  @method('GET')
                   <button>Detail</button>
-                </div>
+                </form>
               </div>
             </div>
             @endforeach

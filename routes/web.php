@@ -59,6 +59,10 @@ Route::get('/admin/edit-kegiatan/{id}', [AdminController::class, 'showEditKegiat
 Route::put('/admin/edit-kegiatan/{id}', [AdminController::class, 'editKegiatanAction'])->name('admin.edit-kegiatan-action');
 Route::delete('admin/delete-kegiatan/{id}', [AdminController::class, 'deleteKegiatanAction'])->name('admin.delete-kegiatan-action');
 
+// Route untuk Kelola User
+Route::get('/admin/user', [AdminController::class, 'showUserPage'])->name('admin.user');
+Route::get('/admin/detail-user/{id}', [AdminController::class, 'showDetailUserPage'])->name('admin.detail-user-page');
+
 // Route untuk Kelola Setting
 Route::get('/admin/setting', [AdminController::class, 'showSettingPage'])->name('admin.setting');
 Route::get('/admin/edit-setting/{id}', [AdminController::class, 'showEditSettingPage'])->name('admin.edit-setting-page');
@@ -83,6 +87,11 @@ Route::get('/user/kegiatan/{id}', [UserController::class, 'showDaftarKegiatanPag
 Route::get('/user/detail-profile/{id}', [UserController::class, 'showDetailUserPage'])->name('user.detail-profile-page');
 Route::get('/user/edit-detail/{id}', [UserController::class, 'showEditUserPage'])->name('user.edit-profile-page');
 Route::put('user/edit-detail/{id}', [UserController::class, 'editUserAction'])->name('user.edit-profile-action');
+Route::get('/user/edit-akun/{id}', [UserController::class, 'showEditAkunPage'])->name('user.edit-akun-page');
+Route::put('user/edit-akun/{id}', [UserController::class, 'editAkunAction'])->name('user.edit-akun-action');
+
+// (User) Route untuk Detail Kegiatan
+Route::get('/user/detail-kegiatan/{id}', [UserController::class, 'showDetailKegiatanPage'])->name('user.detail-kegiatan-page');
 
 // Route::get('/user', function () {
 //     return view('user/layout/index');
