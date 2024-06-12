@@ -85,6 +85,9 @@
                 <a href="{{ route('admin.benefit') }}"> Benefit </a>
               </li>
               <li>
+                <a href="{{ route('admin.skill') }}"> Skill </a>
+              </li>
+              <li>
                 <a href="{{ route('admin.kegiatan') }}"> Project </a>
               </li>
               <li>

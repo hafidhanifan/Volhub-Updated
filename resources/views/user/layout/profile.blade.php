@@ -59,9 +59,10 @@
             <div class="status__skill-body">
               <h3>Top Skills</h3>
               <ul>
-                <li>Social Media Specialist</li>
-                <li>Content Writer</li>
-                <li>Script Writer</li>
+                <?php $no = 1 ?>
+                @foreach($user->skills as $skill)
+                <li>{{$skill->nama_skill}}</li>
+                @endforeach
               </ul>
             </div>
             <div class="status__skill-button">

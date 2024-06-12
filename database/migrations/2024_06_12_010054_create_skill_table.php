@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('kegiatan', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_benefit');
-            $table->foreign('id_benefit')->references('id_benefit')->on('benefit');
+        Schema::create('skill', function (Blueprint $table) {
+            $table->id('id_skill');
+            $table->string('nama_skill');
         });
     }
 
@@ -26,8 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('kegiatan', function (Blueprint $table) {
-            $table->dropColumn('id_benefit');
-        });
+        Schema::dropIfExists('skill');
     }
 };

@@ -14,11 +14,10 @@ class Kriteria extends Model
     protected $primaryKey = 'id_kriteria';
     protected $fillable = [
         'nama_kriteria',
-        'list_kriteria'
     ];
 
-    public function kegiatan()
+    public function kegiatans()
     {
-        return $this->belongsTo(Kegiatan::class, 'id_kegiatan');
+        return $this->belongsToMany(Kegiatan::class, 'kegiatan_kriteria', 'id_kriteria', 'id_kegiatan');
     }
 }

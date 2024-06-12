@@ -41,9 +41,6 @@
                           <h6>Nama Kriteria</h6>
                         </th>
                         <th>
-                          <h6>List Kriteria</h6>
-                        </th>
-                        <th>
                           <h6>Action</h6>
                         </th>
                       </tr>
@@ -58,9 +55,6 @@
                         </td>
                         <td>
                           <p>{{ $kriteria->nama_kriteria }}</p>
-                        </td>
-                        <td>
-                          <p>{{ $kriteria->list_kriteria }}</p>
                         </td>
                         <td>
                           <div class="action">

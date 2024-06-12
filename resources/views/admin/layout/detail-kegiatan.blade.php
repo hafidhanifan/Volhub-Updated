@@ -92,8 +92,16 @@
                 <h1 class="mb-30 text-medium">Benefit</h1>
 
                 <ul class="custom-list">
-                  <li>{{$kegiatan->benefit->list_benefit}}</li>
+                <?php $no = 1 ?>
+                @foreach($kegiatan->benefits as $benefit)
+                  <li>{{$benefit->nama_benefit}}</li>
+                @endforeach
                 </ul>
+                <form action="{{ route('admin.add-benefit-kegiatan-page', ['id' => $kegiatan->id_kegiatan]) }}" method="POST">
+                  @csrf
+                  @method('GET')
+                  <button type="submit" href="#0" class="main-btn-kategori primary-btn btn-hover right-align">Edit Benefit</button>
+                </form>
               </div>
               <!-- end card -->
             </div>
@@ -102,8 +110,16 @@
               <div class="card-style mb-30">
                 <h1 class="mb-30 text-medium">Kriteria</h1>
                 <ul class="custom-list">
-                  <li>{{ $kegiatan->kriteria->list_kriteria }}</li>
+                  <?php $no = 1 ?>
+                  @foreach($kegiatan->kriterias as $kriteria)
+                  <li>{{$kriteria->nama_kriteria}}</li>
+                  @endforeach
                 </ul>
+                <form action="{{ route('admin.add-kriteria-kegiatan-page', ['id' => $kegiatan->id_kegiatan]) }}" method="POST">
+                  @csrf
+                  @method('GET')
+                  <button type="submit" href="#0" class="main-btn-kategori primary-btn btn-hover right-align">Edit Kriteria</button>
+                </form>
               </div>
               <!-- end card -->
             </div>

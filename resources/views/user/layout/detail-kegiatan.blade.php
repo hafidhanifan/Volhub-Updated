@@ -62,7 +62,10 @@
               <h2>Kriteria</h2>
               <article class="description__criteria-body">
                 <ul>
-                  <li>{{ $kegiatan->kriteria->list_kriteria }}</li>
+                  <?php $no = 1 ?>
+                  @foreach($kegiatan->kriterias as $kriteria)
+                  <li>{{$kriteria->nama_kriteria}}</li>
+                  @endforeach
                 </ul>
               </article>
             </div>
@@ -73,10 +76,14 @@
               <div class="description__benefit-body">
                 <div class="description__benefit-item">
                   <div class="description__benefit-item-icon">
-                    <i class="fa-solid fa-check"></i>
+                    <?php $no = 1 ?>
+                @foreach($kegiatan->benefits as $benefit)
+                <i class="fa-solid fa-check"></i>
+                    {{$benefit->nama_benefit}}
+                @endforeach
                   </div>
                   <div class="description__benefit-item-text">
-                    <p>{{ $kegiatan->benefit->list_benefit }}</p>
+                    <p></p>
                   </div>
                 </div>
               </div>

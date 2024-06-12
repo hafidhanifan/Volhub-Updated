@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Benefit;
 use App\Models\Kriteria;
+use App\Models\Skill;
 use App\Models\Kategori;
 use App\Models\Kegiatan;
 use App\Models\Admin;
@@ -83,7 +84,6 @@ class AdminController extends Controller
     {
         $kriteria = new Kriteria;
         $kriteria->nama_kriteria = $request->nama_kriteria;
-        $kriteria->list_kriteria = $request->list_kriteria;
         $kriteria->save();
 
         return redirect('/admin/kriteria');
@@ -93,7 +93,6 @@ class AdminController extends Controller
     {
         $kriteria = Kriteria::find($id);
         $kriteria->nama_kriteria = $request->nama_kriteria;
-        $kriteria->list_kriteria = $request->list_kriteria;
         $kriteria->save();
 
         return redirect()->route('admin.kriteria', ['id' => $id])->with('success', 'Kriteria berhasil diupdate.');
@@ -133,7 +132,6 @@ class AdminController extends Controller
     {
         $benefit = new Benefit;
         $benefit->nama_benefit = $request->nama_benefit;
-        $benefit->list_benefit = $request->list_benefit;
         $benefit->save();
 
         return redirect('/admin/benefit');
@@ -143,7 +141,6 @@ class AdminController extends Controller
     {
         $benefit = Benefit::find($id);
         $benefit->nama_benefit = $request->nama_benefit;
-        $benefit->list_benefit = $request->list_benefit;
         $benefit->save();
 
         return redirect()->route('admin.benefit', ['id' => $id])->with('success', 'Benefit berhasil diupdate.');
@@ -161,6 +158,54 @@ class AdminController extends Controller
         }
     }
 
+    //All About SkillS
+    public function showSkillPage()
+    {   
+        $skill = Skill::all();
+        return view('admin.layout.skill', compact('skill'));
+    }
+
+    public function showAddSkillPage()
+    {
+        return view('admin.layout.add-skill');
+    }
+
+    public function showEditSkillPage($id)
+    {
+        $skill = Skill::find($id);
+        return view('admin.layout.edit-skill', compact('skill'));
+    }
+    
+    public function addSkillAction(Request $request)
+    {
+        $skill = new Skill;
+        $skill->nama_skill = $request->nama_skill;
+        $skill->save();
+
+        return redirect('/admin/skill');
+    }
+
+    public function editSkillAction(Request $request, $id)
+    {
+        $skill = Skill::find($id);
+        $skill->nama_skill = $request->nama_skill;
+        $skill->save();
+
+        return redirect()->route('admin.skill', ['id' => $id])->with('success', 'Kategori berhasil diupdate.');
+    }
+
+    public function deleteSkillAction($id)
+    {
+        $skill = Skill::find($id);
+
+        if ($skill) {
+            $skill->delete();
+            return redirect()->route('admin.skill')->with('success', 'Skill berhasil dihapus.');
+        } else {
+            return redirect()->route('admin.skill')->with('error', 'Skill tidak ditemukan.');
+        }
+    }
+
 
     // All About Kegiatan
     public function showKegiatanPage()
@@ -173,14 +218,15 @@ class AdminController extends Controller
     {
         $kategori = Kategori::all();
         $benefit = Benefit::all();
-        $kriteria = Kriteria::all();
+        // $kriteria = Kriteria::all();
         $sistemKegiatan = ['offline', 'online'];
-        return view('admin.layout.add-kegiatan', compact('kategori','benefit','kriteria', 'sistemKegiatan'));
+        return view('admin.layout.add-kegiatan', compact('kategori','benefit', 'sistemKegiatan'));
+        
     }
 
     public function showDetailKegiatanPage($id)
     {
-        $kegiatan = Kegiatan::with(['kategori', 'kriteria', 'benefit'])->find($id);
+        $kegiatan = Kegiatan::with(['kategori'])->find($id);
         if (!$kegiatan) {
             return redirect()->route('admin.kegiatan')->with('error', 'Kegiatan tidak ditemukan.');
         } 
@@ -189,12 +235,12 @@ class AdminController extends Controller
 
     public function showEditKegiatanPage($id)
     {
-        $kegiatan = Kegiatan::with(['kategori', 'kriteria', 'benefit'])->find($id);
+        $kegiatan = Kegiatan::with(['kategori'])->find($id);
         $kategori = Kategori::all();
         $benefit = Benefit::all();
-        $kriteria = Kriteria::all();
+        // $kriteria = Kriteria::all();
         $sistemKegiatan = ['offline', 'online'];
-        return view('admin.layout.edit-kegiatan', compact('kegiatan', 'kategori','benefit','kriteria', 'sistemKegiatan'));
+        return view('admin.layout.edit-kegiatan', compact('kegiatan', 'kategori', 'sistemKegiatan'));
     }
 
     public function addKegiatanAction(Request $request)
@@ -209,13 +255,12 @@ class AdminController extends Controller
         $kegiatan->tgl_penutupan = $request->tgl_penutupan;
         $kegiatan->tgl_kegiatan = $request->tgl_kegiatan;
         $kegiatan->gambar=$request->gambar;
-
-        $kegiatan->id_kriteria = $request->kriteria;
-        $kegiatan->id_benefit = $request->nama_benefit;
+        
         $kegiatan->save();
 
-        return redirect('/admin/kegiatan');
+        return redirect('/admin/kegiatan')->with('success', 'Kegiatan berhasil ditambahkan.');
     }
+    
 
     public function editKegiatanAction(Request $request, $id)
     {
@@ -247,6 +292,62 @@ class AdminController extends Controller
         } else {
             return back()->with('error', 'Kegiatan tidak ditemukan');
         }
+    }
+
+    // All About Kegiatan Benefit
+    public function showAddBenefitKegiatanPage($id)
+    {
+        $kegiatan = Kegiatan::find($id);
+        return view('admin.layout.add-kegiatan-benefit', compact('kegiatan'));
+    }
+
+    public function addBenefitKegiatanAction(Request $request, $id)
+    {
+        $kegiatan = Kegiatan::findOrFail($id);
+
+        $benefit = Benefit::firstOrCreate(['nama_benefit' => $request->input('nama_benefit')]);
+
+        $kegiatan->benefits()->attach($benefit->id_benefit);
+
+        return redirect()->back()->with('success', 'Benefit berhasil ditambahkan.');
+    }
+
+    public function removeBenefit($id, $id_benefit)
+    {
+        
+        $kegiatan = Kegiatan::findOrFail($id);
+
+        $kegiatan->benefits()->detach($id_benefit);
+
+        return redirect()->back()->with('success', 'Benefit berhasil dihapus.');
+    }
+
+    // All About Kegiatan Kriteria
+    public function showAddKriteriaKegiatanPage($id)
+    {
+        $kegiatan = Kegiatan::find($id);
+        return view('admin.layout.add-kegiatan-kriteria', compact('kegiatan'));
+    }
+
+    public function addKriteriaKegiatanAction(Request $request, $id)
+    {
+        $kegiatan = Kegiatan::findOrFail($id);
+
+        $kriteria = Kriteria::firstOrCreate(['nama_kriteria' => $request->input('nama_kriteria')]);
+
+        $kegiatan->kriterias()->attach($kriteria->id_kriteria);
+
+        return redirect()->back()->with('success', 'Kriteria berhasil ditambahkan.');
+    }
+
+    public function removeKriteria($id, $id_kriteria)
+    {
+        
+        $kegiatan = Kegiatan::findOrFail($id);
+
+        $kegiatan->kriterias()->detach($id_kriteria);
+
+        return redirect()->back()->with('success', 'Kriteria berhasil dihapus.');
     }
 
     //All About User

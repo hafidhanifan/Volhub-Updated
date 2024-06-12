@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Benefit;
-use App\Models\Kriteria;
-use App\Models\Kategori;
+
+use App\Models\Skill;
 use App\Models\Kegiatan;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -12,6 +11,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
     // All About Daftar Kegiatan
     public function showDaftarKegiatanPage($id)
     {   
@@ -39,6 +39,12 @@ class UserController extends Controller
     {
         $user = User::find($id);
         return view('user.layout.edit-pengaturan-akun', compact('user'));
+    }
+
+    public function showEditSkillPage($id)
+    {
+        $user = User::find($id);
+        return view('user.layout.edit-skill', compact('user'));
     }
 
     public function editUserAction(Request $request, $id)
@@ -75,10 +81,37 @@ class UserController extends Controller
         return view('user.layout.profile', compact('user'))->with('success', 'User berhasil diupdate.');
     }
 
+    public function addSkillAction(Request $request, $id)
+    {
+        // Temukan user
+        $user = User::findOrFail($id);
+
+        // Temukan atau buat skill baru
+        $skill = Skill::firstOrCreate(['nama_skill' => $request->input('nama_skill')]);
+
+        // Hubungkan skill dengan user
+        $user->skills()->attach($skill->id_skill);
+
+        // Redirect kembali dengan pesan sukses
+        return redirect()->back()->with('success', 'Kemampuan berhasil ditambahkan.');
+    }
+
+    public function removeSkill($id, $id_skill)
+    {
+        // Temukan user
+        $user = User::findOrFail($id);
+
+        // Hapus hubungan skill dengan user
+        $user->skills()->detach($id_skill);
+
+        // Redirect kembali dengan pesan sukses
+        return redirect()->back()->with('success', 'Kemampuan berhasil dihapus.');
+    }
+
     //All About Kegiatan
     public function showDetailKegiatanPage($id)
     {
-        $kegiatan = Kegiatan::with(['kategori', 'kriteria', 'benefit'])->find($id);
+        $kegiatan = Kegiatan::with(['kategori'])->find($id);
         if (!$kegiatan) {
             return redirect()->route('user.daftar-volunteer')->with('error', 'Kegiatan tidak ditemukan.');
         } 

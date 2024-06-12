@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kriteria', function (Blueprint $table) {
-            $table->id('id_kriteria');
-            $table->string('nama_kriteria');
-            $table->text('list_kriteria');
+        Schema::create('benefit', function (Blueprint $table) {
+            $table->id('id_benefit');
+            $table->string('nama_benefit');
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kriteria');
+        Schema::dropIfExists('benefit');
     }
 };

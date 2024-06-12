@@ -30,11 +30,6 @@
                         <label for="kriteria">Masukkan Nama Kriteria Baru</label>
                         <input value="{{ old('kriteria', $kriteria->nama_kriteria) }}" name="nama_kriteria" type="text" placeholder="Nama Kriteria" required/>
                       </div>
-                      <div class="input-style-1">
-                        <label for="kriteria">Masukkan List Kriteria</label>
-                        <p>Gunakan koma(,) jika kriteria lebih dari satu</p>
-                        <textarea rows="5" name="list_kriteria" value="{{ old('kriteria', $kriteria->list_kriteria) }}"></textarea>
-                      </div>
                       <button type="submit" href="#0" class="main-btn-kategori primary-btn rounded-full btn-hover right-align">Edit Kriteria</button>
                     </div>
                 </form>

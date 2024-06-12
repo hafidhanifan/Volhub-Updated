@@ -29,11 +29,6 @@
                         <label for="kriteria">Masukkan Kriteria Baru</label>
                         <input name="nama_kriteria" type="text" placeholder="Nama Kriteria" required/>
                       </div>
-                      <div class="input-style-1">
-                        <label for="kriteria">Masukkan List Kriteria</label>
-                        <p>Gunakan koma(,) jika kriteria lebih dari satu</p>
-                        <textarea rows="5" name="list_kriteria"></textarea>
-                      </div>
                       <button type="submit" href="#0" class="main-btn-kategori primary-btn rounded-full btn-hover right-align">Tambah Kriteria</button>
                     </div>
                 </form>

@@ -8,13 +8,13 @@
             <div class="row align-items-center">
               <div class="col-md-6">
                 <div class="title">
-                  <h2>Benefit Project</h2>
+                  <h2>Skill</h2>
                 </div>
                 <a
-                  href="{{ route('admin.add-benefit-page')}}"
+                  href="{{ route('admin.add-skill-page')}}"
                   class="main-btn primary-btn btn-hover btn-sm"
                 >
-                  <i class="lni lni-plus mr-5"></i>Tambah Benefit</a
+                  <i class="lni lni-plus mr-5"></i>Tambah Skill</a
                 >
               </div>
               <!-- end col -->
@@ -35,10 +35,10 @@
                     <thead>
                       <tr>
                         <th>
-                          <h6>Id Benefit</h6>
+                          <h6>Id Skill</h6>
                         </th>
                         <th>
-                          <h6>Nama Benefit</h6>
+                          <h6>Nama Skill</h6>
                         </th>
                         <th>
                           <h6>Action</h6>
@@ -48,24 +48,24 @@
                     </thead>
                     <tbody>
                       <?php $no = 1 ?>
-                      @foreach($benefit as $benefit) 
+                      @foreach($skill as $skill) 
                       <tr>
                         <td>
-                          <p>{{ $benefit->id_benefit}}</p>
+                          <p>{{ $skill->id_skill}}</p>
                         </td>
                         <td>
-                          <p>{{ $benefit->nama_benefit }}</p>
+                          <p>{{ $skill->nama_skill }}</p>
                         </td>
                         <td>
                           <div class="action">
-                            <div class="d-flex action-benefit">
-                              <a href="{{ route('admin.edit-benefit-page', ['id' => $benefit->id_benefit]) }}" id="editBenefit">
+                            <div class="d-flex action-kategori">
+                              <a href="{{ route('admin.edit-skill-page', ['id' => $skill->id_skill]) }}" id="editSkill">
                                 <i class="lni lni-pencil text-primary"></i>
                               </a>
-                              <form action="{{ route('admin.delete-benefit-action', ['id' => $benefit->id_benefit]) }}" method="POST" style="display:inline;">
+                              <form action="{{ route('admin.delete-skill-action', ['id' => $skill->id_skill]) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus benefit ini?')" style="background:none; border:none; padding:0; cursor:pointer;">
+                                <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus Skill ini?')" style="background:none; border:none; padding:0; cursor:pointer;">
                                     <i class="lni lni-trash-can text-danger"></i>
                                 </button>
                             </form>

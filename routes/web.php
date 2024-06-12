@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Models\Admin;
 
 Route::get('/', function () {
     return view('admin.layout.login');
@@ -50,6 +51,15 @@ Route::get('/admin/edit-benefit/{id}', [AdminController::class, 'showEditBenefit
 Route::put('admin/edit-benefit/{id}', [AdminController::class, 'editBenefitAction'])->name('admin.edit-benefit-action');
 Route::delete('admin/delete-benefit/{id}', [AdminController::class, 'deleteBenefitAction'])->name('admin.delete-benefit-action');
 
+// Route untuk Kelola Skill
+Route::get('/admin/skill', [AdminController::class, 'showSkillPage'])->name('admin.skill');
+Route::get('/admin/add-skill', [AdminController::class, 'showAddSkillPage'])->name('admin.add-skill-page');
+Route::post('/admin/add-skill', [AdminController::class, 'addSkillAction'])->name('admin.add-skill-action');
+Route::get('/admin/edit-skill/{id}', [AdminController::class, 'showEditSkillPage'])->name('admin.edit-skill-page');
+Route::put('admin/edit-skill/{id}', [AdminController::class, 'editSkillAction'])->name('admin.edit-skill-action');
+Route::delete('admin/delete-skill/{id}', [AdminController::class, 'deleteSkillAction'])->name('admin.delete-skill-action');
+
+
 // Route untuk Kelola Kegiatan
 Route::get('/admin/kegiatan', [AdminController::class, 'showKegiatanPage'])->name('admin.kegiatan');
 Route::get('/admin/add-kegiatan', [AdminController::class, 'showAddKegiatanPage'])->name('admin.add-kegiatan-page');
@@ -58,6 +68,14 @@ Route::post('/admin/add-kegiatan', [AdminController::class, 'addKegiatanAction']
 Route::get('/admin/edit-kegiatan/{id}', [AdminController::class, 'showEditKegiatanPage'])->name('admin.edit-kegiatan-page');
 Route::put('/admin/edit-kegiatan/{id}', [AdminController::class, 'editKegiatanAction'])->name('admin.edit-kegiatan-action');
 Route::delete('admin/delete-kegiatan/{id}', [AdminController::class, 'deleteKegiatanAction'])->name('admin.delete-kegiatan-action');
+
+Route::get('/admin/add-benefit-kegiatan/{id}', [AdminController::class, 'showAddBenefitKegiatanPage'])->name('admin.add-benefit-kegiatan-page');
+Route::post('admin/add-benefit-kegiatan/{id}', [AdminController::class, 'addBenefitKegiatanAction'])->name('admin.add-benefit-kegiatan-action');
+Route::delete('/admin/{id}/remove-benefit/{id_benefit}', [AdminController::class, 'removeBenefit'])->name('admin.remove-benefit-action');
+
+Route::get('/admin/add-kriteria-kegiatan/{id}', [AdminController::class, 'showAddKriteriaKegiatanPage'])->name('admin.add-kriteria-kegiatan-page');
+Route::post('admin/add-kriteria-kegiatan/{id}', [AdminController::class, 'addKriteriaKegiatanAction'])->name('admin.add-kriteria-kegiatan-action');
+Route::delete('/admin/{id}/remove-kriteria/{id_kriteria}', [AdminController::class, 'removeKriteria'])->name('admin.remove-kriteria-action');
 
 // Route untuk Kelola User
 Route::get('/admin/user', [AdminController::class, 'showUserPage'])->name('admin.user');
@@ -80,6 +98,8 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+// (User) Route Navigasi
+
 // (User) Route untuk Daftar Kegiatan
 Route::get('/user/kegiatan/{id}', [UserController::class, 'showDaftarKegiatanPage'])->name('daftar.kegiatan');
 
@@ -89,19 +109,22 @@ Route::get('/user/edit-detail/{id}', [UserController::class, 'showEditUserPage']
 Route::put('user/edit-detail/{id}', [UserController::class, 'editUserAction'])->name('user.edit-profile-action');
 Route::get('/user/edit-akun/{id}', [UserController::class, 'showEditAkunPage'])->name('user.edit-akun-page');
 Route::put('user/edit-akun/{id}', [UserController::class, 'editAkunAction'])->name('user.edit-akun-action');
+Route::get('/user/edit-skill/{id}', [UserController::class, 'showEditSkillPage'])->name('user.edit-skill-page');
+Route::post('user/add-skill/{id}', [UserController::class, 'addSkillAction'])->name('user.add-skill-action');
+Route::delete('/user/{id}/remove-skill/{id_skill}', [UserController::class, 'removeSkill'])->name('user.remove-skill-action');
 
 // (User) Route untuk Detail Kegiatan
 Route::get('/user/detail-kegiatan/{id}', [UserController::class, 'showDetailKegiatanPage'])->name('user.detail-kegiatan-page');
 
-// Route::get('/user', function () {
-//     return view('user/layout/index');
-// });
+Route::get('/admin/addKegiatanBenefit', function () {
+    return view('admin/layout/add-kegiatan-benefit');
+});
 // Route::get('/login', function () {
 //     return view('user/layout/login');
 // });
-// Route::get('/signup', function () {
-//     return view('user/layout/signup');
-// });
+Route::get('/signup', function () {
+    return view('user/layout/signup');
+});
 // Route::get('/profile', function () {
 //     return view('user/layout/profile');
 // });

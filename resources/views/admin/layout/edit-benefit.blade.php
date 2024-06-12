@@ -30,11 +30,6 @@
                         <label for="benefit">Masukkan Nama Benefit Baru</label>
                         <input value="{{ old('benefit', $benefit->nama_benefit) }}" name="nama_benefit" type="text" placeholder="Nama Benefit" required/>
                       </div>
-                      <div class="input-style-1">
-                        <label for="benefit">Masukkan List Benefit</label>
-                        <p>Gunakan koma(,) jika benefit lebih dari satu</p>
-                        <textarea rows="5" name="list_benefit" value="{{ old('benefit', $benefit->list_benefit) }}"></textarea>
-                      </div>
                       <button type="submit" href="#0" class="main-btn-kategori primary-btn rounded-full btn-hover right-align">Edit Benefit</button>
                     </div>
                 </form>

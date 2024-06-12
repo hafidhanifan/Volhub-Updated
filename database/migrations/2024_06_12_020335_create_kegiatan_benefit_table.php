@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('kegiatan', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_kriteria');
-            $table->foreign('id_kriteria')->references('id_kriteria')->on('kriteria');
+        Schema::create('kegiatan_benefit', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_benefit');
+            $table->foreign('id_benefit')->references('id_benefit')->on('benefit');
+            $table->unsignedBigInteger('id_kegiatan');
+            $table->foreign('id_kegiatan')->references('id_kegiatan')->on('kegiatan');
         });
     }
 
@@ -26,8 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('kegiatan', function (Blueprint $table) {
-            $table->dropColumn('id_kriteria');
-        });
+        Schema::dropIfExists('kegiatan_benefit');
     }
 };

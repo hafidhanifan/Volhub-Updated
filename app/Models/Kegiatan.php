@@ -31,13 +31,12 @@ class Kegiatan extends Model
         return $this->belongsTo(Kategori::class, 'id_kategori');
     }
 
-    public function benefit()
+    public function benefits()
     {
-        return $this->belongsTo(Benefit::class, 'id_benefit');
+        return $this->belongsToMany(Benefit::class, 'kegiatan_benefit', 'id_kegiatan', 'id_benefit');
     }
-
-    public function kriteria()
+    public function kriterias()
     {
-        return $this->belongsTo(Kriteria::class, 'id_kriteria');
+        return $this->belongsToMany(Kriteria::class, 'kegiatan_kriteria', 'id_kegiatan', 'id_kriteria');
     }
 }

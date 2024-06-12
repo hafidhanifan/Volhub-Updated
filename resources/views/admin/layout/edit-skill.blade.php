@@ -10,7 +10,7 @@
             <div class="row align-items-center">
               <div class="col-md-6">
                 <div class="title">
-                  <h2>Tambah Benefit Project</h2>
+                  <h2>Edit Skill</h2>
                 </div>
               </div>
               <!-- end col -->
@@ -22,14 +22,15 @@
             <div class="row">
               <div class="col-lg-6">
                 <!-- input style start -->
-                <form action="{{ route('admin.add-benefit-action') }}" method="POST">
+                <form action="{{ route('admin.edit-skill-action', ['id' => $skill->id_skill]) }}" method="POST">
                     @csrf
+                    @method('PUT')
                   <div class="card-style mb-30 d-flex flex-column">
                       <div class="input-style-1">
-                        <label for="benefit">Masukkan Benefit Baru</label>
-                        <input name="nama_benefit" type="text" placeholder="Nama Benefit" required/>
-                      </div>
-                      <button type="submit" href="#0" class="main-btn-kategori primary-btn rounded-full btn-hover right-align">Tambah Benefit</button>
+                        <label for="kategori">Masukkan Nama Skill Baru</label>
+                      <input value="{{ old('skill', $skill->nama_skill) }}" name="nama_skill" type="text" placeholder="Nama Kategori" required/>
+                    </div>
+                      <button type="submit" href="#0" class="main-btn-kategori primary-btn rounded-full btn-hover right-align">Edit Skill</button>
                     </div>
                 </form>
 

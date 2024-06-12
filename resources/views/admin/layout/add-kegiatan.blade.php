@@ -114,44 +114,6 @@
               </div>
               <!-- end col -->
 
-              
-              <div class="col-lg-6">
-                 <!-- input style start -->
-                 <div class="card-style mb-30">
-                  <div class="select-style-1">
-                    <label>Kriteria</label>
-                    <div class="select-position">
-                      <select name="kriteria">
-                      <?php $no = 1 ?>
-                      <option value="">Pilih Kriteria</option>
-                      @foreach($kriteria as $kriteria) 
-                        <option value="{{$kriteria->id_kriteria}}">{{ $kriteria->nama_kriteria }}</option>
-                      @endforeach
-                      </select>
-                    </div>
-                  </div>
-                  <!-- end input -->
-              </div>
-                <!-- end card -->
-                <!-- ======= input style end ======= -->
-
-             <!-- input style start -->
-             <div class="card-style mb-30">
-              <div class="select-style-1">
-                    <label>Benefit</label>
-                    <div class="select-position">
-                      <select name="nama_benefit">
-                      <?php $no = 1 ?>
-                      <option value="">Pilih Benefit</option>
-                      @foreach($benefit as $benefit) 
-                        <option value="{{$benefit->id_benefit}}">{{ $benefit->nama_benefit }}</option>
-                      @endforeach
-                      </select>
-                    </div>
-                  </div>
-                  <!-- end input -->
-
-            </div>
           <!-- end card -->
           <!-- ======= input style end ======= -->
 
