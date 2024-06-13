@@ -76,7 +76,7 @@
                   <p>{{ $kegiatan->lokasi_kegiatan }}</p>
                 </div>
 
-                <form action="{{ route('user.detail-kegiatan-page', ['id' => $kegiatan->id_kegiatan]) }}" method="POST" class="content__data-button">
+                <form action="{{ route('user.detail-kegiatan-page', ['id' => $user->id, 'id_kegiatan' => $kegiatan->id_kegiatan],) }}" method="POST" class="content__data-button">
                   @csrf
                   @method('GET')
                   <button>Detail</button>

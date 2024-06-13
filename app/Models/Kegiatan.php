@@ -39,4 +39,8 @@ class Kegiatan extends Model
     {
         return $this->belongsToMany(Kriteria::class, 'kegiatan_kriteria', 'id_kegiatan', 'id_kriteria');
     }
+    public function pendaftars()
+    {
+        return $this->hasMany(Pendaftar::class, 'id_kegiatan');
+    }
 }

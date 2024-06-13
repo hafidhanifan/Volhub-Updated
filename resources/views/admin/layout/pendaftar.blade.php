@@ -43,22 +43,24 @@
                         <!-- end table row-->
                       </thead>
                       <tbody>
+                        <?php $no = 1 ?>
+                      @foreach($pendaftar as $pendaftar) 
                         <tr>
                           <td>
-                            <p>1</p>
+                            <p>{{$pendaftar->id_pendaftar}}</p>
                           </td>
                           <td class="min-width">
-                            <p>Esther Howard</p>
+                            <p>{{$pendaftar->user->nama_user}}</p>
                           </td>
                           <td class="min-width">
-                            <p><a href="#0">yourmail@gmail.com</a></p>
+                            <p><a href="#0">{{$pendaftar->user->email_user}}</a></p>
                           </td>
                           <td class="min-width">
-                            <p>Penanaman Hutan Mangroove di Pantai Baru</p>
+                            <p>{{$pendaftar->kegiatan->nama_kegiatan}}</p>
                           </td>
                           <td class="min-width">
-                            <span class="status-btn active-btn"
-                              >Dalam Review</span
+                            <button class="main-btn primary-btn btn-hover"
+                              >{{$pendaftar->status_pendaftaran}}</button
                             >
                           </td>
                           <td>
@@ -72,122 +74,7 @@
                           </td>
                         </tr>
                         <!-- end table row -->
-                        <tr>
-                          <td>
-                            <p>2</p>
-                          </td>
-                          <td class="min-width">
-                            <p>Esther Howard</p>
-                          </td>
-                          <td class="min-width">
-                            <p><a href="#0">yourmail@gmail.com</a></p>
-                          </td>
-                          <td class="min-width">
-                            <p>Penanaman Hutan Mangroove di Pantai Baru</p>
-                          </td>
-                          <td class="min-width">
-                            <span class="status-btn active-btn"
-                              >Dalam Review</span
-                            >
-                          </td>
-                          <td>
-                            <div class="action">
-                              <a
-                                href="#0"
-                                class="main-btn primary-btn btn-hover"
-                                >Detail</a
-                              >
-                            </div>
-                          </td>
-                        </tr>
-                        <!-- end table row -->
-                        <tr>
-                          <td>
-                            <p>3</p>
-                          </td>
-                          <td class="min-width">
-                            <p>Esther Howard</p>
-                          </td>
-                          <td class="min-width">
-                            <p><a href="#0">yourmail@gmail.com</a></p>
-                          </td>
-                          <td class="min-width">
-                            <p>Penanaman Hutan Mangroove di Pantai Baru</p>
-                          </td>
-                          <td class="min-width">
-                            <span class="status-btn active-btn"
-                              >Dalam Review</span
-                            >
-                          </td>
-                          <td>
-                            <div class="action">
-                              <a
-                                href="#0"
-                                class="main-btn primary-btn btn-hover"
-                                >Detail</a
-                              >
-                            </div>
-                          </td>
-                        </tr>
-                        <!-- end table row -->
-                        <tr>
-                          <td>
-                            <p>4</p>
-                          </td>
-                          <td class="min-width">
-                            <p>Esther Howard</p>
-                          </td>
-                          <td class="min-width">
-                            <p><a href="#0">yourmail@gmail.com</a></p>
-                          </td>
-                          <td class="min-width">
-                            <p>Penanaman Hutan Mangroove di Pantai Baru</p>
-                          </td>
-                          <td class="min-width">
-                            <span class="status-btn active-btn"
-                              >Dalam Review</span
-                            >
-                          </td>
-                          <td>
-                            <div class="action">
-                              <a
-                                href="#0"
-                                class="main-btn primary-btn btn-hover"
-                                >Detail</a
-                              >
-                            </div>
-                          </td>
-                        </tr>
-                        <!-- end table row -->
-                        <tr>
-                          <td>
-                            <p>5</p>
-                          </td>
-                          <td class="min-width">
-                            <p>Esther Howard</p>
-                          </td>
-                          <td class="min-width">
-                            <p><a href="#0">yourmail@gmail.com</a></p>
-                          </td>
-                          <td class="min-width">
-                            <p>Penanaman Hutan Mangroove di Pantai Baru</p>
-                          </td>
-                          <td class="min-width">
-                            <span class="status-btn active-btn"
-                              >Dalam Review</span
-                            >
-                          </td>
-                          <td>
-                            <div class="action">
-                              <a
-                                href="#0"
-                                class="main-btn primary-btn btn-hover"
-                                >Detail</a
-                              >
-                            </div>
-                          </td>
-                        </tr>
-                        <!-- end table row -->
+                        @endforeach
                       </tbody>
                     </table>
                     <!-- end table -->

@@ -8,6 +8,7 @@ use App\Models\Skill;
 use App\Models\Kategori;
 use App\Models\Kegiatan;
 use App\Models\Admin;
+use App\Models\Pendaftar;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -217,10 +218,8 @@ class AdminController extends Controller
     public function showAddKegiatanPage()
     {
         $kategori = Kategori::all();
-        $benefit = Benefit::all();
-        // $kriteria = Kriteria::all();
         $sistemKegiatan = ['offline', 'online'];
-        return view('admin.layout.add-kegiatan', compact('kategori','benefit', 'sistemKegiatan'));
+        return view('admin.layout.add-kegiatan', compact('kategori', 'sistemKegiatan'));
         
     }
 
@@ -348,6 +347,13 @@ class AdminController extends Controller
         $kegiatan->kriterias()->detach($id_kriteria);
 
         return redirect()->back()->with('success', 'Kriteria berhasil dihapus.');
+    }
+
+    //All about Pendaftar
+    public function showPendaftarPage()
+    {
+        $pendaftar = Pendaftar::all();
+        return view('admin.layout.pendaftar', compact('pendaftar'));
     }
 
     //All About User

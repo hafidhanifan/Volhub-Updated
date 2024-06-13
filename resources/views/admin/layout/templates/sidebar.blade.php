@@ -91,7 +91,7 @@
                 <a href="{{ route('admin.kegiatan') }}"> Project </a>
               </li>
               <li>
-                <a href="{{ url('/pendaftar') }}"> Pendaftar </a>
+                <a href="{{ route('admin.pendaftar') }}"> Pendaftar </a>
               </li>
               <li>
                 <a href="{{ route('admin.user') }}"> User </a>

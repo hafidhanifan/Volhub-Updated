@@ -42,5 +42,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Skill::class, 'user_skill', 'id_user', 'id_skill');
     }
+    public function pendaftars()
+    {
+        return $this->hasMany(Pendaftar::class, 'id_user');
+    }
 
 }

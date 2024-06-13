@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Skill;
 use App\Models\Kegiatan;
 use App\Models\User;
+use App\Models\Pendaftar;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
@@ -109,12 +110,28 @@ class UserController extends Controller
     }
 
     //All About Kegiatan
-    public function showDetailKegiatanPage($id)
+    public function showDetailKegiatanPage($id, $id_kegiatan)
     {
-        $kegiatan = Kegiatan::with(['kategori'])->find($id);
+        $user = User::findOrFail($id);
+        $kegiatan = Kegiatan::with(['kategori'])->find($id_kegiatan);
         if (!$kegiatan) {
             return redirect()->route('user.daftar-volunteer')->with('error', 'Kegiatan tidak ditemukan.');
         } 
-        return view('user.layout.detail-kegiatan', compact('kegiatan'));
+        return view('user.layout.detail-kegiatan', compact('kegiatan', 'user'));
+    }
+
+    //All Abour Pendaftaran
+    public function addPendaftaranAction(Request $request, $id, $id_kegiatan)
+    {
+        $user = User::findOrFail($id);
+        $kegiatan = Kegiatan::findOrFail($id_kegiatan);
+        $pendaftar = new Pendaftar;
+        $pendaftar->motivasi = $request->motivasi;
+        $pendaftar->status_pendaftaran = 'Dalam Review';
+        $pendaftar->id_user= $user->id;
+        $pendaftar->id_kegiatan = $kegiatan->id_kegiatan;
+        $pendaftar->save();
+
+        return redirect()->back()->with('success', 'Pendaftaran Berhasil');
     }
 }

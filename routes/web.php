@@ -59,6 +59,8 @@ Route::get('/admin/edit-skill/{id}', [AdminController::class, 'showEditSkillPage
 Route::put('admin/edit-skill/{id}', [AdminController::class, 'editSkillAction'])->name('admin.edit-skill-action');
 Route::delete('admin/delete-skill/{id}', [AdminController::class, 'deleteSkillAction'])->name('admin.delete-skill-action');
 
+// Route untuk Kelola Pendaftar
+Route::get('/admin/pendaftar', [AdminController::class, 'showPendaftarPage'])->name('admin.pendaftar');
 
 // Route untuk Kelola Kegiatan
 Route::get('/admin/kegiatan', [AdminController::class, 'showKegiatanPage'])->name('admin.kegiatan');
@@ -96,11 +98,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/daftar-volunteer', function () {
         return view('user.layout.daftar-volunteer');
     });
-});
 
-// (User) Route Navigasi
-
-// (User) Route untuk Daftar Kegiatan
+    // (User) Route untuk Daftar Kegiatan
 Route::get('/user/kegiatan/{id}', [UserController::class, 'showDaftarKegiatanPage'])->name('daftar.kegiatan');
 
 // (User) Route untuk Detail User
@@ -114,7 +113,14 @@ Route::post('user/add-skill/{id}', [UserController::class, 'addSkillAction'])->n
 Route::delete('/user/{id}/remove-skill/{id_skill}', [UserController::class, 'removeSkill'])->name('user.remove-skill-action');
 
 // (User) Route untuk Detail Kegiatan
-Route::get('/user/detail-kegiatan/{id}', [UserController::class, 'showDetailKegiatanPage'])->name('user.detail-kegiatan-page');
+Route::get('/user/{id}/detail-kegiatan/{id_kegiatan}', [UserController::class, 'showDetailKegiatanPage'])->name('user.detail-kegiatan-page');
+});
+
+// (User) Route untuk Daftar Kegiatan
+// Route::get('/user/{id}/add-pendaftaran/{id_kegiatan}', [UserController::class, 'showAddPendaftaranPage'])->name('user.add-pendaftaran-page');
+Route::post('user/{id}/add-pendaftaran/{id_kegiatan}', [UserController::class, 'addPendaftaranAction'])->name('user.add-pendaftaran-action');
+
+
 
 Route::get('/admin/addKegiatanBenefit', function () {
     return view('admin/layout/add-kegiatan-benefit');

@@ -24,23 +24,26 @@
                 <h2>Daftar Kegiatan Ini</h2>
               </div>
               <div class="modal__form">
-                <form id="registrationForm">
-                  <label for="reason">Alasan mengikuti kegiatan ini :</label>
+                <form action="{{ route('user.add-pendaftaran-action', ['id' => $user->id, 'id_kegiatan' => $kegiatan->id_kegiatan]) }}" method="POST" id="registrationForm">
+                  @csrf
+                  <input type="hidden" name="kegiatan_id" value="{{ $kegiatan->id }}">
+                  <label for="reason">Motivasi mengikuti kegiatan ini </label>
                   <textarea
-                    id="reason"
-                    name="reason"
+                    id="motivasi"
+                    name="motivasi"
                     rows="4"
                     cols="50"
                     required
                   ></textarea>
                   <br /><br />
-                  <label for="cv">Upload CV:</label>
+                  <label for="cv">Upload CV</label>
                   <input type="file" id="cv" name="cv" required />
                   <br /><br />
                   <div class="modal__button">
                     <button type="submit">Kirim</button>
                   </div>
                 </form>
+                
               </div>
             </div>
           </div>

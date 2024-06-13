@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('benefit', function (Blueprint $table) {
-            $table->id('id_benefit');
-            $table->string('nama_benefit');
-            $table->text('list_benefit');
+        Schema::create('data_pendaftar', function (Blueprint $table) {
+            $table->id('id_pendaftar');
+            $table->timestamp('tgl_pendaftaran');
+            $table->text('motivasi');
+            $table->enum('status_pendaftaran', ['Dalam Review', 'Diterima', 'Ditolak'])->default('Dalam Review');
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('benefit');
+        Schema::dropIfExists('data_pendaftar');
     }
 };
