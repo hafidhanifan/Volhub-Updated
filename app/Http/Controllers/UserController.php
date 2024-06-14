@@ -64,15 +64,19 @@ class UserController extends Controller
         $user->deskripsi=$request->deskripsi;
 
         if ($request->hasFile('cv')) {
-            $file = $request->file('cv');
-            $extension = $file->getClientOriginalExtension();
-            $newName = 'cv-' . now()->timestamp . '.' . $extension;
-            
-            // Simpan file ke direktori 'public/fileUpload'
-            $filePath = $file->storeAs('cv', $newName);
+            if ($user->cv) {
+                $oldCv = storage_path('app/public/cv/' . $user->cv);
+                if (File::exists($oldCv)) {
+                    File::delete($oldCv);
+                }
+            }
+
+            $extension = $request->file('cv')->getClientOriginalExtension();
+            $newName = $request->nama_user.'-'.'cv'.'-'.now()->timestamp.'.'.$extension;
+            $request->file('cv')->storeAs('cv', $newName);
             
             // Update field 'cv' di tabel users
-            $user->cv = $newName;
+            $user->cv = $request['cv'] = $newName;
             $user->save();
         }
 
@@ -186,17 +190,22 @@ class UserController extends Controller
         $pendaftar->status_pendaftaran = 'Dalam Review';
         $pendaftar->id_user= $user->id;
         $pendaftar->id_kegiatan = $kegiatan->id_kegiatan;
-
+        
         if ($request->hasFile('cv')) {
-            $file = $request->file('cv');
-            $extension = $file->getClientOriginalExtension();
-            $newName = 'cv-' . now()->timestamp . '.' . $extension;
-            
-            // Simpan file ke direktori 'public/fileUpload'
-            $filePath = $file->storeAs('cv', $newName);
+
+            if ($user->cv) {
+                $oldCv = storage_path('app/public/cv/' . $user->cv);
+                if (File::exists($oldCv)) {
+                    File::delete($oldCv);
+                }
+            }
+
+            $extension = $request->file('cv')->getClientOriginalExtension();
+            $newName = $request->nama_user.'-'.'cv'.'-'.now()->timestamp.'.'.$extension;
+            $request->file('cv')->storeAs('cv', $newName);
             
             // Update field 'cv' di tabel users
-            $user->cv = $newName;
+            $user->cv = $request['cv'] = $newName;
             $user->save();
         }
 
