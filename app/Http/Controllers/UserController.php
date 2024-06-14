@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\Pendaftar;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -18,6 +20,7 @@ class UserController extends Controller
     {   
         $user = User::find($id);
         $kegiatan = Kegiatan::all();
+
         return view('user.layout.daftar-volunteer', compact('kegiatan', 'user'));
     }
 
@@ -58,13 +61,56 @@ class UserController extends Controller
         $user->domisili = $request->domisili;
         $user->gender = $request->gender;
         $user->pendidikan_terakhir = $request->pendidikan_terakhir;
-        $user->cv = $request->cv;
         $user->deskripsi=$request->deskripsi;
+
+        if ($request->hasFile('cv')) {
+            $file = $request->file('cv');
+            $extension = $file->getClientOriginalExtension();
+            $newName = 'cv-' . now()->timestamp . '.' . $extension;
+            
+            // Simpan file ke direktori 'public/fileUpload'
+            $filePath = $file->storeAs('cv', $newName);
+            
+            // Update field 'cv' di tabel users
+            $user->cv = $newName;
+            $user->save();
+        }
 
         $user->save();
 
         return view('user.layout.profile', compact('user'))->with('success', 'User berhasil diupdate.');
     }
+    
+    public function editFotoProfileAction(Request $request, $id)
+    {
+        $request->validate([
+            'foto_profile' => 'required|image|mimes:jpeg,png,jpg,gif'
+        ]);
+
+        $user = User::find($id);
+
+        if ($request->hasFile('foto_profile')) {
+            if ($user->foto_profile) {
+                $oldImage = storage_path('app/public/foto-profile/' . $user->foto_profile);
+                if (File::exists($oldImage)) {
+                    File::delete($oldImage);
+                }
+            }
+
+            $extension = $request->file('foto_profile')->getClientOriginalExtension();
+            $newName = $user->nama_user.'-'.now()->timestamp.'.'.$extension;
+            $request->file('foto_profile')->storeAs('foto-profile', $newName);
+            
+            $user->foto_profile = $request['foto_profile'] = $newName;
+
+            $user->save();
+            return redirect()->back()->with('success', 'Foto User berhasil diupdate.');
+        }
+
+        return redirect()->back()->with('error', 'Gagal mengupload foto.');
+
+    }
+
     public function editAkunAction(Request $request, $id) 
     {
         $user = User::find($id);
@@ -125,11 +171,35 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $kegiatan = Kegiatan::findOrFail($id_kegiatan);
+        // Cek apakah user sudah mendaftar ke kegiatan ini sebelumnya
+        $existingPendaftaran = Pendaftar::where('id_user', $user->id)
+                                         ->where('id_kegiatan', $kegiatan->id_kegiatan)
+                                         ->exists();
+        if ($existingPendaftaran) {
+            return redirect()->back()->with('error', 'Anda sudah mendaftar kegiatan ini.');
+        }
+        
+        $user = User::findOrFail($id);
+        $kegiatan = Kegiatan::findOrFail($id_kegiatan);
         $pendaftar = new Pendaftar;
         $pendaftar->motivasi = $request->motivasi;
         $pendaftar->status_pendaftaran = 'Dalam Review';
         $pendaftar->id_user= $user->id;
         $pendaftar->id_kegiatan = $kegiatan->id_kegiatan;
+
+        if ($request->hasFile('cv')) {
+            $file = $request->file('cv');
+            $extension = $file->getClientOriginalExtension();
+            $newName = 'cv-' . now()->timestamp . '.' . $extension;
+            
+            // Simpan file ke direktori 'public/fileUpload'
+            $filePath = $file->storeAs('cv', $newName);
+            
+            // Update field 'cv' di tabel users
+            $user->cv = $newName;
+            $user->save();
+        }
+
         $pendaftar->save();
 
         return redirect()->back()->with('success', 'Pendaftaran Berhasil');

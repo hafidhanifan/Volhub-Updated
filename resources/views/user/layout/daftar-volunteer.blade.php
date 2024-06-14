@@ -10,7 +10,7 @@
                 @endphp
           <div class="profile">
             <div class="profile__image">
-              <img src="{{ asset('img/profile-img2.png') }}" alt="" />
+              <img src="{{asset('storage/foto-profile/'.$user->foto_profile)}}" alt="" />
             </div>
             <div class="profile__data">
               <div class="profile__data-name">
@@ -33,7 +33,10 @@
             </div>
             <div class="skill__item">
               <ul>
-                <li>Social Media Specialist</li>
+                <?php $no = 1 ?>
+                @foreach($user->skills as $skill)
+                <li>{{$skill->nama_skill}}</li>
+                @endforeach
               </ul>
             </div>
           </div>
@@ -61,7 +64,7 @@
             <div class="content__body-item">
               <div class="content__item-image">
                 @if ($kegiatan->gambar)
-                  <img src="{{ Storage::url($kegiatan->gambar) }}" alt="Gambar Kegiatan" />
+                  <img src="{{asset('storage/gambar/'.$kegiatan->gambar)}}" alt="Gambar Kegiatan" />
                 @endif
                 <div class="content__item-image-text">
                   <p>{{ $kegiatan->sistem_kegiatan }}</p>

@@ -37,7 +37,7 @@
                   <div class="card-image">
                     <a href="#0">
                       @if ($kegiatan->gambar)
-                        <img src="{{Storage::url($kegiatan->gambar)}}" alt="Gambar Kegiatan" />
+                        <img src="{{asset('storage/gambar/'.$kegiatan->gambar)}}" alt="Gambar Kegiatan" />
                       @endif
                     </a>
                   </div>

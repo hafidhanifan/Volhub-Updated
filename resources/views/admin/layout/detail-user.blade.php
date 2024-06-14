@@ -42,8 +42,8 @@
                   <div class="card-image">
                     <a href="#0">
                       <img
-                        src="assets/images/cards/card-style-4/card-1.png"
-                        alt=""
+                        src="{{asset('storage/foto-profile/'.$user->foto_profile)}}"
+                        alt="Foto Profile User"
                       />
                     </a>
                   </div>
@@ -79,10 +79,10 @@
                   <h1 class="mb-30 text-medium">Kemampuan</h1>
 
                   <ul class="custom-list">
-                    <li>Social Media Specialist</li>
-                    <li>Content Writer</li>
-                    <li>Script Writer</li>
-                    <li>Social Media Specialist</li>
+                    <?php $no = 1 ?>
+                    @foreach($user->skills as $skill)
+                    <li>{{$skill->nama_skill}}</li>
+                    @endforeach
                   </ul>
                 </div>
                 <!-- end card -->
@@ -97,7 +97,7 @@
                     <p>{{$user->email_user}}</p>
                   </div>
                   <div class="profile-user-domisili mt-20">
-                    <h3>Kontak</h3>
+                    <h3>Nomor Telephone</h3>
                     <p>{{$user->nomor_telephone}}</p>
                 </div>
                 <!-- end card -->
@@ -115,10 +115,20 @@
           <div class="invoice-address">
             <div class="address-item">
               <h5 class="text-bold">CV</h5>
-              <a href="./assets/CV.pdf" class="d-flex align-items-center text-primary text-decoration-none" download>
-                <img src="./assets/pdf.png" alt="PDF Icon" class="me-2" width="20" height="20">
-                Dinda_Farras_CV.pdf
-            </a>
+              <a
+                  href="{{ asset('storage/cv/' . auth()->user()->cv) }}" target="_blank"
+                  class="d-flex align-items-center text-primary text-decoration-none"
+                  download
+                >
+                  <img
+                    src="{{ asset('img/pdf.png')}}"
+                    alt="PDF Icon"
+                    class="me-2"
+                    width="20"
+                    height="20"
+                  />
+                  {{$user->cv}}
+                </a>
             </div>
             <div class="address-item">
               <h5 class="text-bold">Bio</h5>

@@ -33,9 +33,6 @@
                           <th>
                             <h6>Domisili</h6>
                           </th>
-                          <!-- <th>
-                            <h6>Status</h6>
-                          </th> -->
                           <th>
                             <h6>Action</h6>
                           </th>

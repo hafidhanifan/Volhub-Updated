@@ -22,7 +22,7 @@
             <!-- Section detail header -->
             <section class="detail-header">
               <div class="image-detail-kegiatan">
-                <img class="image-detail-kegiatan-asset" src="{{ asset('storage/'.$kegiatan->gambar) }}" alt="" />
+                <img class="image-detail-kegiatan-asset" src="{{asset('storage/gambar/'.$kegiatan->gambar)}}" alt="" />
               </div>
               <div class="detail-header__wrapper">
                 <div class="detail-header__body">

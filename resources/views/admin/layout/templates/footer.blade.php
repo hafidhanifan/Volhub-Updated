@@ -578,6 +578,26 @@
       });
       // =========== chart four end
     </script>
-
+    // Script untuk Dropdown ubah status
+    <script>
+      function updateStatusClass() {
+        const dropdown = document.getElementById('statusDropdown');
+        const selectedValue = dropdown.value;
+        
+        dropdown.classList.remove('status-dalam-review', 'status-diterima', 'status-ditolak');
+        
+        if (selectedValue === 'Dalam Review') {
+          dropdown.classList.add('status-dalam-review');
+        } else if (selectedValue === 'Diterima') {
+          dropdown.classList.add('status-diterima');
+        } else if (selectedValue === 'Ditolak') {
+          dropdown.classList.add('status-ditolak');
+        }
+      }
+      
+      document.addEventListener('DOMContentLoaded', (event) => {
+        updateStatusClass(); // Initialize class based on the current value
+      });
+    </script>
   </body>
 </html>

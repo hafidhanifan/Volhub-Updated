@@ -40,15 +40,21 @@
                   <div class="invoice-header">
                     <div class="invoice-for">
                       <h2 class="mb-10">Informasi Pribadi</h2>
-                      <p class="text-sm">Dikirm pada September 2023</p>
+                      <p class="text-sm">Dikirim pada {{$pendaftar->tgl_pendaftaran}}</p>
                     </div>
                     <div class="invoice-date">
-                      <a
-                        href="#0"
-                        class="main-btn warning-btn rounded btn-hover mr-15 button-review"
-                        >Dalam Review</a
-                      >
-                      <a href="#0" class="main-btn dark-btn rounded btn-hover"
+                      <form action="{{ route('admin.updateStatus', $pendaftar->id_pendaftar) }}" method="POST"  id="statusForm">
+                        @csrf
+                        @method('PATCH')
+                        <select name="status_pendaftaran" class="main-btn warning-btn rounded btn-hover mr-15 button-review" id="statusDropdown" onchange="this.form.submit(); updateStatusClass();">
+                            <option value="Dalam Review" {{ $pendaftar->status_pendaftaran == 'Dalam Review' ? 'selected' : '' }}>Dalam Review</option>
+                            <option value="Diterima" {{ $pendaftar->status_pendaftaran == 'Diterima' ? 'selected' : '' }}>Diterima</option>
+                            <option value="Ditolak" {{ $pendaftar->status_pendaftaran == 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
+                        </select>
+                    </form>
+                    </div>
+                    <div class="invoice-date">
+                      <a href="{{ route('admin.detail-user-page', $pendaftar->user->id) }}" class="main-btn dark-btn rounded btn-hover"
                         >Detail</a
                       >
                     </div>
@@ -56,28 +62,28 @@
                   <article class="information__text">
                     <div class="information__text-closed">
                       <h3>Nama</h3>
-                      <p>Dinda FG</p>
+                      <p>{{$pendaftar->user->nama_user}}</p>
                     </div>
                     <div class="information__text-start">
                       <h3>Gender</h3>
-                      <p>Perempuan</p>
+                      <p>{{$pendaftar->user->gender}}</p>
                     </div>
                     <div class="information__text-duration">
                       <h3>Email</h3>
-                      <p>dinda@gmail.com</p>
+                      <p>{{$pendaftar->user->email_user}}</p>
                     </div>
                     <div class="information__text-system">
                       <h3>Usia</h3>
-                      <p>21 Tahun</p>
+                      <p>{{$pendaftar->user->usia}} Tahun</p>
                     </div>
                     <div class="information__text-location">
                       <h3>Kontak</h3>
-                      <p>08123456789</p>
+                      <p>{{$pendaftar->user->nomor_telephone}}</p>
                     </div>
 
                     <div class="information__text-kategori">
                       <h3>Domisili</h3>
-                      <p>Jakarta</p>
+                      <p>{{$pendaftar->user->domisili}}</p>
                     </div>
                   </article>
                 </div>
@@ -97,7 +103,7 @@
                       <h2 class="mb-10">Informasi Kegiatan</h2>
                     </div>
                     <div class="invoice-date">
-                      <a href="#0" class="main-btn dark-btn rounded btn-hover"
+                      <a href="{{ route('admin.detail-kegiatan-page', $pendaftar->kegiatan->id_kegiatan) }}" class="main-btn dark-btn rounded btn-hover"
                         >Detail</a
                       >
                     </div>
@@ -105,15 +111,15 @@
                   <div class="informasi-kegiatan">
                     <div class="kegiatan-item">
                       <h3>Kegiatan</h3>
-                      <p>Penanaman Hutan Mangroove di Pantai Baru</p>
+                      <p>{{$pendaftar->kegiatan->nama_kegiatan}}</p>
                     </div>
                     <div class="kegiatan-item">
                       <h3>Sistem Kerja</h3>
-                      <p>Offline</p>
+                      <p>{{$pendaftar->kegiatan->sistem_kegiatan}}</p>
                     </div>
                     <div class="kegiatan-item">
                       <h3>Lokasi</h3>
-                      <p>Yogyakarta</p>
+                      <p>{{$pendaftar->kegiatan->lokasi_kegiatan}}</p>
                     </div>
                   </div>
                 </div>
@@ -134,30 +140,25 @@
               <div class="address-item">
                 <h5 class="text-bold">CV</h5>
                 <a
-                  href="./assets/CV.pdf"
+                  href="{{ asset('storage/cv/' . auth()->user()->cv) }}" target="_blank"
                   class="d-flex align-items-center text-primary text-decoration-none"
                   download
                 >
                   <img
-                    src="./assets/pdf.png"
+                    src="{{ asset('img/pdf.png')}}"
                     alt="PDF Icon"
                     class="me-2"
                     width="20"
                     height="20"
                   />
-                  Dinda_Farras_CV.pdf
+                  {{$pendaftar->user->cv}}
                 </a>
               </div>
             </div>
             <div class="address-item">
               <h5 class="text-bold">Deskripsi</h5>
               <p class="text-lg">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-                iusto eaque tempore vel assumenda enim amet doloribus fugit hic
-                sint quod laudantium blanditiis eligendi quae quo fuga,
-                voluptatibus odio temporibus placeat omnis reprehenderit officia
-                a velit architecto. Nobis nemo nulla, similique cum debitis,
-                eveniet voluptatem numquam consequuntur nostrum deserunt vero?
+                {{$pendaftar->user->deskripsi}}
               </p>
             </div>
           </div>
@@ -165,4 +166,5 @@
         <!-- end container -->
       </section>
       <!-- ========== section end ========== -->
+      
       @include('admin.layout.templates.footer')

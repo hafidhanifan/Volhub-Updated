@@ -37,7 +37,7 @@
             
             <div class="row">
               <div class="col-lg-6">
-                <form action="{{ route('admin.edit-kegiatan-action', ['id' => $kegiatan->id_kegiatan]) }}" method="POST">
+                <form action="{{ route('admin.edit-kegiatan-action', ['id' => $kegiatan->id_kegiatan]) }}" method="POST" enctype="multipart/form-data">
                   @csrf
                   @method('PUT')
                 <!-- input style start -->

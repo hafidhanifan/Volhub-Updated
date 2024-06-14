@@ -20,20 +20,27 @@
         </div>
         <div class="edit-personal__container">
           <div class="edit-personal__wrapper">
-            <div class="edit-personal__picture">
-              <img
-                class="edit-profile__picture"
-                src="{{ asset('img/profile-img2.png') }}"
-              />
-              <i class="fa-regular fa-pen-to-square"></i>
-            </div>
+            <form action="{{ route('user.edit-foto-profile-action', ['id' => $user->id]) }}" method="POST" enctype="multipart/form-data" id="editFotoProfileForm">
+              @csrf
+              @method('PUT')
+              <div class="edit-personal__picture">
+                <img
+                  class="edit-profile__picture"
+                  src="{{ asset('storage/foto-profile/'.$user->foto_profile) }}"
+                />
+                <label for="uploadInput" id="uploadLabel">
+                  <i class="fa-regular fa-pen-to-square"></i>
+                </label>
+                <input type="file" id="uploadInput" name="foto_profile" style="display: none;"  />
+              </div>
+            </form>
             <div class="edit-personal__headline">
               <h2>Data Diri</h2>
             </div>
-            <form action="{{ route('user.edit-profile-action', ['id' => $user->id]) }}" method="POST">
-              @csrf
-              @method('PUT')
               <div class="edit-personal__form__container">
+                <form action="{{ route('user.edit-profile-action', ['id' => $user->id]) }}" method="POST" enctype="multipart/form-data">
+                  @csrf
+                  @method('PUT')
                 <div class="edit-personal__form">
                   <div class="edit-personal__item">
                     <label>Nama Lengkap</label>
@@ -110,9 +117,7 @@
                     <input
                       class="edit-personal__input"
                       type="file"
-                      id="cv"
                       name="cv"
-                      value="{{ old('user', $user->cv) }}"
                     />
                     <button type="submit"></button>
                   </div>

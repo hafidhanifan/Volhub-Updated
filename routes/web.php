@@ -61,6 +61,8 @@ Route::delete('admin/delete-skill/{id}', [AdminController::class, 'deleteSkillAc
 
 // Route untuk Kelola Pendaftar
 Route::get('/admin/pendaftar', [AdminController::class, 'showPendaftarPage'])->name('admin.pendaftar');
+Route::get('/admin/detail-pendaftar/{id}', [AdminController::class, 'showDetailPendaftarPage'])->name('admin.detail.pendaftar');
+Route::patch('/admin/pendaftar/{id}/update-status', [AdminController::class, 'updateStatus'])->name('admin.updateStatus');
 
 // Route untuk Kelola Kegiatan
 Route::get('/admin/kegiatan', [AdminController::class, 'showKegiatanPage'])->name('admin.kegiatan');
@@ -106,6 +108,7 @@ Route::get('/user/kegiatan/{id}', [UserController::class, 'showDaftarKegiatanPag
 Route::get('/user/detail-profile/{id}', [UserController::class, 'showDetailUserPage'])->name('user.detail-profile-page');
 Route::get('/user/edit-detail/{id}', [UserController::class, 'showEditUserPage'])->name('user.edit-profile-page');
 Route::put('user/edit-detail/{id}', [UserController::class, 'editUserAction'])->name('user.edit-profile-action');
+Route::put('user/edit-foto-profile/{id}', [UserController::class, 'editFotoProfileAction'])->name('user.edit-foto-profile-action');
 Route::get('/user/edit-akun/{id}', [UserController::class, 'showEditAkunPage'])->name('user.edit-akun-page');
 Route::put('user/edit-akun/{id}', [UserController::class, 'editAkunAction'])->name('user.edit-akun-action');
 Route::get('/user/edit-skill/{id}', [UserController::class, 'showEditSkillPage'])->name('user.edit-skill-page');
@@ -117,7 +120,6 @@ Route::get('/user/{id}/detail-kegiatan/{id_kegiatan}', [UserController::class, '
 });
 
 // (User) Route untuk Daftar Kegiatan
-// Route::get('/user/{id}/add-pendaftaran/{id_kegiatan}', [UserController::class, 'showAddPendaftaranPage'])->name('user.add-pendaftaran-page');
 Route::post('user/{id}/add-pendaftaran/{id_kegiatan}', [UserController::class, 'addPendaftaranAction'])->name('user.add-pendaftaran-action');
 
 

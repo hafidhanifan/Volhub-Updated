@@ -11,6 +11,7 @@ use App\Models\Admin;
 use App\Models\Pendaftar;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -220,7 +221,6 @@ class AdminController extends Controller
         $kategori = Kategori::all();
         $sistemKegiatan = ['offline', 'online'];
         return view('admin.layout.add-kegiatan', compact('kategori', 'sistemKegiatan'));
-        
     }
 
     public function showDetailKegiatanPage($id)
@@ -236,15 +236,18 @@ class AdminController extends Controller
     {
         $kegiatan = Kegiatan::with(['kategori'])->find($id);
         $kategori = Kategori::all();
-        $benefit = Benefit::all();
-        // $kriteria = Kriteria::all();
         $sistemKegiatan = ['offline', 'online'];
         return view('admin.layout.edit-kegiatan', compact('kegiatan', 'kategori', 'sistemKegiatan'));
     }
 
     public function addKegiatanAction(Request $request)
     {
+        $request->validate([
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif'
+        ]);
+
         $kegiatan = new Kegiatan;
+
         $kegiatan->nama_kegiatan = $request->nama_kegiatan;
         $kegiatan->id_kategori = $request->kategori;
         $kegiatan->lokasi_kegiatan = $request->lokasi_kegiatan;
@@ -253,8 +256,12 @@ class AdminController extends Controller
         $kegiatan->deskripsi = $request->deskripsi;
         $kegiatan->tgl_penutupan = $request->tgl_penutupan;
         $kegiatan->tgl_kegiatan = $request->tgl_kegiatan;
-        $kegiatan->gambar=$request->gambar;
+
+        $extension = $request->file('gambar')->getClientOriginalExtension();
+        $newName = $request->nama_kegiatan.'-'.now()->timestamp.'.'.$extension;
+        $request->file('gambar')->storeAs('gambar', $newName);
         
+        $kegiatan->gambar = $request['gambar'] = $newName;
         $kegiatan->save();
 
         return redirect('/admin/kegiatan')->with('success', 'Kegiatan berhasil ditambahkan.');
@@ -272,10 +279,21 @@ class AdminController extends Controller
         $kegiatan->deskripsi = $request->deskripsi;
         $kegiatan->tgl_penutupan = $request->tgl_penutupan;
         $kegiatan->tgl_kegiatan = $request->tgl_kegiatan;
-        $kegiatan->gambar=$request->gambar;
 
-        $kegiatan->id_kriteria = $request->kriteria;
-        $kegiatan->id_benefit = $request->nama_benefit;
+        if ($request->hasFile('gambar')) {
+            if ($kegiatan->gambar) {
+                $oldImage = storage_path('app/public/gambar/' . $kegiatan->gambar);
+                if (File::exists($oldImage)) {
+                    File::delete($oldImage);
+                }
+            }
+
+            $extension = $request->file('gambar')->getClientOriginalExtension();
+            $newName = $request->nama_kegiatan.'-'.now()->timestamp.'.'.$extension;
+            $request->file('gambar')->storeAs('gambar', $newName);
+            
+            $kegiatan->gambar = $request['gambar'] = $newName;
+    }
         $kegiatan->save();
 
         return view('admin.layout.detail-kegiatan', compact('kegiatan'))->with('success', 'Kegiatan berhasil diupdate.');
@@ -354,6 +372,26 @@ class AdminController extends Controller
     {
         $pendaftar = Pendaftar::all();
         return view('admin.layout.pendaftar', compact('pendaftar'));
+    }
+
+    public function showDetailPendaftarPage($id)
+    {
+        $pendaftar = Pendaftar::with(['user'])->find($id);
+        if (!$pendaftar) {
+            return redirect()->route('admin.pendaftar')->with('error', 'Pendaftar tidak ditemukan.');
+        } 
+        return view('admin.layout.detail-pendaftar', compact('pendaftar'));
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $pendaftar = Pendaftar::findOrFail($id);
+        $pendaftar->status_pendaftaran = $request->status_pendaftaran;
+        // $data = $request->except('tgl_pendaftaran');
+        // $pendaftar->fill($data);
+        $pendaftar->save();
+
+        return redirect()->back()->with('success', 'Status pendaftaran berhasil diperbarui.');
     }
 
     //All About User

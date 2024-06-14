@@ -6459,3 +6459,18 @@ h6,
 .button-kriteria__add {
     margin-top: 20px;
 }
+
+.status-dalam-review {
+    background-color: yellow;
+    color: black;
+  }
+  
+.status-diterima {
+    background-color: green;
+    color: white;
+}
+  
+.status-ditolak {
+    background-color: red;
+    color: white;
+}

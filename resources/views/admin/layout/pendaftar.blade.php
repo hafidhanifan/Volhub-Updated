@@ -36,9 +36,6 @@
                           <th>
                             <h6>Status</h6>
                           </th>
-                          <!-- <th>
-                            <h6>Action</h6>
-                          </th> -->
                         </tr>
                         <!-- end table row-->
                       </thead>
@@ -59,14 +56,21 @@
                             <p>{{$pendaftar->kegiatan->nama_kegiatan}}</p>
                           </td>
                           <td class="min-width">
-                            <button class="main-btn primary-btn btn-hover"
-                              >{{$pendaftar->status_pendaftaran}}</button
-                            >
+                            <button class="announcement main-btn primary-btn btn-hover"
+                              @if($pendaftar->status_pendaftaran == 'Dalam Review') 
+                                  style="background-color: orange;" 
+                              @elseif($pendaftar->status_pendaftaran == 'Diterima') 
+                                  style="background-color: green;" 
+                              @elseif($pendaftar->status_pendaftaran == 'Ditolak') 
+                                  style="background-color: red;" 
+                              @endif>
+                              {{ $pendaftar->status_pendaftaran }}
+                          </button>  
                           </td>
                           <td>
                             <div class="action">
                               <a
-                                href="#0"
+                                href="{{ route('admin.detail.pendaftar', ['id' => $pendaftar->id_pendaftar]) }}"
                                 class="main-btn primary-btn btn-hover"
                                 >Detail</a
                               >

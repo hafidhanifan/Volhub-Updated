@@ -63,3 +63,24 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
   });
   
+  // JS untuk upload file
+  document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('uploadInput');
+    const form = document.getElementById('editFotoProfileForm');
+    const img = document.querySelector('.edit-profile__picture img');
+
+    input.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+            
+            // Submit form secara otomatis setelah memilih gambar
+            form.submit();
+        }
+    });
+
+});

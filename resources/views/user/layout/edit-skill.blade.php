@@ -7,13 +7,13 @@
       <nav class="edit-profile__navigation">
         <ul>
           <li>
-            <a href=""><i class="fa-solid fa-user"></i>Profile</a>
+            <a href="{{ route('user.edit-profile-page', ['id' => $user->id]) }}"><i class="fa-solid fa-user"></i>Profile</a>
           </li>
           <li>
-            <a href=""><i class="fa-solid fa-brain"></i>Kemampuan</a>
+            <a href="{{ route('user.edit-skill-page', ['id' => $user->id]) }}"><i class="fa-solid fa-brain"></i>Kemampuan</a>
           </li>
           <li>
-            <a href=""><i class="fa-solid fa-gear"></i>Pengaturan Akun</a>
+            <a href="{{ route('user.edit-akun-page', ['id' => $user->id]) }}"><i class="fa-solid fa-gear"></i>Pengaturan Akun</a>
           </li>
         </ul>
       </nav>

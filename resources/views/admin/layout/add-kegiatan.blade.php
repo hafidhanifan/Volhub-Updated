@@ -37,7 +37,7 @@
             
             <div class="row">
               <div class="col-lg-6">
-                <form action="{{ route('admin.add-kegiatan-action') }}" method="POST">
+                <form action="{{ route('admin.add-kegiatan-action') }}" method="POST" enctype="multipart/form-data">
                   @csrf
                 <!-- input style start -->
                 <div class="card-style mb-30">

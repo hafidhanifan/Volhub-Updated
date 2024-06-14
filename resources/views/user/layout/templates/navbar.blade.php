@@ -16,7 +16,7 @@
       @endphp
       <div class="app-bar__user-panel">
         <a href=""><i class="fa-solid fa-bell notification-icon"></i></a>
-        <a href=""><i class="fa-solid fa-circle-user user-icon"></i></a>
+        <img src="{{asset('storage/foto-profile/'.$user->foto_profile)}}" alt="profile user" />
       </div>
     @else
       <div class="app-bar__sign-up">

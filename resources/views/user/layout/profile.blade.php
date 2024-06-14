@@ -5,7 +5,7 @@
         <section class="abstract">
           <div class="abstract__profile">
             <div class="abstract__profile-image">
-              <img src="" alt="" />
+              <img src="{{asset('storage/foto-profile/'.$user->foto_profile)}}" alt="Foto Profile User" />
             </div>
             <div class="abstract__profile-summary">
               <div class="abstract__summary-header">
@@ -35,7 +35,20 @@
                 </div>
                 <div class="abstract__body-cv">
                   <h2>CV</h2>
-                  <p>{{ $user->cv }}</p>
+                  <a
+                  href="{{ asset('storage/cv/' . auth()->user()->cv) }}" target="_blank"
+                  class="d-flex align-items-center text-primary text-decoration-none"
+                  download
+                >
+                  <img
+                    src="{{ asset('img/pdf.png')}}"
+                    alt="PDF Icon"
+                    class="me-2"
+                    width="20"
+                    height="20"
+                  />
+                  {{$user->cv}}
+                </a>
                 </div>
               </div>
             </div>
@@ -66,7 +79,7 @@
               </ul>
             </div>
             <div class="status__skill-button">
-              <button>Tambah Keahlian</button>
+              <a href="{{ route('user.edit-skill-page', ['id' => $user->id]) }}">Tambah Keahlian</a>
             </div>
           </div>
           <div class="status__process">
@@ -74,61 +87,33 @@
               <h3>Status Lamaran</h3>
             </div>
             <div class="status__process-body">
+              <?php $no = 1 ?>
+              @foreach($user->pendaftars as $pendaftar)
               <div class="status__process-item">
                 <div class="status__item-logo">
-                  <img src="img/volhub-small-logo.png" alt="volhub logo" />
+                  <img src="{{ asset('img/volhub-small-logo.png') }}" alt="volhub logo" />
                 </div>
                 <div class="status__item-text">
-                  <h4>Penanaman Hutan Mangrove di Pantai Baru</h4>
+                  <h4>{{$pendaftar->kegiatan->nama_kegiatan}}</h4>
                   <div class="status__item-date">
                     <i class="fa-regular fa-calendar"></i>
-                    <p>Dikirm pada September 2023</p>
+                    <p>Dikirm pada {{$pendaftar->tgl_pendaftaran}}</p>
                   </div>
-                  <p class="announcement">Diterima</p>
+                  <p class="announcement" 
+                    @if($pendaftar->status_pendaftaran == 'Dalam Review') 
+                        style="background-color: orange;" 
+                    @elseif($pendaftar->status_pendaftaran == 'Diterima') 
+                        style="background-color: green;" 
+                    @elseif($pendaftar->status_pendaftaran == 'Ditolak') 
+                        style="background-color: red;" 
+                    @endif>
+                    {{ $pendaftar->status_pendaftaran }}
+                  </p>
                 </div>
               </div>
+              @endforeach
 
-              <div class="status__process-item">
-                <div class="status__item-logo">
-                  <img src="img/volhub-small-logo.png" alt="volhub logo" />
-                </div>
-                <div class="status__item-text">
-                  <h4>Penanaman Hutan Mangrove di Pantai Baru</h4>
-                  <div class="status__item-date">
-                    <i class="fa-regular fa-calendar"></i>
-                    <p>Dikirm pada September 2023</p>
-                  </div>
-                  <p class="announcement">Diterima</p>
-                </div>
-              </div>
-
-              <div class="status__process-item">
-                <div class="status__item-logo">
-                  <img src="img/volhub-small-logo.png" alt="volhub logo" />
-                </div>
-                <div class="status__item-text">
-                  <h4>Penanaman Hutan Mangrove di Pantai Baru</h4>
-                  <div class="status__item-date">
-                    <i class="fa-regular fa-calendar"></i>
-                    <p>Dikirm pada September 2023</p>
-                  </div>
-                  <p class="announcement">Diterima</p>
-                </div>
-              </div>
-
-              <div class="status__process-item">
-                <div class="status__item-logo">
-                  <img src="img/volhub-small-logo.png" alt="volhub logo" />
-                </div>
-                <div class="status__item-text">
-                  <h4>Penanaman Hutan Mangrove di Pantai Baru</h4>
-                  <div class="status__item-date">
-                    <i class="fa-regular fa-calendar"></i>
-                    <p>Dikirm pada September 2023</p>
-                  </div>
-                  <p class="announcement">Diterima</p>
-                </div>
-              </div>
+              
             </div>
           </div>
         </section>

@@ -1680,3 +1680,13 @@ h6 {
   font-weight: 600;
   border-color: #161d35;
 }
+
+.status-review {
+  color: orange;
+}
+.status-accepted {
+  color: green;
+}
+.status-rejected {
+  color: red;
+}

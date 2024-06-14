@@ -18,12 +18,27 @@ class Pendaftar extends Model
         'tgl_pendaftaran'
     ];
 
+    // protected static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::creating(function ($model) {
+    //         $model->tgl_pendaftaran = now();
+    //     });
+
+    //     static::updating(function ($pendaftar) {
+    //         // Kosongkan event ini jika tgl_pendaftaran tidak boleh diubah saat update
+    //     });
+    // }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
     }
+
     public function kegiatan()
     {
         return $this->belongsTo(Kegiatan::class, 'id_kegiatan');
     }
+
 }
