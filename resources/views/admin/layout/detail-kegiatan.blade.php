@@ -35,7 +35,7 @@
                     </div>
                   </div>
                   <div class="detail-header__body-button">
-                    <a href="{{ route('admin.edit-kegiatan-page', ['id' => $kegiatan->id_kegiatan]) }}" >Edit</a>
+                    <a class="main-btn primary-btn" href="{{ route('admin.edit-kegiatan-page', ['id' => $kegiatan->id_kegiatan]) }}" >Edit</a>
                   </div>
                 </div>
               </div>
@@ -100,7 +100,7 @@
                 <form action="{{ route('admin.add-benefit-kegiatan-page', ['id' => $kegiatan->id_kegiatan]) }}" method="POST">
                   @csrf
                   @method('GET')
-                  <button type="submit" href="#0" class="main-btn-kategori primary-btn btn-hover right-align">Edit Benefit</button>
+                  <button type="submit" href="#0" class="main-btn-kategori primary-btn btn-hover right-align">Tambah Benefit</button>
                 </form>
               </div>
               <!-- end card -->
@@ -118,7 +118,7 @@
                 <form action="{{ route('admin.add-kriteria-kegiatan-page', ['id' => $kegiatan->id_kegiatan]) }}" method="POST">
                   @csrf
                   @method('GET')
-                  <button type="submit" href="#0" class="main-btn-kategori primary-btn btn-hover right-align">Edit Kriteria</button>
+                  <button type="submit" href="#0" class="main-btn-kategori primary-btn btn-hover right-align">Tambah Kriteria</button>
                 </form>
               </div>
               <!-- end card -->

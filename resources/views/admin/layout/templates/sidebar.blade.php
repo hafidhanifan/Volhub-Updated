@@ -42,7 +42,7 @@
             </a>
             <ul id="ddmenu_1" class="collapse show dropdown-nav">
               <li>
-                <a href="index.html" class="active"> VolHub </a>
+                <a href="{{ route('admin.dashboard') }}" class="active"> VolHub </a>
               </li>
             </ul>
           </li>
@@ -88,7 +88,7 @@
                 <a href="{{ route('admin.skill') }}"> Skill </a>
               </li>
               <li>
-                <a href="{{ route('admin.kegiatan') }}"> Project </a>
+                <a href="{{ route('admin.kegiatan') }}"> Kegiatan / Volunteer </a>
               </li>
               <li>
                 <a href="{{ route('admin.pendaftar') }}"> Pendaftar </a>

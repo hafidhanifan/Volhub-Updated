@@ -2,20 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Benefit;
-use App\Models\Kriteria;
+use App\Models\User;
+use App\Models\Admin;
 use App\Models\Skill;
+use App\Models\Benefit;
 use App\Models\Kategori;
 use App\Models\Kegiatan;
-use App\Models\Admin;
+use App\Models\Kriteria;
 use App\Models\Pendaftar;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class AdminController extends Controller
 {
+    // Show Dashboard Page
+    public function showDashboardPage(){
+        $kegiatan = Kegiatan::all();
+        return view('admin.layout.dashboard', compact('kegiatan'));
+    }
+
     // All About Kategori
     public function showKategoriPage()
     {   
@@ -39,7 +47,8 @@ class AdminController extends Controller
         $kategori = new Kategori;
         $kategori->nama_kategori = $request->kategori;
         $kategori->save();
-
+        Alert::success('Hore!', 'Data Berhasil Ditambahkan');
+        
         return redirect('/admin/kategori');
     }
 
@@ -48,6 +57,7 @@ class AdminController extends Controller
         $kategori = Kategori::find($id);
         $kategori->nama_kategori = $request->kategori;
         $kategori->save();
+        Alert::success('Hore!', 'Data Berhasil Diedit');
 
         return redirect()->route('admin.kategori', ['id' => $id])->with('success', 'Kategori berhasil diupdate.');
     }
@@ -56,11 +66,20 @@ class AdminController extends Controller
     {
         $kategori = Kategori::find($id);
 
-        if ($kategori) {
+        if (!$kategori) {
+            Alert::error('Oops !', 'Data Tidak Ditemukan');
+            return redirect()->route('admin.kategori');
+        }
+    
+        try {
             $kategori->delete();
-            return redirect()->route('admin.kategori')->with('success', 'Kategori berhasil dihapus.');
-        } else {
-            return redirect()->route('admin.kategori')->with('error', 'Kategori tidak ditemukan.');
+            Alert::success('Hore !', 'Data Berhasil Dihapus');
+            return redirect()->route('admin.kategori');
+
+        } catch (\Exception $e) {
+            Alert::error('Oops !', 'Sepertinya kamu masih butuh data ini :(');
+            return redirect()->route('admin.kategori');
+
         }
     }
 
@@ -87,6 +106,7 @@ class AdminController extends Controller
         $kriteria = new Kriteria;
         $kriteria->nama_kriteria = $request->nama_kriteria;
         $kriteria->save();
+        Alert::success('Hore!', 'Data Berhasil Ditambahkan');
 
         return redirect('/admin/kriteria');
     }
@@ -96,6 +116,7 @@ class AdminController extends Controller
         $kriteria = Kriteria::find($id);
         $kriteria->nama_kriteria = $request->nama_kriteria;
         $kriteria->save();
+        Alert::success('Hore!', 'Data Berhasil Diedit');
 
         return redirect()->route('admin.kriteria', ['id' => $id])->with('success', 'Kriteria berhasil diupdate.');
     }
@@ -104,11 +125,20 @@ class AdminController extends Controller
     {
         $kriteria = Kriteria::find($id);
 
-        if ($kriteria) {
+        if (!$kriteria) {
+            Alert::error('Oops !', 'Data Tidak Ditemukan');
+            return redirect()->route('admin.kriteria');
+        }
+    
+        try {
             $kriteria->delete();
-            return back()->with('success', 'Kriteria berhasil dihapus.');
-        } else {
-            return back()->with('error', 'Kriteria tidak ditemukan');
+            Alert::success('Hore !', 'Data Berhasil Dihapus');
+            return redirect()->route('admin.kriteria');
+
+        } catch (\Exception $e) {
+            Alert::error('Oops !', 'Sepertinya kamu masih butuh data ini :(');
+            return redirect()->route('admin.kriteria');
+
         }
     }
 
@@ -135,6 +165,7 @@ class AdminController extends Controller
         $benefit = new Benefit;
         $benefit->nama_benefit = $request->nama_benefit;
         $benefit->save();
+        Alert::success('Hore!', 'Data Berhasil Ditambahkan');
 
         return redirect('/admin/benefit');
     }
@@ -144,6 +175,7 @@ class AdminController extends Controller
         $benefit = Benefit::find($id);
         $benefit->nama_benefit = $request->nama_benefit;
         $benefit->save();
+        Alert::success('Hore!', 'Data Berhasil Diedit');
 
         return redirect()->route('admin.benefit', ['id' => $id])->with('success', 'Benefit berhasil diupdate.');
     }
@@ -152,11 +184,20 @@ class AdminController extends Controller
     {
         $benefit = Benefit::find($id);
 
-        if ($benefit) {
+        if (!$benefit) {
+            Alert::error('Oops !', 'Data Tidak Ditemukan');
+            return redirect()->route('admin.benefit');
+        }
+    
+        try {
             $benefit->delete();
-            return back()->with('success', 'Benefit berhasil dihapus.');
-        } else {
-            return back()->with('error', 'Benefit tidak ditemukan');
+            Alert::success('Hore !', 'Data Berhasil Dihapus');
+            return redirect()->route('admin.benefit');
+
+        } catch (\Exception $e) {
+            Alert::error('Oops !', 'Sepertinya kamu masih butuh data ini :(');
+            return redirect()->route('admin.benefit');
+
         }
     }
 
@@ -183,6 +224,7 @@ class AdminController extends Controller
         $skill = new Skill;
         $skill->nama_skill = $request->nama_skill;
         $skill->save();
+        Alert::success('Hore!', 'Data Berhasil Ditambahkan');
 
         return redirect('/admin/skill');
     }
@@ -192,6 +234,7 @@ class AdminController extends Controller
         $skill = Skill::find($id);
         $skill->nama_skill = $request->nama_skill;
         $skill->save();
+        Alert::success('Hore!', 'Data Berhasil Diedit');
 
         return redirect()->route('admin.skill', ['id' => $id])->with('success', 'Kategori berhasil diupdate.');
     }
@@ -200,11 +243,20 @@ class AdminController extends Controller
     {
         $skill = Skill::find($id);
 
-        if ($skill) {
+        if (!$skill) {
+            Alert::error('Oops !', 'Data Tidak Ditemukan');
+            return redirect()->route('admin.skill');
+        }
+    
+        try {
             $skill->delete();
-            return redirect()->route('admin.skill')->with('success', 'Skill berhasil dihapus.');
-        } else {
-            return redirect()->route('admin.skill')->with('error', 'Skill tidak ditemukan.');
+            Alert::success('Hore !', 'Data Berhasil Dihapus');
+            return redirect()->route('admin.skill');
+
+        } catch (\Exception $e) {
+            Alert::error('Oops !', 'Sepertinya kamu masih butuh data ini :(');
+            return redirect()->route('admin.skill');
+
         }
     }
 
@@ -321,22 +373,32 @@ class AdminController extends Controller
     public function addBenefitKegiatanAction(Request $request, $id)
     {
         $kegiatan = Kegiatan::findOrFail($id);
-
         $benefit = Benefit::firstOrCreate(['nama_benefit' => $request->input('nama_benefit')]);
-
         $kegiatan->benefits()->attach($benefit->id_benefit);
+        Alert::success('Hore!', 'Data Berhasil Ditambahkan');
 
-        return redirect()->back()->with('success', 'Benefit berhasil ditambahkan.');
+        return redirect()->back();
     }
 
     public function removeBenefit($id, $id_benefit)
-    {
-        
+    {     
         $kegiatan = Kegiatan::findOrFail($id);
 
-        $kegiatan->benefits()->detach($id_benefit);
+        if (!$kegiatan) {
+            Alert::error('Oops !', 'Data Tidak Ditemukan');
+            return redirect()->back();
+        }
+    
+        try {
+            $kegiatan->benefits()->detach($id_benefit);
+            Alert::success('Hore !', 'Data Berhasil Dihapus');
+            return redirect()->back();
 
-        return redirect()->back()->with('success', 'Benefit berhasil dihapus.');
+        } catch (\Exception $e) {
+            Alert::error('Oops !', 'Sepertinya kamu masih butuh data ini :(');
+            return redirect()->back();
+
+        }
     }
 
     // All About Kegiatan Kriteria
@@ -349,10 +411,9 @@ class AdminController extends Controller
     public function addKriteriaKegiatanAction(Request $request, $id)
     {
         $kegiatan = Kegiatan::findOrFail($id);
-
         $kriteria = Kriteria::firstOrCreate(['nama_kriteria' => $request->input('nama_kriteria')]);
-
         $kegiatan->kriterias()->attach($kriteria->id_kriteria);
+        Alert::success('Hore!', 'Data Berhasil Ditambahkan');
 
         return redirect()->back()->with('success', 'Kriteria berhasil ditambahkan.');
     }
@@ -362,9 +423,21 @@ class AdminController extends Controller
         
         $kegiatan = Kegiatan::findOrFail($id);
 
-        $kegiatan->kriterias()->detach($id_kriteria);
+        if (!$kegiatan) {
+            Alert::error('Oops !', 'Data Tidak Ditemukan');
+            return redirect()->back();
+        }
+    
+        try {
+            $kegiatan->kriterias()->detach($id_kriteria);
+            Alert::success('Hore !', 'Data Berhasil Dihapus');
+            return redirect()->back();
 
-        return redirect()->back()->with('success', 'Kriteria berhasil dihapus.');
+        } catch (\Exception $e) {
+            Alert::error('Oops !', 'Sepertinya kamu masih butuh data ini :(');
+            return redirect()->back();
+
+        }
     }
 
     //All about Pendaftar

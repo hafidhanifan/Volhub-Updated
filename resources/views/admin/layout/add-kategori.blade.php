@@ -1,7 +1,6 @@
 @include('admin.layout.templates.header')
 @include('admin.layout.templates.sidebar')
 @include('admin.layout.templates.navbar')
-
  <!-- ========== section start ========== -->
  <section class="section">
         <div class="container-fluid">
@@ -10,7 +9,7 @@
             <div class="row align-items-center">
               <div class="col-md-6">
                 <div class="title">
-                  <h2>Tambah Kategori Project</h2>
+                  <h2>Tambah Kategori Kegiatan</h2>
                 </div>
               </div>
               <!-- end col -->

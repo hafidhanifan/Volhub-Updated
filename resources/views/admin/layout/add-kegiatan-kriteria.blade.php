@@ -34,7 +34,7 @@
                             <form action="{{ route('admin.remove-kriteria-action', ['id' => $kegiatan->id_kegiatan, 'id_kriteria' => $kriteria->id_kriteria])}}" method="POST" style="display: inline;">
                               @csrf
                               @method('DELETE')
-                              <button type="submit" class="edit-skill__delete"><i class="fa-solid fa-trash"></i></button>
+                              <button onclick="confirmDelete(event)" type="submit" class="edit-skill__delete"><i class="fa-solid fa-trash"></i></button>
                             </form>
                           </div>
                           <hr />

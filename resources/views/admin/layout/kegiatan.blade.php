@@ -9,7 +9,7 @@
             <div class="row align-items-center">
               <div class="col-md-6">
                 <div class="title">
-                  <h2>Project Volunteering</h2>
+                  <h2>Daftar Kegaitan / Volunteer</h2>
                 </div>
                 <a
                   href="{{ route('admin.add-kegiatan-page') }}"
@@ -49,7 +49,7 @@
                       class="card-content-location d-flex align-items-center fw-bold text-dark"
                     >
                       <i class="lni lni-map-marker"></i
-                      ><span class="ms-3">{{$kegiatan->lokasi_kegiatan}}</span>
+                      ><span class="ms-3 fst-italic text-muted">{{$kegiatan->lokasi_kegiatan}}</span>
                     </div>
                     <ul
                       class="d-flex flex-wrap align-items-center justify-content-between mt-25"
@@ -67,7 +67,7 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus kriteria ini?')" style="background:none; border:none; padding:0; cursor:pointer;">
-                            <i class="lni lni-trash-can text-danger"></i>
+                            <i class="lni lni-trash-can text-danger delete-button"></i>
                         </button>
                     </form>
                     </ul>

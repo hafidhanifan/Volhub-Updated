@@ -578,7 +578,7 @@
       });
       // =========== chart four end
     </script>
-    // Script untuk Dropdown ubah status
+ 
     <script>
       function updateStatusClass() {
         const dropdown = document.getElementById('statusDropdown');
@@ -599,5 +599,30 @@
         updateStatusClass(); // Initialize class based on the current value
       });
     </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+       function confirmDelete(event) {
+        event.preventDefault();
+        
+        Swal.fire({
+            title: 'Peringatan',
+            text: "Anda yakin ingin menghapus data ini ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus data!',
+            cancelButtonText: 'Tidak'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // event.target.form.submit(); 
+                event.target.closest('form').submit();
+            }
+        });
+    }
+    </script>
+
+@include('sweetalert::alert')
+
   </body>
 </html>

@@ -29,12 +29,12 @@
                       </div>
                       <ul>
                         @foreach ($kegiatan->Benefits as $benefit)
-                          <div class="edit-skill__item">
+                          <div class="button_custom_kegiatan">
                             <li>{{ $benefit->nama_benefit }}</li>
                             <form action="{{ route('admin.remove-benefit-action', ['id' => $kegiatan->id_kegiatan, 'id_benefit' => $benefit->id_benefit])}}" method="POST" style="display: inline;">
                               @csrf
                               @method('DELETE')
-                              <button type="submit" class="edit-skill__delete"><i class="fa-solid fa-trash"></i></button>
+                              <button onclick="confirmDelete(event)" type="submit" class="edit-skill__delete"><i class="fa-solid fa-trash"></i></button>
                             </form>
                           </div>
                           <hr />

@@ -36,11 +36,11 @@
           <div class="form-elements-wrapper">
             
             <div class="row">
-              <div class="col-lg-6">
+              <div class="col-lg-12">
                 <form action="{{ route('admin.add-kegiatan-action') }}" method="POST" enctype="multipart/form-data">
                   @csrf
                 <!-- input style start -->
-                <div class="card-style mb-30">
+                <div class="card-style mb-30 tambah-kegiatan">
                   <div class="input-style-1">
                     <label>Nama Kegiatan</label>
                     <input type="text" name="nama_kegiatan"/>
@@ -94,7 +94,6 @@
                   <div class="input-style-1">
                     <label>Upload Gambar</label>
                     <input type="file" name="gambar"/>
-                    <button type="submit"></button>
                   </div>
                   <!-- end input -->
                 </div>

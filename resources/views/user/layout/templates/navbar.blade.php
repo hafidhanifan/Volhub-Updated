@@ -16,7 +16,30 @@
       @endphp
       <div class="app-bar__user-panel">
         <a href=""><i class="fa-solid fa-bell notification-icon"></i></a>
+        <div class="app-bar__user-icon">
         <img src="{{asset('storage/foto-profile/'.$user->foto_profile)}}" alt="profile user" />
+        <i class="fa-solid fa-chevron-down user-dropdown"></i>
+        </div>
+      </div>
+      <div class="dropdown">
+        <div class="dropdown-item">
+          <div class="dropdown-icon">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="dropdown-text">PROFILE</div>
+        </div>
+        <div class="dropdown-item">
+          <div class="dropdown-icon">
+            <i class="fa-solid fa-gear"></i>
+          </div>
+          <div class="dropdown-text">PENGATURAN AKUN</div>
+        </div>
+        <div class="dropdown-item">
+          <div class="dropdown-icon">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </div>
+          <div class="dropdown-text">LOGOUT</div>
+        </div>
       </div>
     @else
       <div class="app-bar__sign-up">

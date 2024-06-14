@@ -8,7 +8,7 @@
             <div class="row align-items-center">
               <div class="col-md-6">
                 <div class="title">
-                  <h2>Benefit Project</h2>
+                  <h2>Benefit Volunteer</h2>
                 </div>
                 <a
                   href="{{ route('admin.add-benefit-page')}}"
@@ -25,10 +25,9 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="card-style mb-30 mt-50">
-                <h6 class="mb-10">Data Table</h6>
+                <h6 class="mb-10">Data Benefit Volunteer</h6>
                 <p class="text-sm mb-20">
-                  For basic styling—light padding and only horizontal
-                  dividers—use the class table.
+                  Berikut semua data benefit volunteer yang ada :
                 </p>
                 <div class="table-wrapper table-responsive">
                   <table class="table striped-table">
@@ -65,7 +64,7 @@
                               <form action="{{ route('admin.delete-benefit-action', ['id' => $benefit->id_benefit]) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus benefit ini?')" style="background:none; border:none; padding:0; cursor:pointer;">
+                                <button type="submit" onclick="confirmDelete(event)" style="background:none; border:none; padding:0; cursor:pointer;">
                                     <i class="lni lni-trash-can text-danger"></i>
                                 </button>
                             </form>

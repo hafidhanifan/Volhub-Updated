@@ -36,12 +36,12 @@
           <div class="form-elements-wrapper">
             
             <div class="row">
-              <div class="col-lg-6">
+              <div class="col-lg-12">
                 <form action="{{ route('admin.edit-kegiatan-action', ['id' => $kegiatan->id_kegiatan]) }}" method="POST" enctype="multipart/form-data">
                   @csrf
                   @method('PUT')
                 <!-- input style start -->
-                <div class="card-style mb-30">
+                <div class="card-style mb-30 tambah-kegiatan">
                   <div class="input-style-1">
                     <label>Nama Kegiatan</label>
                     <input value="{{ old('kegiatan', $kegiatan->nama_kegiatan) }}" type="text" name="nama_kegiatan"/>
@@ -95,7 +95,6 @@
                   <div class="input-style-1">
                     <label>Upload Gambar</label>
                     <input type="file" name="gambar" value="{{ old('kegiatan', $kegiatan->gambar) }}"/>
-                    <button type="submit"></button>
                   </div>
                   <!-- end input -->
                 </div>
