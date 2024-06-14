@@ -16,14 +16,9 @@ Route::post('/admin/login', [AuthController::class, 'login']);
 Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 
 Route::middleware('auth:admin')->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'showDashboardPage'])->name('admin.dashboard');
+    Route::get('/admin/dashboard/{id}', [AdminController::class, 'showDashboard'])->name('admin.dashboard');
 });
 
-
-
-// Route::get('/dashboard', function () {
-//     return view('admin/layout/dashboard');
-// });
 
 // Route untuk Kelola Kategori
 Route::get('/admin/kategori', [AdminController::class, 'showKategoriPage'])->name('admin.kategori');
@@ -93,6 +88,7 @@ Route::get('/user/login', [AuthController::class, 'showLoginUser'])->name('login
 Route::post('/user/login', [AuthController::class, 'loginUser']);
 Route::get('/user/register', [AuthController::class, 'showRegisterUser'])->name('register.user');
 Route::post('/user/register', [AuthController::class, 'registerUserAction'])->name('register.user.action');
+Route::get('/user/logout', [AuthController::class, 'logoutUser'])->name('user.logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/user/daftar-volunteer', function () {
@@ -100,34 +96,33 @@ Route::middleware('auth')->group(function () {
     });
 
     // (User) Route untuk Daftar Kegiatan
-Route::get('/user/kegiatan/{id}', [UserController::class, 'showDaftarKegiatanPage'])->name('daftar.kegiatan');
+    Route::get('/user/kegiatan/{id}', [UserController::class, 'showDaftarKegiatanPage'])->name('daftar.kegiatan');
 
-// (User) Route untuk Detail User
-Route::get('/user/detail-profile/{id}', [UserController::class, 'showDetailUserPage'])->name('user.detail-profile-page');
-Route::get('/user/edit-detail/{id}', [UserController::class, 'showEditUserPage'])->name('user.edit-profile-page');
-Route::put('user/edit-detail/{id}', [UserController::class, 'editUserAction'])->name('user.edit-profile-action');
-Route::put('user/edit-foto-profile/{id}', [UserController::class, 'editFotoProfileAction'])->name('user.edit-foto-profile-action');
-Route::get('/user/edit-akun/{id}', [UserController::class, 'showEditAkunPage'])->name('user.edit-akun-page');
-Route::put('user/edit-akun/{id}', [UserController::class, 'editAkunAction'])->name('user.edit-akun-action');
-Route::get('/user/edit-skill/{id}', [UserController::class, 'showEditSkillPage'])->name('user.edit-skill-page');
-Route::post('user/add-skill/{id}', [UserController::class, 'addSkillAction'])->name('user.add-skill-action');
-Route::delete('/user/{id}/remove-skill/{id_skill}', [UserController::class, 'removeSkill'])->name('user.remove-skill-action');
+    // (User) Route untuk Detail User
+    Route::get('/user/detail-profile/{id}', [UserController::class, 'showDetailUserPage'])->name('user.detail-profile-page');
+    Route::get('/user/edit-detail/{id}', [UserController::class, 'showEditUserPage'])->name('user.edit-profile-page');
+    Route::put('user/edit-detail/{id}', [UserController::class, 'editUserAction'])->name('user.edit-profile-action');
+    Route::put('user/edit-foto-profile/{id}', [UserController::class, 'editFotoProfileAction'])->name('user.edit-foto-profile-action');
+    Route::get('/user/edit-akun/{id}', [UserController::class, 'showEditAkunPage'])->name('user.edit-akun-page');
+    Route::put('user/edit-akun/{id}', [UserController::class, 'editAkunAction'])->name('user.edit-akun-action');
+    Route::get('/user/edit-skill/{id}', [UserController::class, 'showEditSkillPage'])->name('user.edit-skill-page');
+    Route::post('user/add-skill/{id}', [UserController::class, 'addSkillAction'])->name('user.add-skill-action');
+    Route::delete('/user/{id}/remove-skill/{id_skill}', [UserController::class, 'removeSkill'])->name('user.remove-skill-action');
 
-// (User) Route untuk Detail Kegiatan
-Route::get('/user/{id}/detail-kegiatan/{id_kegiatan}', [UserController::class, 'showDetailKegiatanPage'])->name('user.detail-kegiatan-page');
+    // (User) Route untuk Detail Kegiatan
+    Route::get('/user/{id}/detail-kegiatan/{id_kegiatan}', [UserController::class, 'showDetailKegiatanPage'])->name('user.detail-kegiatan-page');
 });
 
 // (User) Route untuk Daftar Kegiatan
 Route::post('user/{id}/add-pendaftaran/{id_kegiatan}', [UserController::class, 'addPendaftaranAction'])->name('user.add-pendaftaran-action');
 
+// (User) Navigasi
+Route::get('/home', [UserController::class, 'showHomePage'])->name('user.home');
+Route::get('/daftarKegiatan', [UserController::class, 'showDaftarKegiatan'])->name('user.daftarKegiatan');
 
 
-Route::get('/admin/addKegiatanBenefit', function () {
-    return view('admin/layout/add-kegiatan-benefit');
-});
-// Route::get('/login', function () {
-//     return view('user/layout/login');
-// });
+Route::get('/user/detail-kegiatan/{id_kegiatan}', [UserController::class, 'showDetailKegiatan'])->name('user.detail-kegiatan');
+
 Route::get('/signup', function () {
     return view('user/layout/signup');
 });

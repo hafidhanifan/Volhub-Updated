@@ -119,9 +119,6 @@
                       type="file"
                       name="cv"
                     />
-                    @error('cv')
-                      <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
                     <button type="submit"></button>
                   </div>
                 </div>
@@ -143,14 +140,6 @@
               </div>
             </div>
           </form>
-          @php
-    // Mengambil nilai lama
-    $oldCv = old('cv');
-@endphp
-
-@if ($oldCv)
-    <p>File CV yang sebelumnya diunggah: {{ $oldCv }}</p>
-@endif
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ class AuthController extends Controller
         $credentials = $request->only('username', 'password');
 
         if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect()->intended('/admin/dashboard');
+            return redirect()->intended('/admin/dashboard/{id}');
         }
 
         return back()->withErrors([
@@ -76,5 +76,13 @@ class AuthController extends Controller
         return back()->withErrors([
             'username' => 'Username atau password salah.',
         ]);
+    }
+
+    public function logoutUser(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/user/login');
     }
 }

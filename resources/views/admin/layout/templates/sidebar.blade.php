@@ -42,7 +42,7 @@
             </a>
             <ul id="ddmenu_1" class="collapse show dropdown-nav">
               <li>
-                <a href="{{ route('admin.dashboard') }}" class="active"> VolHub </a>
+                <a href="{{ route('admin.dashboard', ['id' => auth()->guard('admin')->user()->id]) }}" class="active"> VolHub </a>
               </li>
             </ul>
           </li>

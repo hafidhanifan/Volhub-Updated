@@ -4,11 +4,22 @@
       <i id="drawerButton" class="fa-solid fa-bars"></i>
     </div>
     <nav class="app-bar__navigation">
+      @if(auth()->check())
+      @php
+          $user = auth()->user();
+      @endphp
       <ul class="">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="daftar-volunteer.html">Daftar Kegiatan</a></li>
+        <li><a href="{{ route('user.home') }}">Home</a></li>
+        <li><a href="{{ route('daftar.kegiatan', ['id' => $user->id]) }}">Daftar Kegiatan</a></li>
         <li><a href="">Tentang Kami</a></li>
       </ul>
+      @else
+      <ul class="">
+        <li><a href="{{ route('user.home') }}">Home</a></li>
+        <li><a href="{{ route('user.daftarKegiatan') }}">Daftar Kegiatan</a></li>
+        <li><a href="">Tentang Kami</a></li>
+      </ul>
+      @endif
     </nav>
     @if(auth()->check())
       @php
@@ -26,19 +37,19 @@
           <div class="dropdown-icon">
             <i class="fa-solid fa-user"></i>
           </div>
-          <div class="dropdown-text">PROFILE</div>
+          <a href="{{ route('user.detail-profile-page', ['id' => $user->id]) }}"class="dropdown-text">PROFILE</a>
         </div>
         <div class="dropdown-item">
           <div class="dropdown-icon">
             <i class="fa-solid fa-gear"></i>
           </div>
-          <div class="dropdown-text">PENGATURAN AKUN</div>
+          <a href="{{route('user.edit-profile-page', ['id' => $user->id])}}" class="dropdown-text">PENGATURAN AKUN</a>
         </div>
         <div class="dropdown-item">
           <div class="dropdown-icon">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
           </div>
-          <div class="dropdown-text">LOGOUT</div>
+          <a href="{{route('login.user')}}" class="dropdown-text">LOGOUT</a>
         </div>
       </div>
     @else
@@ -54,3 +65,5 @@
       <li><a href="" class="sign-up">Sign Up</a></li>
     </div>
   </header>
+
+  

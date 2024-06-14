@@ -8,7 +8,7 @@
             <div class="row align-items-center">
               <div class="col-md-6">
                 <div class="title">
-                  <h2>eCommerce Dashboard</h2>
+                  <h2>VolHub Dashboard</h2>
                 </div>
               </div>
               <!-- end col -->
@@ -38,12 +38,8 @@
                   <i class="lni lni-cart-full"></i>
                 </div>
                 <div class="content">
-                  <h6 class="mb-10">New Orders</h6>
-                  <h3 class="text-bold mb-10">34567</h3>
-                  <p class="text-sm text-success">
-                    <i class="lni lni-arrow-up"></i> +2.00%
-                    <span class="text-gray">(30 days)</span>
-                  </p>
+                  <h6 class="mb-10">Total Pengguna</h6>
+                  <h3 class="text-bold mb-10">{{$totalPengguna}}</h3>
                 </div>
               </div>
               <!-- End Icon Cart -->
@@ -55,12 +51,8 @@
                   <i class="lni lni-dollar"></i>
                 </div>
                 <div class="content">
-                  <h6 class="mb-10">Total Income</h6>
-                  <h3 class="text-bold mb-10">$74,567</h3>
-                  <p class="text-sm text-success">
-                    <i class="lni lni-arrow-up"></i> +5.45%
-                    <span class="text-gray">Increased</span>
-                  </p>
+                  <h6 class="mb-10">Total Pendaftar</h6>
+                  <h3 class="text-bold mb-10">{{$totalPendaftar}}</h3>
                 </div>
               </div>
               <!-- End Icon Cart -->
@@ -72,12 +64,8 @@
                   <i class="lni lni-credit-cards"></i>
                 </div>
                 <div class="content">
-                  <h6 class="mb-10">Total Expense</h6>
-                  <h3 class="text-bold mb-10">$24,567</h3>
-                  <p class="text-sm text-danger">
-                    <i class="lni lni-arrow-down"></i> -2.00%
-                    <span class="text-gray">Expense</span>
-                  </p>
+                  <h6 class="mb-10">Total Kegiatan</h6>
+                  <h3 class="text-bold mb-10">{{$totalKegiatan}}</h3>
                 </div>
               </div>
               <!-- End Icon Cart -->
@@ -89,12 +77,8 @@
                   <i class="lni lni-user"></i>
                 </div>
                 <div class="content">
-                  <h6 class="mb-10">New User</h6>
+                  <h6 class="mb-10">Total ?</h6>
                   <h3 class="text-bold mb-10">34567</h3>
-                  <p class="text-sm text-danger">
-                    <i class="lni lni-arrow-down"></i> -25.00%
-                    <span class="text-gray"> Earning</span>
-                  </p>
                 </div>
               </div>
               <!-- End Icon Cart -->
@@ -102,6 +86,7 @@
             <!-- End Col -->
           </div>
           <!-- End Row -->
+
         </div>
         <!-- end container -->
       </section>

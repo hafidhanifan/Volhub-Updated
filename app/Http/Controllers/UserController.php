@@ -15,13 +15,33 @@ use Illuminate\Validation\ValidationException;
 class UserController extends Controller
 {
 
+    //All About Navigasi
+    public function showHomePage() {
+        return view('user.layout.index');
+    }
+
+    public function showDaftarKegiatan() {
+        $kegiatan = Kegiatan::all();
+        return view('user.layout.daftar-volunteer', compact('kegiatan'));
+    }
+
+    public function showDetailKegiatan($id_kegiatan)
+    {
+        $kegiatan = Kegiatan::with(['kategori'])->find($id_kegiatan);
+        if (!$kegiatan) {
+            return redirect()->route('user.daftar-volunteer')->with('error', 'Kegiatan tidak ditemukan.');
+        } 
+        return view('user.layout.detail-kegiatan', compact('kegiatan'));
+    }
+
     // All About Daftar Kegiatan
     public function showDaftarKegiatanPage($id)
     {   
         $user = User::find($id);
         $kegiatan = Kegiatan::all();
+        $totalKegiatan = $kegiatan->count();
 
-        return view('user.layout.daftar-volunteer', compact('kegiatan', 'user'));
+        return view('user.layout.daftar-volunteer', compact('kegiatan', 'user', 'totalKegiatan'));
     }
 
     // All About Detail User
@@ -64,15 +84,19 @@ class UserController extends Controller
         $user->deskripsi=$request->deskripsi;
 
         if ($request->hasFile('cv')) {
-            $file = $request->file('cv');
-            $extension = $file->getClientOriginalExtension();
-            $newName = 'cv-' . now()->timestamp . '.' . $extension;
-            
-            // Simpan file ke direktori 'public/fileUpload'
-            $filePath = $file->storeAs('cv', $newName);
+            if ($user->cv) {
+                $oldCv = storage_path('app/public/cv/' . $user->cv);
+                if (File::exists($oldCv)) {
+                    File::delete($oldCv);
+                }
+            }
+
+            $extension = $request->file('cv')->getClientOriginalExtension();
+            $newName = $request->nama_user.'-'.'cv'.'-'.now()->timestamp.'.'.$extension;
+            $request->file('cv')->storeAs('cv', $newName);
             
             // Update field 'cv' di tabel users
-            $user->cv = $newName;
+            $user->cv = $request['cv'] = $newName;
             $user->save();
         }
 
@@ -186,17 +210,22 @@ class UserController extends Controller
         $pendaftar->status_pendaftaran = 'Dalam Review';
         $pendaftar->id_user= $user->id;
         $pendaftar->id_kegiatan = $kegiatan->id_kegiatan;
-
+        
         if ($request->hasFile('cv')) {
-            $file = $request->file('cv');
-            $extension = $file->getClientOriginalExtension();
-            $newName = 'cv-' . now()->timestamp . '.' . $extension;
-            
-            // Simpan file ke direktori 'public/fileUpload'
-            $filePath = $file->storeAs('cv', $newName);
+
+            if ($user->cv) {
+                $oldCv = storage_path('app/public/cv/' . $user->cv);
+                if (File::exists($oldCv)) {
+                    File::delete($oldCv);
+                }
+            }
+
+            $extension = $request->file('cv')->getClientOriginalExtension();
+            $newName = $request->nama_user.'-'.'cv'.'-'.now()->timestamp.'.'.$extension;
+            $request->file('cv')->storeAs('cv', $newName);
             
             // Update field 'cv' di tabel users
-            $user->cv = $newName;
+            $user->cv = $request['cv'] = $newName;
             $user->save();
         }
 
