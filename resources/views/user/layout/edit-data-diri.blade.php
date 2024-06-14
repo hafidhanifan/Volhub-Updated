@@ -99,7 +99,7 @@
                     <select name="gender">
                       <option value="">Pilih Gender</option>
                       @foreach($gender as $gender)
-                        <option value="{{ $gender }}">{{ ucfirst($gender) }}</option>
+                        <option value="{{ $gender }}" @if(old('gender', $user->gender) == $gender) selected @endif>{{ ucfirst($gender) }}</option>
                       @endforeach
                     </select>
                   </div>
@@ -108,7 +108,7 @@
                     <select name="pendidikan_terakhir">
                       <option value="">Pilih Pendidikan Terakhir</option>
                       @foreach($pendidikanTerakhir as $pendidikan)
-                        <option value="{{ $pendidikan }}">{{ ucfirst($pendidikan) }}</option>
+                        <option value="{{ $pendidikan }}"@if(old('pendidikan', $user->pendidikan_terakhir) == $pendidikan) selected @endif>{{ ucfirst($pendidikan) }}</option>
                       @endforeach
                     </select>
                   </div>
@@ -119,6 +119,9 @@
                       type="file"
                       name="cv"
                     />
+                    @error('cv')
+                      <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <button type="submit"></button>
                   </div>
                 </div>
@@ -140,6 +143,14 @@
               </div>
             </div>
           </form>
+          @php
+    // Mengambil nilai lama
+    $oldCv = old('cv');
+@endphp
+
+@if ($oldCv)
+    <p>File CV yang sebelumnya diunggah: {{ $oldCv }}</p>
+@endif
           </div>
         </div>
       </div>
