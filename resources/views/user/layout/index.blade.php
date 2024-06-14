@@ -111,7 +111,7 @@
 
         <div class="team__body">
           <div class="team__item">
-            <img src="{{ asset('img/profile-img.jpg') }}" alt="" />
+            <img src="{{ asset('img/hapid.jpg') }}" alt="" />
             <div class="team__item-name">
               <h6>Arsa Wijaya</h6>
               <p>Bio</p>
@@ -119,7 +119,7 @@
           </div>
 
           <div class="team__item">
-            <img src="{{ asset('img/profile-img.jpg') }}" alt="" />
+            <img src="{{ asset('img/dinda.jpg') }}" alt="" />
             <div class="team__item-name">
               <h6>Arsa Wijaya</h6>
               <p>Bio</p>

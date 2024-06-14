@@ -15,6 +15,25 @@ use Illuminate\Validation\ValidationException;
 class UserController extends Controller
 {
 
+    //All About Navigasi
+    public function showHomePage() {
+        return view('user.layout.index');
+    }
+
+    public function showDaftarKegiatan() {
+        $kegiatan = Kegiatan::all();
+        return view('user.layout.daftar-volunteer', compact('kegiatan'));
+    }
+
+    public function showDetailKegiatan($id_kegiatan)
+    {
+        $kegiatan = Kegiatan::with(['kategori'])->find($id_kegiatan);
+        if (!$kegiatan) {
+            return redirect()->route('user.daftar-volunteer')->with('error', 'Kegiatan tidak ditemukan.');
+        } 
+        return view('user.layout.detail-kegiatan', compact('kegiatan'));
+    }
+
     // All About Daftar Kegiatan
     public function showDaftarKegiatanPage($id)
     {   

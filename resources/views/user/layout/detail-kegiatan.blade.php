@@ -22,7 +22,38 @@
                 <i class="fa-regular fa-bookmark"></i>
                 <button id="openModalBtn">Daftar</button>
             </div>
-
+            @if(auth()->check())
+            @php
+              $user = auth()->user();
+            @endphp
+                <div id="modal" class="modal__registration">
+                    <div class="modal__content">
+                        <div class="modal__header">
+                            <span id="closeModalBtn" class="close">&times;</span>
+                            <h2>Daftar Kegiatan Ini</h2>
+                        </div>
+                        <div class="modal__form">
+                            <form action="{{ route('user.add-pendaftaran-action', ['id' => $user->id, 'id_kegiatan' => $kegiatan->id_kegiatan]) }}" method="POST" id="registrationForm" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="kegiatan" value="{{ $kegiatan->id_kegiatan }}">
+                                <label for="motivasi">Motivasi mengikuti kegiatan ini</label>
+                                <textarea id="motivasi" name="motivasi" rows="4" cols="50" required></textarea>
+                                <br /><br />
+                                @if(auth()->user()->cv)
+                                    <p>CV Anda telah diunggah. <a href="{{ asset('storage/cv/' . auth()->user()->cv) }}" target="_blank">Unduh CV</a></p>
+                                @else
+                                    <label for="cv">Upload CV</label>
+                                    <input type="file" id="cv" name="cv" required />
+                                    <br /><br />
+                                @endif
+                                <div class="modal__button">
+                                    <button type="submit">Kirim</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @else
             <div id="modal" class="modal__registration">
                 <div class="modal__content">
                     <div class="modal__header">
@@ -30,26 +61,18 @@
                         <h2>Daftar Kegiatan Ini</h2>
                     </div>
                     <div class="modal__form">
-                        <form action="{{ route('user.add-pendaftaran-action', ['id' => $user->id, 'id_kegiatan' => $kegiatan->id_kegiatan]) }}" method="POST" id="registrationForm" enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" name="kegiatan" value="{{ $kegiatan->id_kegiatan }}">
-                            <label for="motivasi">Motivasi mengikuti kegiatan ini</label>
-                            <textarea id="motivasi" name="motivasi" rows="4" cols="50" required></textarea>
-                            <br /><br />
-                            @if(auth()->user()->cv)
-                                <p>CV Anda telah diunggah. <a href="{{ asset('storage/cv/' . auth()->user()->cv) }}" target="_blank">Unduh CV</a></p>
-                            @else
-                                <label for="cv">Upload CV</label>
-                                <input type="file" id="cv" name="cv" required />
-                                <br /><br />
-                            @endif
+                            <p>Login Terlebih Dahulu</p>
                             <div class="modal__button">
-                                <button type="submit">Kirim</button>
+                                <button type="submit">Login</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+            @endif
+
+
+
         </div>
     </div>
 </section>
