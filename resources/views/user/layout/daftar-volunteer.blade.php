@@ -46,7 +46,7 @@
         <section class="content">
           <div class="content__header">
             <div class="content__header-showing">
-              <p>Menampilkan <span>1082</span></p>
+              <p>Menampilkan <span>{{ $totalKegiatan }}</span></p>
               <form class="content__header-search">
                 <div class="search-wrapper">
                   <i class="fa-solid fa-magnifying-glass"></i>
@@ -102,9 +102,11 @@
                   <div class="profile__data-name">
                     <p>Silahkan Login Terlebih Dahulu</p>
                   </div>
-                  <div class="profile__data-button-logout">
-                    <button>Login</button>
-                  </div>
+                  <form action="{{route('login.user')}}">
+                    <div class="profile__data-button-logout">
+                      <button>Login</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </section>  
@@ -112,7 +114,7 @@
             <section class="content">
               <div class="content__header">
                 <div class="content__header-showing">
-                  <p>Menampilkan <span>1082</span></p>
+                  <p>Menampilkan <span>{{ $totalKegiatan }}</span></p>
                   <form class="content__header-search">
                     <div class="search-wrapper">
                       <i class="fa-solid fa-magnifying-glass"></i>

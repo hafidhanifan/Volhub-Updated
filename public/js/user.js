@@ -61,6 +61,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
         modal.style.display = "none";
       }
     });
+
+    const dropdownMenu = document.querySelector(".dropdown");
+    const dropdown = document.querySelector(".app-bar__user-icon");
+
+    if (dropdown) {
+      dropdown.addEventListener("click", () => {
+        if (dropdownMenu.style.visibility === "visible") {
+          dropdownMenu.style.visibility = "hidden";
+        } else {
+          dropdownMenu.style.visibility = "visible";
+        }
+      });
+    }
   });
   
   // JS untuk upload file

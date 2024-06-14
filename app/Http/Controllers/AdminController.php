@@ -16,6 +16,20 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    // All About Dashboard 
+    public function showDashboard($id) 
+    {
+        $admin = Admin::find($id);
+        $kegiatan = Kegiatan::all();
+        $user = User::all();
+        $pendaftar = Pendaftar::all();
+
+        $totalKegiatan = $kegiatan->count();
+        $totalPengguna = $user->count();
+        $totalPendaftar = $pendaftar->count();
+        return view('admin.layout.dashboard', compact('kegiatan', 'user', 'pendaftar', 'admin', 'totalKegiatan', 'totalPengguna', 'totalPendaftar'));
+    }
+
     // All About Kategori
     public function showKategoriPage()
     {   

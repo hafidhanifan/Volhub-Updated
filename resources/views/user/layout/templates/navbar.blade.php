@@ -26,10 +26,31 @@
           $user = auth()->user();
       @endphp
       <div class="app-bar__user-panel">
-        <div class="app-bar__sign-up">
-          <a href="{{ route('user.logout') }}"> Logout </a>
-        </div>
+        <a href=""><i class="fa-solid fa-bell notification-icon"></i></a>
+        <div class="app-bar__user-icon">
         <img src="{{asset('storage/foto-profile/'.$user->foto_profile)}}" alt="profile user" />
+        <i class="fa-solid fa-chevron-down user-dropdown"></i>
+        </div>
+      </div>
+      <div class="dropdown">
+        <div class="dropdown-item">
+          <div class="dropdown-icon">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <a href="{{ route('user.detail-profile-page', ['id' => $user->id]) }}"class="dropdown-text">PROFILE</a>
+        </div>
+        <div class="dropdown-item">
+          <div class="dropdown-icon">
+            <i class="fa-solid fa-gear"></i>
+          </div>
+          <a href="{{route('user.edit-profile-page', ['id' => $user->id])}}" class="dropdown-text">PENGATURAN AKUN</a>
+        </div>
+        <div class="dropdown-item">
+          <div class="dropdown-icon">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </div>
+          <a href="{{route('login.user')}}" class="dropdown-text">LOGOUT</a>
+        </div>
       </div>
     @else
       <div class="app-bar__sign-up">
@@ -44,3 +65,5 @@
       <li><a href="" class="sign-up">Sign Up</a></li>
     </div>
   </header>
+
+  

@@ -16,16 +16,9 @@ Route::post('/admin/login', [AuthController::class, 'login']);
 Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 
 Route::middleware('auth:admin')->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.layout.dashboard');
-    });
+    Route::get('/admin/dashboard/{id}', [AdminController::class, 'showDashboard'])->name('admin.dashboard');
 });
 
-
-
-// Route::get('/dashboard', function () {
-//     return view('admin/layout/dashboard');
-// });
 
 // Route untuk Kelola Kategori
 Route::get('/admin/kategori', [AdminController::class, 'showKategoriPage'])->name('admin.kategori');

@@ -39,8 +39,9 @@ class UserController extends Controller
     {   
         $user = User::find($id);
         $kegiatan = Kegiatan::all();
+        $totalKegiatan = $kegiatan->count();
 
-        return view('user.layout.daftar-volunteer', compact('kegiatan', 'user'));
+        return view('user.layout.daftar-volunteer', compact('kegiatan', 'user', 'totalKegiatan'));
     }
 
     // All About Detail User
