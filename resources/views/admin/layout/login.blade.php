@@ -94,7 +94,7 @@
                   </div>
               @endif
 
-                  <form action="{{ route('login') }}" method="POST">
+                  <form action="{{ route('login.action') }}" method="POST">
                     @csrf
                     <div class="row">
                       <div class="col-12">
@@ -135,3 +135,13 @@
       <!-- ========== signin-section end ========== -->
 
      @include('admin.layout.templates.footer')
+     @if(session('message'))
+    <script>
+        swal({
+            title: "Logged Out",
+            text: "{{ session('message') }}",
+            icon: "info",
+            button: "OK",
+        });
+    </script>
+@endif

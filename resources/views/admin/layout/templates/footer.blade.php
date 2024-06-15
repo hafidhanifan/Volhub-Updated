@@ -599,7 +599,7 @@
         updateStatusClass(); // Initialize class based on the current value
       });
     </script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
        function confirmDelete(event) {
         event.preventDefault();
@@ -621,6 +621,55 @@
         });
     }
     </script>
+
+
+@if (!request()->is('login'))
+<script>
+  let timer;
+  const logoutTime = 900000; //
+
+  function resetTimer() {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+        Swal.fire({
+            title: "Kamu tidak aktif!",
+            text: "Anda akan logout otomatis karena tidak ada aktivitas",
+            icon: "warning",
+            showCancelButton: true, // Menampilkan tombol cancel
+            confirmButtonText: "Log Out",
+            cancelButtonText: "Tetap Login",
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '{{ route('admin.logout') }}';
+            } else {
+                resetTimer(); // Reset timer jika memilih Stay Logged In
+            }
+        });
+    }, logoutTime);
+}
+
+  window.onload = () => {
+      if (!window.location.href.includes('/login')) { // Cek jika pengguna tidak di halaman login
+          resetTimer();
+          window.onmousemove = resetTimer;
+          window.onkeypress = resetTimer;
+          window.onscroll = resetTimer;
+          window.onclick = resetTimer;
+      }
+  };
+
+  window.onbeforeunload = () => {
+      clearTimeout(timer);
+      window.onmousemove = null;
+      window.onkeypress = null;
+      window.onscroll = null;
+      window.onclick = null;
+  };
+</script>
+@endif
+
 
 @include('sweetalert::alert')
 

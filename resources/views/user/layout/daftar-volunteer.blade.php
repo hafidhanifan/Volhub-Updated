@@ -10,7 +10,11 @@
               <section class="sidebar">
                 <div class="profile">
                   <div class="profile__image">
-                    <img src="{{asset('storage/foto-profile/'.$user->foto_profile)}}" alt="" />
+                    @if(!empty($user->gambar))
+                      <img src="{{asset('storage/foto-profile/'.$user->foto_profile)}}" alt="profile user" />
+                    @else
+                      <img src="{{asset('img/logo-user.png')}}" alt="profile user" />
+                    @endif
                   </div>
                   <div class="profile__data">
                     <div class="profile__data-name">

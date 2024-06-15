@@ -18,16 +18,17 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-    {
+    { 
         $credentials = $request->only('username', 'password');
 
         if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect()->intended('/admin/dashboard/{id}');
+            $request->session()->regenerate();
+            return redirect()->intended(route('admin.dashboard', ['id' => Auth::guard('admin')->user()->id]));
         }
 
         return back()->withErrors([
             'username' => 'Username atau password salah.',
-        ]);
+        ])->withInput($request->except('password'));
     }
 
     public function logout(Request $request)

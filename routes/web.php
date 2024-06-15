@@ -12,11 +12,14 @@ Route::get('/', function () {
 
 
 Route::get('/admin/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/admin/login', [AuthController::class, 'login']);
-Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
+Route::post('/admin/login', [AuthController::class, 'login'])->name('login.action');
 
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/dashboard/{id}', [AdminController::class, 'showDashboard'])->name('admin.dashboard');
+});
+
+Route::middleware(['auth:admin', 'autologout'])->group(function () {
+    Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 });
 
 
