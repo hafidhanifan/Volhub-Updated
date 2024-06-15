@@ -10,7 +10,7 @@
               <section class="sidebar">
                 <div class="profile">
                   <div class="profile__image">
-                    @if(!empty($user->gambar))
+                    @if(!empty($user->foto_profile))
                       <img src="{{asset('storage/foto-profile/'.$user->foto_profile)}}" alt="profile user" />
                     @else
                       <img src="{{asset('img/logo-user.png')}}" alt="profile user" />
