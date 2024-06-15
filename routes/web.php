@@ -98,7 +98,7 @@ Route::get('/user/register', [AuthController::class, 'showRegisterUser'])->name(
 Route::post('/user/register', [AuthController::class, 'registerUserAction'])->name('user.register.action');
 Route::get('/user/logout', [AuthController::class, 'logoutUser'])->name('user.logout');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:users')->group(function () {
     Route::get('/user/daftar-volunteer', function () {
         return view('user.layout.daftar-volunteer');
     });
