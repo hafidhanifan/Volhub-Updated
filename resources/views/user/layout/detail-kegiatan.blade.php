@@ -7,7 +7,12 @@
     </div>
 @endif
 
+{{-- style="background: url('{{ asset('storage/gambar/'.$kegiatan->gambar) }}')" --}}
+
 <section class="detail-header">
+    <div class="detail-header__image-wrapper">
+        <img class="detail-header__image" src="{{ asset('storage/gambar/'.$kegiatan->gambar) }}" alt="">
+    </div>
     <div class="detail-header__wrapper">
         <div class="detail-header__body">
             <div class="detail-header__body-name">
@@ -70,9 +75,6 @@
                 </div>
             </div>
             @endif
-
-
-
         </div>
     </div>
 </section>
@@ -80,18 +82,52 @@
 <main id="detail">
     <div class="container-detail">
         <section class="description">
-            <article class="description__text">
-                <h2>Deskripsi</h2>
-                <p>{{ $kegiatan->deskripsi }}</p>
-            </article>
+            <div class="description__text">
+                <article class="text">
+                    <h2>Deskripsi</h2>
+                    <p>{{ $kegiatan->deskripsi }}</p>
+                </article>
+                <section class="information">
+                    <div class="information__header">
+                        <h2>Informasi Kegiatan</h2>
+                        <article class="information__text">
+                            <div class="information__text-closed">
+                                <h3>Penutupan</h3>
+                                <p><span>{{ $kegiatan->tgl_penutupan }}</span></p>
+                            </div>
+                            <div class="information__text-start">
+                                <h3>Tanggal Pelaksanan</h3>
+                                <p>{{ $kegiatan->tgl_kegiatan }}</p>
+                            </div>
+                            <div class="information__text-duration">
+                                <h3>Pelaksanaan</h3>
+                                <p>{{ $kegiatan->lama_kegiatan }}</p>
+                            </div>
+                            <div class="information__text-system">
+                                <h3>Sistem Kerja</h3>
+                                <p>{{ $kegiatan->sistem_kegiatan }}</p>
+                            </div>
+                            <div class="information__text-location">
+                                <h3>Lokasi</h3>
+                                <p>{{ $kegiatan->lokasi_kegiatan }}, Indonesia</p>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+
             <div class="description__criteria">
                 <div class="description__criteria-header">
                     <h2>Kriteria</h2>
                     <article class="description__criteria-body">
                         <ul>
-                            @foreach($kegiatan->kriterias as $kriteria)
-                                <li>{{ $kriteria->nama_kriteria }}</li>
-                            @endforeach
+                            @if($kegiatan->kriterias->isNotEmpty())
+                                @foreach($kegiatan->kriterias as $kriteria)
+                                    <li>{{ $kriteria->nama_kriteria }}</li>
+                                @endforeach
+                             @else
+                                <p class="waiting-admin">Mohon tunggu admin untuk mengisikan data ya :)</p>
+                            @endif
                         </ul>
                     </article>
                 </div>
@@ -102,44 +138,22 @@
                     <div class="description__benefit-body">
                         <div class="description__benefit-item">
                             <div class="description__benefit-item-icon">
+                                @if($kegiatan->benefits->isNotEmpty())
                                 @foreach($kegiatan->benefits as $benefit)
-                                    <i class="fa-solid fa-check"></i>
-                                    {{ $benefit->nama_benefit }}
+                                <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div class="description__benefit-item-text">
+                                    <p>{{ $benefit->nama_benefit }}</p>
+                                    </div>
                                 @endforeach
-                            </div>
-                            <div class="description__benefit-item-text">
-                                <p></p>
-                            </div>
                         </div>
+                        @else
+                        <div class="waiting-container">
+                            <p class="waiting-admin">Mohon tunggu admin untuk mengisikan data ya :)</p>
+                        </div>
+                    @endif
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="information">
-            <div class="information__header">
-                <h2>Informasi Kegiatan</h2>
-                <article class="information__text">
-                    <div class="information__text-closed">
-                        <h3>Penutupan</h3>
-                        <p><span>{{ $kegiatan->tgl_penutupan }}</span></p>
-                    </div>
-                    <div class="information__text-start">
-                        <h3>Tanggal Pelaksanan</h3>
-                        <p>{{ $kegiatan->tgl_kegiatan }}</p>
-                    </div>
-                    <div class="information__text-duration">
-                        <h3>Pelaksanaan</h3>
-                        <p>{{ $kegiatan->lama_kegiatan }}</p>
-                    </div>
-                    <div class="information__text-system">
-                        <h3>Sistem Kerja</h3>
-                        <p>{{ $kegiatan->sistem_kegiatan }}</p>
-                    </div>
-                    <div class="information__text-location">
-                        <h3>Lokasi</h3>
-                        <p>{{ $kegiatan->lokasi_kegiatan }}, Indonesia</p>
-                    </div>
-                </article>
             </div>
         </section>
     </div>
@@ -150,71 +164,33 @@
             <p>Selengkapnya</p>
         </div>
         <div class="content__body">
+            @foreach($rekomendasi as $kegiatan)
             <div class="content__body-item">
                 <div class="content__item-image">
-                    <img src="img/program-3.jpg" alt="" />
+                    @if ($kegiatan->gambar)
+                    <img src="{{asset('storage/gambar/'.$kegiatan->gambar)}}" alt="Gambar Kegiatan" />
+                    @endif
                     <div class="content__item-image-text">
-                        <p>Kegiatan <span>Offline</span></p>
+                        <p>Kegiatan {{ $kegiatan->sistem_kegiatan }}</p>
                     </div>
                 </div>
                 <div class="content__item-data">
                     <div class="content__data-title">
-                        <h1>Penanaman Hutan Mangrove di Pantai Baru</h1>
+                        <h1>{{ $kegiatan->nama_kegiatan }}</h1>
                     </div>
                     <div class="content__data-location">
                         <i class="fa-solid fa-location-dot"></i>
-                        <p>Kab.Bantul, Yogyakarta</p>
+                        <p>{{ $kegiatan->lokasi_kegiatan }}</p>
                     </div>
-
-                    <div class="content__data-button">
+    
+                    <form action="{{ route('user.detail-kegiatan-page', ['id' => $user->id, 'id_kegiatan' => $kegiatan->id_kegiatan]) }}" method="POST" class="content__data-button">
+                        @csrf
+                        @method('GET')
                         <button>Detail</button>
-                    </div>
+                    </form>
                 </div>
             </div>
-
-            <div class="content__body-item">
-                <div class="content__item-image">
-                    <img src="img/program-3.jpg" alt="" />
-                    <div class="content__item-image-text">
-                        <p>Kegiatan <span>Offline</span></p>
-                    </div>
-                </div>
-                <div class="content__item-data">
-                    <div class="content__data-title">
-                        <h1>Penanaman Hutan Mangrove di Pantai Baru</h1>
-                    </div>
-                    <div class="content__data-location">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <p>Kab.Bantul, Yogyakarta</p>
-                    </div>
-
-                    <div class="content__data-button">
-                        <button>Detail</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content__body-item">
-                <div class="content__item-image">
-                    <img src="img/program-3.jpg" alt="" />
-                    <div class="content__item-image-text">
-                        <p>Kegiatan <span>Offline</span></p>
-                    </div>
-                </div>
-                <div class="content__item-data">
-                    <div class="content__data-title">
-                        <h1>Penanaman Hutan Mangrove di Pantai Baru</h1>
-                    </div>
-                    <div class="content__data-location">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <p>Kab.Bantul, Yogyakarta</p>
-                    </div>
-
-                    <div class="content__data-button">
-                        <button>Detail</button>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
 </main>

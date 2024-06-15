@@ -76,7 +76,7 @@
                   <img src="{{asset('storage/gambar/'.$kegiatan->gambar)}}" alt="Gambar Kegiatan" />
                 @endif
                 <div class="content__item-image-text">
-                  <p>{{ $kegiatan->sistem_kegiatan }}</p>
+                  <p>Kegiatan {{ $kegiatan->sistem_kegiatan }}</p>
                 </div>
               </div>
               <div class="content__item-data">
