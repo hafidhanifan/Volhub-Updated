@@ -24,8 +24,8 @@
                 <!-- input style start -->
                   <div class="card-style mb-30 d-flex flex-column">
                     <div class="edit-skill__list">
-                      <div class="edit-skill__headline">
-                        <p>Benefit</p>
+                      <div class="edit-skill__headline mb-50">
+                        <p class="fs-4">Benefit</p>
                       </div>
                       <ul>
                         @foreach ($kegiatan->Benefits as $benefit)
@@ -34,11 +34,11 @@
                             <form action="{{ route('admin.remove-benefit-action', ['id' => $kegiatan->id_kegiatan, 'id_benefit' => $benefit->id_benefit])}}" method="POST" style="display: inline;">
                               @csrf
                               @method('DELETE')
-                              <button onclick="confirmDelete(event)" type="submit" class="edit-skill__delete"><i class="fa-solid fa-trash"></i></button>
+                              <button onclick="confirmDelete(event)" type="submit"><i class="fa-solid fa-trash"></i></button>
                             </form>
                           </div>
-                          <hr />
-                        @endforeach
+                          <hr>
+                          @endforeach
                       </ul>
                     </div>
 
@@ -47,7 +47,7 @@
                         <div class="input-style-1">
                         <input name="nama_benefit" type="text" placeholder="Benefit" required/>
                       </div>
-                        <button type="submit" href="#0" class="main-btn-kategori primary-btn rounded-full btn-hover right-align">Tambah Benefit</button>
+                        <button type="submit" href="#0" class="main-btn-kategori primary-btn rounded btn-hover right-align">Tambah Benefit</button>
                       </div>
                     </form>
                     <a

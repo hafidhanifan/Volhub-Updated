@@ -323,6 +323,7 @@ class AdminController extends Controller
         
         $kegiatan->gambar = $request['gambar'] = $newName;
         $kegiatan->save();
+        Alert::success('Hore!', 'Data Berhasil Ditambahkan');
 
         return redirect('/admin/kegiatan')->with('success', 'Kegiatan berhasil ditambahkan.');
     }
@@ -354,6 +355,7 @@ class AdminController extends Controller
             
             $kegiatan->gambar = $request['gambar'] = $newName;
     }
+        Alert::success('Hore!', 'Data Berhasil Diedit');
         $kegiatan->save();
 
         return view('admin.layout.detail-kegiatan', compact('kegiatan'))->with('success', 'Kegiatan berhasil diupdate.');
@@ -363,11 +365,20 @@ class AdminController extends Controller
     {
         $kegiatan = Kegiatan::find($id);
 
-        if ($kegiatan) {
+        if (!$kegiatan) {
+            Alert::error('Oops !', 'Data Tidak Ditemukan');
+            return redirect()->back();
+        }
+    
+        try {
             $kegiatan->delete();
-            return back()->with('success', 'Kegiatan berhasil dihapus.');
-        } else {
-            return back()->with('error', 'Kegiatan tidak ditemukan');
+            Alert::success('Hore !', 'Data Berhasil Dihapus');
+            return redirect()->back();
+
+        } catch (\Exception $e) {
+            Alert::error('Oops !', 'Sepertinya kamu masih butuh data ini :(');
+            return redirect()->route('admin.skill');
+
         }
     }
 

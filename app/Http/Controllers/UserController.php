@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Skill;
 use App\Models\Kegiatan;
 use App\Models\User;

@@ -66,7 +66,7 @@
                       <form action="{{ route('admin.delete-kegiatan-action', ['id' => $kegiatan->id_kegiatan]) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus kriteria ini?')" style="background:none; border:none; padding:0; cursor:pointer;">
+                        <button type="submit" onclick="confirmDelete(event)" style="background:none; border:none; padding:0; cursor:pointer;">
                             <i class="lni lni-trash-can text-danger delete-button"></i>
                         </button>
                     </form>

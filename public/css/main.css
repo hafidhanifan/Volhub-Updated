@@ -6481,12 +6481,11 @@ h6,
     color: white;
 }
 
-/* Fixing Kegiatan Admin */
+/* Fixing Admin */
 .delete-button {
     font-size: 2rem;
 }
 
-/* Add Kegiatan */
 .tambah-kegiatan {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -6502,4 +6501,18 @@ h6,
 .custom-button {
     display: flex;
     justify-content: space-between;
+}
+
+.button_custom_kegiatan {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: -20px;
+    margin-top: 20px;
+}
+
+.button_custom_kegiatan button {
+    border: none;
+    background: transparent;
+    color: red;
+    font-size: 1.5rem;
 }

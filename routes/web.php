@@ -83,11 +83,16 @@ Route::get('/admin/setting', [AdminController::class, 'showSettingPage'])->name(
 Route::get('/admin/edit-setting/{id}', [AdminController::class, 'showEditSettingPage'])->name('admin.edit-setting-page');
 Route::put('admin/edit-setting/{id}', [AdminController::class, 'editSettingAction'])->name('admin.edit-setting-action');
 
-//Route untuk User
-Route::get('/user/login', [AuthController::class, 'showLoginUser'])->name('login.user');
-Route::post('/user/login', [AuthController::class, 'loginUser']);
-Route::get('/user/register', [AuthController::class, 'showRegisterUser'])->name('register.user');
-Route::post('/user/register', [AuthController::class, 'registerUserAction'])->name('register.user.action');
+
+
+// Route 
+// Untuk
+// User  
+
+Route::get('/user/login', [AuthController::class, 'showLoginUser'])->name('user.login');
+Route::post('/user/login', [AuthController::class, 'loginUser'])->name('user.login.action');
+Route::get('/user/register', [AuthController::class, 'showRegisterUser'])->name('user.register');
+Route::post('/user/register', [AuthController::class, 'registerUserAction'])->name('user.register.action');
 Route::get('/user/logout', [AuthController::class, 'logoutUser'])->name('user.logout');
 
 Route::middleware('auth')->group(function () {

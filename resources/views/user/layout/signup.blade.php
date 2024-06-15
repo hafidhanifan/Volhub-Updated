@@ -12,7 +12,7 @@
               <p class="content-left__text-up">Buat Akun Pribadi</p>
               <p class="content-left__text-down">Jadilah bagian dari VolHub!</p>
             </div>
-            <form  action={{ route('register.user.action')}} method="POST">
+            <form  action={{ route('user.register.action')}} method="POST">
               @csrf
               <div class="form-signup">
                 <div class="form-signup-container">
@@ -45,7 +45,7 @@
                 </div>
                 <div class="form-signup-container__button">
                   <button class="form-signup-button__signup" type="submit">Buat Akun</button>
-                  <button class="form-signup-button__login">Masuk</button>
+                  <a href="{{route('user.login')}}" class="form-signup-button__login">Sudah Punya Akun ?</a>
                 </div>
               </div>
             </form>
@@ -57,7 +57,8 @@
           <img class="content__hero-image" src="/img/hero.jpg" />
           <div class="content__hero-tagline">
             <h1 class="content__hero-tagline__text">
-              Muda, Bergerak, Bertindak.
+              Muda, <br> 
+              Bergerak, Bertindak.
             </h1>
           </div>
         </div>

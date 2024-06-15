@@ -49,12 +49,12 @@
           <div class="dropdown-icon">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
           </div>
-          <a href="{{route('login.user')}}" class="dropdown-text">LOGOUT</a>
+          <a href="{{route('user.logout')}}" class="dropdown-text">LOGOUT</a>
         </div>
       </div>
     @else
       <div class="app-bar__sign-up">
-        <p>Sign Up</p>
+        <a href="{{route('user.register')}}">Sign Up</a>
       </div>
     @endif
       
@@ -62,7 +62,19 @@
       <li><a href="">Home</a></li>
       <li><a href="">Daftar Kegiatan</a></li>
       <li><a href="">Tentang Kami</a></li>
-      <li><a href="" class="sign-up">Sign Up</a></li>
+      <li><a href="">Notification</a></li>
+      @if(auth()->check())
+      @php
+          $user = auth()->user();
+      @endphp
+      <li><a href="">Profile</a></li>
+      <li><a href="">Pengaturan Akun</a></li>
+      <li><a href="">Logout</a></li>
+    @else
+
+      <li><a href="{{route('user.register')}}" class="sign-up">Sign Up</a></li>
+    @endif
+
     </div>
   </header>
 

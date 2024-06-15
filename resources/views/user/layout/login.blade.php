@@ -23,25 +23,25 @@
                   </div>
               @endif
               
-                    <form {{ route('login.user') }} method="POST">
-                        @csrf
-                        <div class="form-login">
-                            <div class="form-login-container">
-                                <div class="form-login-item">
-                                    <label for="username">Username</label>
-                                    <input type="text" id="username" name="username" required>
-                                </div>
-                                <div class="form-login-item">
-                                    <label for="password">Kata Sandi</label>
-                                    <input type="password" id="password" name="password" required>
+                        <form {{ route('user.login.action') }} method="POST" class="login-form">
+                            @csrf
+                            <div class="form-signup">
+                                <div class="form-login-container">
+                                    <div class="form-signup-item">
+                                        <label for="username">Username</label>
+                                        <input type="text" id="username" name="username" required>
+                                    </div>
+                                    <div class="form-login-item">
+                                        <label for="password">Kata Sandi</label>
+                                        <input type="password" id="password" name="password" required>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-login-container__button">
+                            <div class="form-signup-container__button">
                                 <button class="form-login-button__login" type="submit">Login</button>
-                                <button class="form-login-button__signup">Buat Akun</button>
+                                <a href="{{route('user.register')}}" class="form-login-button__signup">Belum Punya Akun ?</a>
                             </div>
-                        </div>
-                    </form>
+                        </form>
                 </main>
             </div>
         </div>
