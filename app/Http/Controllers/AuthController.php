@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class AuthController extends Controller
 {
@@ -49,6 +51,12 @@ class AuthController extends Controller
 
     public function registerUserAction(Request $request)
     {
+        $existing_username = User::where('username', $request->username)->first();
+        if ($existing_username) {
+            Alert::error('Oops !', 'Username sudah digunakan :(');
+            return redirect()->back()->withInput(); 
+        }
+
         $register = new User;
         $register->nama_user = $request->nama_user;
         $register->username = $request->username;
@@ -56,11 +64,15 @@ class AuthController extends Controller
         $register->password = $request->password;
         $register->nomor_telephone = $request->nomor_telephone;
         $register->save();
+
         if ($request->filled('password')) {
             // Enkripsi password
             $register->password = Hash::make($request->password);
         }
+
         $register->save();
+        Alert::success('Hore!', 'Akun Berhasil Ditambahkan');
+
 
         return redirect('/user/login');
     }

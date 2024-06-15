@@ -18,7 +18,11 @@
                     </div>
                     <div class="profile__data-location">
                       <i class="fa-solid fa-location-dot"></i>
-                      <p>{{$user->domisili}}, Indonesia</p>
+                      @if(!empty($user->domisili))
+                        <p>{{ $user->domisili }}, Indonesia</p>
+                      @else
+                        <p>Anda belum mengisikan data lokasi</p>
+                      @endif
                     </div>
                     <form  action="{{ route('user.detail-profile-page', ['id' => $user->id]) }}" method="POST" class="profile__data-button">
                       @csrf

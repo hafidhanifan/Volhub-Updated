@@ -271,6 +271,24 @@
     .content__hero-tagline__text {
         font-size: 4rem;
     }
+
+    .form-signup-container__button {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .form-signup-container__button button {
+        width: 100%;
+    }
+
+    .form-login-button__signup {
+        width: 100%;
+    }
+
+    .form-signup-button__login {
+        width: 100%;
+    }
 }
 
 @media only screen and (max-width: 420px) {

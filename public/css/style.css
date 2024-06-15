@@ -1193,8 +1193,11 @@ h6 {
     padding: 20px;
 }
 
-.container-left__content .content-logo {
-    width: 100%;
+.container-left__content {
+    text-align: center;
+}
+
+.content-logo {
     max-width: 110px;
 }
 
@@ -1226,7 +1229,7 @@ h6 {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    align-items: center;
+    text-align: center;
 }
 
 .content-left__text-up {
