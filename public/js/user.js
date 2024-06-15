@@ -66,13 +66,26 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const dropdown = document.querySelector(".app-bar__user-icon");
 
     if (dropdown) {
-        dropdown.addEventListener("click", () => {
-            if (dropdownMenu.style.visibility === "visible") {
-                dropdownMenu.style.visibility = "hidden";
-            } else {
-                dropdownMenu.style.visibility = "visible";
-            }
+        dropdown.addEventListener("click", (event) => {
+            event.stopPropagation(); // Menghentikan event klik dari merambat ke atas
+            toggleDropdown();
         });
+    }
+
+    document.addEventListener("click", (event) => {
+        const isClickedInsideDropdown = dropdownMenu.contains(event.target); // Memeriksa apakah target klik berada di dalam dropdown
+
+        if (!isClickedInsideDropdown) {
+            dropdownMenu.style.visibility = "hidden"; // Menyembunyikan dropdown jika klik dilakukan di luar dropdown
+        }
+    });
+
+    function toggleDropdown() {
+        if (dropdownMenu.style.visibility === "visible") {
+            dropdownMenu.style.visibility = "hidden";
+        } else {
+            dropdownMenu.style.visibility = "visible";
+        }
     }
 });
 

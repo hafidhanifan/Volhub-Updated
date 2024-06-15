@@ -9,13 +9,13 @@
           $user = auth()->user();
       @endphp
       <ul class="">
-        <li><a href="{{ route('user.home') }}">Home</a></li>
+        <li><a href="{{ route('user.home') }}">Beranda</a></li>
         <li><a href="{{ route('daftar.kegiatan', ['id' => $user->id]) }}">Daftar Kegiatan</a></li>
         <li><a href="">Tentang Kami</a></li>
       </ul>
       @else
       <ul class="">
-        <li><a href="{{ route('user.home') }}">Home</a></li>
+        <li><a href="{{ route('user.home') }}">Beranda</a></li>
         <li><a href="{{ route('user.daftarKegiatan') }}">Daftar Kegiatan</a></li>
         <li><a href="">Tentang Kami</a></li>
       </ul>
@@ -64,7 +64,7 @@
     @endif
       
     <div class="mobile-nav">
-      <li><a href="">Home</a></li>
+      <li><a href="">Beranda</a></li>
       <li><a href="">Daftar Kegiatan</a></li>
       <li><a href="">Tentang Kami</a></li>
       <li><a href="">Notification</a></li>

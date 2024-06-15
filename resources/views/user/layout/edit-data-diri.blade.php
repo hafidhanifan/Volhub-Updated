@@ -119,7 +119,6 @@
                       type="file"
                       name="cv"
                     />
-                    <button type="submit"></button>
                   </div>
                 </div>
               </div>
@@ -134,7 +133,7 @@
                     type="text"
                     id="deskripsi"
                     name="deskripsi"
-                  ></textarea>
+                  >{{ old('user', $user->deskripsi) }}</textarea>
                 </div>
                 <button class="edit-personal__button" type="submit">Simpan Perubahan</button>
               </div>

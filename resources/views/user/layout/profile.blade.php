@@ -31,24 +31,33 @@
                 </div>
                 <div class="abstract__body-pendidikan">
                   <h2>PENDIDIKAN TERAKHIR</h2>
-                  <p>{{ $user->pendidikan_terakhir }}</p>
+                    @if(!empty($user->pendidikan_terakhir))
+                      <p>{{ $user->pendidikan_terakhir }}, Indonesia</p>
+                    @else
+                      <p class="belum-ada-data">Anda belum mengisikan data pendidikan. Silahkan isikan melalui halaman edit profile</p>
+                    @endif
                 </div>
                 <div class="abstract__body-cv">
                   <h2>CV</h2>
-                  <a
-                  href="{{ asset('storage/cv/' . auth()->user()->cv) }}" target="_blank"
-                  class="d-flex align-items-center text-primary text-decoration-none"
-                  download
-                >
-                  <img
-                    src="{{ asset('img/pdf.png')}}"
-                    alt="PDF Icon"
-                    class="me-2"
-                    width="20"
-                    height="20"
-                  />
-                  {{$user->cv}}
-                </a>
+                  @php
+                  $cvPath = 'cv/' . auth()->user()->cv;
+                  @endphp
+
+                  @if(isset($user->cv) && Storage::disk('public')->exists($cvPath))
+                      <a href="{{ asset('storage/cv/' . auth()->user()->cv) }}" target="_blank" class="d-flex align-items-center text-primary text-decoration-none" download>
+                        <img src="{{ asset('img/pdf.png')}}" alt="PDF Icon" class="me-2" width="20" height="20"/> {{$user->cv}}
+                      </a>
+                    @else
+                      <p class="belum-ada-data">Anda belum memasukkan cv. Silahkan mendaftar salah satu kegiatan atau isikan melalui halaman edit profile.</p>
+                    @endif
+                </div>
+                <div class="abstract__body-cv">
+                  <h2>Gender</h2>
+                  @if(!empty($user->gender))
+                    <p>{{ $user->gender }}</p>
+                  @else
+                    <p class="belum-ada-data">Anda belum mengisikan data gender. Silahkan isikan melalui halaman edit profile</p>
+                  @endif
                 </div>
               </div>
             </div>
@@ -62,21 +71,27 @@
             <h2>Tentang Saya</h2>
           </div>
           <div class="about__body">
-            <p>
-              {{$user->deskripsi}}
-            </p>
+            @if(!empty($user->deskripsi))
+              <p>{{ $user->deskripsi }}</p>
+            @else
+              <p class="belum-ada-data">Anda belum menceritakan tentang diri anda. Silahkan isi melalui halaman edit profile</p>
+            @endif
           </div>
         </section>
         <section class="status">
           <div class="status__skill">
             <div class="status__skill-body">
               <h3>Top Skills</h3>
-              <ul>
-                <?php $no = 1 ?>
-                @foreach($user->skills as $skill)
-                <li>{{$skill->nama_skill}}</li>
-                @endforeach
-              </ul>
+              @if(isset($user->skills) && $user->skills->isNotEmpty())
+                <ul>
+                  <?php $no = 1 ?>
+                  @foreach($user->skills as $skill)
+                  <li>{{$skill->nama_skill}}</li>
+                  @endforeach
+                </ul>
+              @else
+            <p class="belum-ada-data">Anda belum mengisikan data skill. Silahkan isikan data dahulu</p>
+            @endif
             </div>
             <div class="status__skill-button">
               <a href="{{ route('user.edit-skill-page', ['id' => $user->id]) }}">Tambah Keahlian</a>
@@ -87,6 +102,8 @@
               <h3>Status Lamaran</h3>
             </div>
             <div class="status__process-body">
+              @if(isset($user->pendaftars) && $user->pendaftars->isNotEmpty())
+      
               <?php $no = 1 ?>
               @foreach($user->pendaftars as $pendaftar)
               <div class="status__process-item">
@@ -112,8 +129,9 @@
                 </div>
               </div>
               @endforeach
-
-              
+              @else
+              <p class="belum-ada-data">Anda belum mendaftar kegiatan volunteer. Silahkan daftar terlebih dahulu</p>
+              @endif
             </div>
           </div>
         </section>
