@@ -10,7 +10,7 @@
               <section class="sidebar">
                 <div class="profile">
                   <div class="profile__image">
-                    @if(!empty($user->gambar))
+                    @if(!empty($user->foto_profile))
                       <img src="{{asset('storage/foto-profile/'.$user->foto_profile)}}" alt="profile user" />
                     @else
                       <img src="{{asset('img/logo-user.png')}}" alt="profile user" />
@@ -76,7 +76,7 @@
                   <img src="{{asset('storage/gambar/'.$kegiatan->gambar)}}" alt="Gambar Kegiatan" />
                 @endif
                 <div class="content__item-image-text">
-                  <p>{{ $kegiatan->sistem_kegiatan }}</p>
+                  <p>Kegiatan {{ $kegiatan->sistem_kegiatan }}</p>
                 </div>
               </div>
               <div class="content__item-data">

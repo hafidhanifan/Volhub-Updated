@@ -28,7 +28,7 @@
       <div class="app-bar__user-panel">
         <a href=""><i class="fa-solid fa-bell notification-icon"></i></a>
         <div class="app-bar__user-icon">
-          @if(!empty($user->gambar))
+          @if(!empty($user->foto_profile))
             <img src="{{asset('storage/foto-profile/'.$user->foto_profile)}}" alt="profile user" />
           @else
             <img src="{{asset('img/logo-user.png')}}" alt="profile user" />

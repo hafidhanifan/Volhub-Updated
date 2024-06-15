@@ -30,7 +30,8 @@ class UserController extends Controller
         $kegiatan = Kegiatan::with(['kategori'])->find($id_kegiatan);
         if (!$kegiatan) {
             return redirect()->route('user.daftar-volunteer')->with('error', 'Kegiatan tidak ditemukan.');
-        } 
+        }
+        
         return view('user.layout.detail-kegiatan', compact('kegiatan'));
     }
 
@@ -186,8 +187,15 @@ class UserController extends Controller
         $kegiatan = Kegiatan::with(['kategori'])->find($id_kegiatan);
         if (!$kegiatan) {
             return redirect()->route('user.daftar-volunteer')->with('error', 'Kegiatan tidak ditemukan.');
-        } 
-        return view('user.layout.detail-kegiatan', compact('kegiatan', 'user'));
+        }
+        
+         // Mengambil 3 kegiatan terbaru tanpa mempertimbangkan kategori
+         $rekomendasi = Kegiatan::where('id_kegiatan', '!=', $id_kegiatan) // Mengecualikan kegiatan yang sedang dilihat
+        //  ->latest() // Urutkan berdasarkan yang terbaru
+         ->take(3) // Ambil hanya 3 kegiatan
+         ->get();
+ 
+        return view('user.layout.detail-kegiatan', compact('kegiatan', 'user', 'rekomendasi'));
     }
 
     //All Abour Pendaftaran

@@ -323,3 +323,100 @@
         font-size: 3.5rem;
     }
 }
+
+/* Detail Volunteer */
+@media only screen and (max-width: 900px) {
+    .detail-header__wrapper {
+        margin-inline: 20px;
+        right: 0;
+        left: 0;
+    }
+
+    .description__text {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    article.text {
+        max-width: 100%;
+    }
+
+    .information {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 725px) {
+    .description__benefit-body {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .modal__content {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .container-detail {
+        padding-top: 5vh;
+    }
+
+    .detail-header__wrapper {
+        position: static;
+        margin-top: 50px;
+        margin-inline: 20px;
+    }
+
+    .detail-header__body {
+        flex-direction: column;
+        gap: 0;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .detail-header__body-name {
+        width: 100%;
+    }
+
+    .detail-header__body-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .detail-header__body-button button {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .detail-header__wrapper {
+        position: static;
+        margin-inline: 20px;
+        margin-top: 50px;
+    }
+
+    .detail-header__body-title h1 {
+        font-size: 1.1rem;
+    }
+
+    .container-detail {
+        padding-top: 5vh;
+    }
+
+    .description__benefit-body {
+        grid-template-columns: repeat(1, 1fr);
+        align-items: center;
+    }
+
+    .description__benefit-item-text p {
+        max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .recommendation__header {
+        flex-direction: column;
+        line-height: 40px;
+        align-items: flex-start;
+    }
+}
