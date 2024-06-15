@@ -21,6 +21,7 @@
       </ul>
       @endif
     </nav>
+
     @if(auth()->check())
       @php
           $user = auth()->user();
@@ -67,9 +68,9 @@
       @php
           $user = auth()->user();
       @endphp
-      <li><a href="">Profile</a></li>
-      <li><a href="">Pengaturan Akun</a></li>
-      <li><a href="">Logout</a></li>
+      <li><a href="{{ route('user.detail-profile-page', ['id' => $user->id]) }}">Profile</a></li>
+      <li><a href="{{ route('user.detail-profile-page', ['id' => $user->id]) }}">Pengaturan Akun</a></li>
+      <li><a href="{{route('user.logout')}}">Logout</a></li>
     @else
 
       <li><a href="{{route('user.register')}}" class="sign-up">Sign Up</a></li>
