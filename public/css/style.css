@@ -389,6 +389,7 @@ html {
     display: flex;
     align-items: center;
     gap: 50px;
+    cursor: pointer;
 }
 
 .app-bar__user-panel a {
