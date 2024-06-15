@@ -29,7 +29,11 @@
       <div class="app-bar__user-panel">
         <a href=""><i class="fa-solid fa-bell notification-icon"></i></a>
         <div class="app-bar__user-icon">
-        <img src="{{asset('storage/foto-profile/'.$user->foto_profile)}}" alt="profile user" />
+          @if(!empty($user->gambar))
+            <img src="{{asset('storage/foto-profile/'.$user->foto_profile)}}" alt="profile user" />
+          @else
+            <img src="{{asset('img/logo-user.png')}}" alt="profile user" />
+          @endif
         <i class="fa-solid fa-chevron-down user-dropdown"></i>
         </div>
       </div>

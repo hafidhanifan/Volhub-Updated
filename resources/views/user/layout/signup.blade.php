@@ -64,5 +64,6 @@
         </div>
       </div>
     </div>
+    @include('sweetalert::alert')
   </body>
 </html>

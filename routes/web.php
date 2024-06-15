@@ -12,11 +12,14 @@ Route::get('/', function () {
 
 
 Route::get('/admin/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/admin/login', [AuthController::class, 'login']);
-Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
+Route::post('/admin/login', [AuthController::class, 'login'])->name('login.action');
 
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/dashboard/{id}', [AdminController::class, 'showDashboard'])->name('admin.dashboard');
+});
+
+Route::middleware(['auth:admin', 'autologout'])->group(function () {
+    Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 });
 
 
@@ -95,7 +98,7 @@ Route::get('/user/register', [AuthController::class, 'showRegisterUser'])->name(
 Route::post('/user/register', [AuthController::class, 'registerUserAction'])->name('user.register.action');
 Route::get('/user/logout', [AuthController::class, 'logoutUser'])->name('user.logout');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:users')->group(function () {
     Route::get('/user/daftar-volunteer', function () {
         return view('user.layout.daftar-volunteer');
     });

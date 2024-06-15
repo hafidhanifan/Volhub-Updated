@@ -10,7 +10,11 @@
               <section class="sidebar">
                 <div class="profile">
                   <div class="profile__image">
-                    <img src="{{asset('storage/foto-profile/'.$user->foto_profile)}}" alt="" />
+                    @if(!empty($user->gambar))
+                      <img src="{{asset('storage/foto-profile/'.$user->foto_profile)}}" alt="profile user" />
+                    @else
+                      <img src="{{asset('img/logo-user.png')}}" alt="profile user" />
+                    @endif
                   </div>
                   <div class="profile__data">
                     <div class="profile__data-name">
@@ -18,7 +22,11 @@
                     </div>
                     <div class="profile__data-location">
                       <i class="fa-solid fa-location-dot"></i>
-                      <p>{{$user->domisili}}, Indonesia</p>
+                      @if(!empty($user->domisili))
+                        <p>{{ $user->domisili }}, Indonesia</p>
+                      @else
+                        <p>Anda belum mengisikan data lokasi</p>
+                      @endif
                     </div>
                     <form  action="{{ route('user.detail-profile-page', ['id' => $user->id]) }}" method="POST" class="profile__data-button">
                       @csrf
