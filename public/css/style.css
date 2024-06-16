@@ -150,12 +150,12 @@ html {
 
 .hero__text-title,
 .hero__text-tagline {
-    font-size: 200%;
+    font-size: 1.5rem;
 }
 
 .hero__text-description {
-    /* font-size: 1.56rem; */
-    font-size: 180%;
+    width: 80%;
+    font-size: 1.2rem;
     font-weight: 300;
 }
 
@@ -219,22 +219,33 @@ html {
     -webkit-backdrop-filter: blur(7.5px);
 }
 
-.introduction__text-top {
+.introduction__text-top, 
+.introduction__text-bottom {
     text-align: left;
 }
 
-.introduction__text-bottom {
-    text-align: right;
+.introduction__title h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
 }
 
-.introduction__title h2 {
-    font-size: 2rem;
-    font-weight: 400;
+.introduction__title span {
+    content: "";
+    width:  45%;
+    height: 4px;
+    display: block;
+    margin-top: 5px;
+    border-radius: 20px;
+    right: 0;
+    background: #003452;
+    transition: width 0.3s ease, right 0.3s ease;
+    margin-bottom: 20px;
 }
 
 .introduction__title span,
 .introduction__description span {
     font-weight: 600;
+    font-size:1.2rem;
 }
 
 /* 
@@ -247,7 +258,7 @@ html {
 }
 
 .program__header h3 {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     font-weight: 600;
     margin-block: 20px;
 }
@@ -606,7 +617,7 @@ html {
 }
 
 .content__body-item {
-    box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
+    box-shadow: rgba(99, 99, 99, 0.115) 0px 2px 8px 0px;
     padding: 20px;
     border-radius: 20px;
     margin-top: 30px;
@@ -1213,11 +1224,19 @@ article.text {
     margin-bottom: 1rem;
 }
 
+.status__process-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .status__process-item {
     display: flex;
     background-color: #f9fafc;
     padding: 1rem;
     border-radius: 20px;
+    box-shadow: rgba(99, 99, 99, 0.115) 0px 2px 8px 0px;
+    
 }
 
 .status__item-logo img {

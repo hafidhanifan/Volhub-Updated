@@ -16,11 +16,13 @@ Route::post('/admin/login', [AuthController::class, 'login'])->name('login.actio
 
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/dashboard/{id}', [AdminController::class, 'showDashboard'])->name('admin.dashboard');
+
+    Route::middleware(['autologout'])->group(function () {
+        Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
+    });
 });
 
-Route::middleware(['auth:admin', 'autologout'])->group(function () {
-    Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
-});
+
 
 
 // Route untuk Kelola Kategori
@@ -103,8 +105,12 @@ Route::middleware('auth:users')->group(function () {
         return view('user.layout.daftar-volunteer');
     });
 
+    // (User) Route untuk Home
+    Route::get('/home', [UserController::class, 'showHome'])->name('home');
+
     // (User) Route untuk Daftar Kegiatan
-    Route::get('/user/kegiatan/{id}', [UserController::class, 'showDaftarKegiatanPage'])->name('daftar.kegiatan');
+    Route::get('/Kegiatan', [UserController::class, 'showDaftarKegiatan'])->name('daftar.Kegiatan');
+    Route::get('/user/kegiatan/{id}', [UserController::class, 'showDaftarKegiatanPage'])->name('user.daftarKegiatan');
 
     // (User) Route untuk Detail User
     Route::get('/user/detail-profile/{id}', [UserController::class, 'showDetailUserPage'])->name('user.detail-profile-page');
@@ -123,11 +129,6 @@ Route::middleware('auth:users')->group(function () {
 
 // (User) Route untuk Daftar Kegiatan
 Route::post('user/{id}/add-pendaftaran/{id_kegiatan}', [UserController::class, 'addPendaftaranAction'])->name('user.add-pendaftaran-action');
-
-// (User) Navigasi
-Route::get('/home', [UserController::class, 'showHomePage'])->name('user.home');
-Route::get('/daftarKegiatan', [UserController::class, 'showDaftarKegiatan'])->name('user.daftarKegiatan');
-
 
 Route::get('/user/detail-kegiatan/{id_kegiatan}', [UserController::class, 'showDetailKegiatan'])->name('user.detail-kegiatan');
 

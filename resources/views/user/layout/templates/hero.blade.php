@@ -1,7 +1,7 @@
 <section class="hero">
     <div class="hero__text">
       <div class="hero__text-title">
-        <p>VolunteerHub</p>
+        <p>Volunteer Hub</p>
       </div>
       <div class="hero__text-tagline">
         <h1>Muda, Bergerak, Bertindak</h1>
