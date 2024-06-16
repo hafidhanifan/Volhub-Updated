@@ -105,7 +105,7 @@
                 <div class="card-style mb-30">
                     <div class="input-style-1">
                       <label>Deskripsi</label>
-                      <textarea rows="5" name="deskripsi" value="{{ old('kegiatan', $kegiatan->deskripsi) }}"></textarea>
+                      <textarea rows="5" name="deskripsi">{{ old('kegiatan', $kegiatan->deskripsi) }}</textarea>
                     </div>
                     <!-- end textarea -->
                 </div>
