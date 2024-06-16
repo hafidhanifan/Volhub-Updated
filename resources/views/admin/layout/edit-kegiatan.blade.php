@@ -66,7 +66,7 @@
                       <select name="sistem_kegiatan">
                         <option value="">Pilih Sistem Kerja</option>
                         @foreach($sistemKegiatan as $sistem)
-                          <option value="{{ $sistem }}">{{ ucfirst($sistem) }}</option>
+                        <option value="{{ $sistem }}"@if(old('sistem_kegiatan', $kegiatan->sistem_kegiatan) == $sistem) selected @endif>{{ ucfirst($sistem) }}</option>
                         @endforeach
                       </select>
                     </div>
