@@ -183,11 +183,22 @@
                         <p>{{ $kegiatan->lokasi_kegiatan }}</p>
                     </div>
     
+                    @if(auth()->check())
+                    @php
+                      $user = auth()->user();
+                    @endphp
                     <form action="{{ route('user.detail-kegiatan-page', ['id' => $user->id, 'id_kegiatan' => $kegiatan->id_kegiatan]) }}" method="POST" class="content__data-button">
                         @csrf
                         @method('GET')
                         <button>Detail</button>
                     </form>
+                    @else
+                    <form action="{{ route('user.detail-kegiatan', ['id_kegiatan' => $kegiatan->id_kegiatan]) }}" method="POST" class="content__data-button">
+                        @csrf
+                        @method('GET')
+                        <button>Detail</button>
+                    </form>
+                    @endif
                 </div>
             </div>
             @endforeach

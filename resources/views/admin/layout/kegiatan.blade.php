@@ -9,7 +9,7 @@
             <div class="row align-items-center">
               <div class="col-md-6">
                 <div class="title">
-                  <h2>Daftar Kegaitan / Volunteer</h2>
+                  <h2>Daftar Kegiatan / Volunteer</h2>
                 </div>
                 <a
                   href="{{ route('admin.add-kegiatan-page') }}"

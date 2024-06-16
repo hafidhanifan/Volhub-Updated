@@ -43,8 +43,13 @@ class UserController extends Controller
         if (!$kegiatan) {
             return redirect()->route('user.daftar-volunteer')->with('error', 'Kegiatan tidak ditemukan.');
         }
+
+        $rekomendasi = Kegiatan::where('id_kegiatan', '!=', $id_kegiatan)
+        //  ->latest() // Urutkan berdasarkan yang terbaru
+         ->take(3) 
+         ->get();
         
-        return view('user.layout.detail-kegiatan', compact('kegiatan'));
+        return view('user.layout.detail-kegiatan', compact('kegiatan', 'rekomendasi'));
     }
 
     // All About Detail User
