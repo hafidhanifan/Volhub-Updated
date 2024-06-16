@@ -687,6 +687,14 @@ html {
     gap: 10px;
 }
 
+.content__data-location p {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .content__data-location i {
     font-size: 1.3rem;
 }
