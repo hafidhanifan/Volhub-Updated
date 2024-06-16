@@ -34,14 +34,14 @@
               @foreach($kegiatan as $kegiatan)
               <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                 <div class="card-style-2 mb-30">
-                  <div class="card-image">
+                  <div class="card-image gambar-kegiatan">
                     <a href="#0">
                       @if ($kegiatan->gambar)
                         <img src="{{asset('storage/gambar/'.$kegiatan->gambar)}}" alt="Gambar Kegiatan" />
                       @endif
                     </a>
                   </div>
-                  <div class="card-content">
+                  <div class="card-content daftar-kegiatan">
                     <h4>
                       <a href="#0">{{$kegiatan->nama_kegiatan}}</a>
                     </h4>
