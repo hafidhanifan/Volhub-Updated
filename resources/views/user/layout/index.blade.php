@@ -10,28 +10,23 @@
           <div class="introduction__content">
             <article class="introduction__text introduction__text-top">
               <div class="introduction__title">
-                <h2>Apa itu <span>VolHub?</span></h2>
+                <h2>Tentang VolHub</h2>
+                <span></span>
               </div>
               <div class="introduction__description">
                 <p>
-                  <span>VolHub</span> merupakan platform kesukarelawanan.
-                  <span>VolHub</span> menjadi penghubung antara orang yang
-                  hendak menyalurkan kebaikannya kepada komunitas dan masyarakat
-                  yang membutuhkan bantuan.
+                  VolHub merupakan platform kesukarelawanan. VolHub menjadi penghubung antara orang yang
+                  hendak menyalurkan kebaikannya kepada komunitas dan masyarakat yang membutuhkan bantuan.
                 </p>
               </div>
             </article>
 
             <article class="introduction__text introduction__text-bottom">
-              <div class="introduction__title">
-                <h2>Kenapa harus <span>VolHub?</span></h2>
-              </div>
               <div class="introduction__description">
                 <p>
-                  <span>VolHub</span> memberikan berbagai kegiatan sukarelawan
-                  dengan <span>kualitas yang tinggi, berdampak besar</span>, dan
-                  tentunya dapat memberikan
-                  <span>pengalaman berkesan</span> bagi yang mengikuti.
+                  VolHub memberikan berbagai kegiatan sukarelawan
+                  dengan kualitas yang tinggi, berdampak besar, dan
+                  tentunya dapat memberikan pengalaman berkesan bagi yang mengikuti.
                 </p>
               </div>
             </article>
@@ -44,59 +39,29 @@
           <h3>Lihat Acara Kami!</h3>
         </div>
         <div class="program__body">
-          <div class="program__item">
-            <div class="program__item-image">
-              <img src="{{ asset('img/program-2.jpg') }}" alt="" />
-              <p class="program__item-image-text">
-                Kegiatan <span>Offline</span>
-              </p>
-            </div>
-            <div class="program__item-title">
-              <h4>Penanaman Hutan Mangroove di Pantai Baru</h4>
-            </div>
-            <div class="program__item-location">
-              <p>Kab. Bantul, Daerah Istimewa Yogyakarta</p>
-            </div>
-            <div class="program__item-button">
-              <button>Detail</button>
-            </div>
-          </div>
 
-          <div class="program__item">
-            <div class="program__item-image">
-              <img src="{{ asset ('img/program-2.jpg') }}" alt="" />
-              <p class="program__item-image-text">
-                Kegiatan <span>Offline</span>
-              </p>
+          <?php $no = 1 ?>
+            @foreach($kegiatan as $kegiatan)
+            <div class="content__body-item">
+              <div class="content__item-image">
+                @if ($kegiatan->gambar)
+                  <img src="{{asset('storage/gambar/'.$kegiatan->gambar)}}" alt="Gambar Kegiatan" />
+                @endif
+                <div class="content__item-image-text">
+                  <p>Kegiatan {{ $kegiatan->sistem_kegiatan }}</p>
+                </div>
+              </div>
+              <div class="content__item-data">
+                <div class="content__data-title">
+                  <h1>{{ $kegiatan->nama_kegiatan }}</h1>
+                </div>
+                <div class="content__data-location">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <p>{{ $kegiatan->lokasi_kegiatan }}</p>
+                </div>
+              </div>
             </div>
-            <div class="program__item-title">
-              <h4>Penanaman Hutan Mangroove di Pantai Baru</h4>
-            </div>
-            <div class="program__item-location">
-              <p>Kab. Bantul, Daerah Istimewa Yogyakarta</p>
-            </div>
-            <div class="program__item-button">
-              <button>Detail</button>
-            </div>
-          </div>
-
-          <div class="program__item">
-            <div class="program__item-image">
-              <img src="{{ asset('img/program-2.jpg')}}" alt="" />
-              <p class="program__item-image-text">
-                Kegiatan <span>Offline</span>
-              </p>
-            </div>
-            <div class="program__item-title">
-              <h4>Penanaman Hutan Mangroove di Pantai Baru</h4>
-            </div>
-            <div class="program__item-location">
-              <p>Kab. Bantul, Daerah Istimewa Yogyakarta</p>
-            </div>
-            <div class="program__item-button">
-              <button>Detail</button>
-            </div>
-          </div>
+            @endforeach
         </div>
         <div class="program__button">
           <button>Selengkapnya</button>

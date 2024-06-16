@@ -16,13 +16,23 @@ class UserController extends Controller
 {
 
     //All About Navigasi
-    public function showHomePage() {
-        return view('user.layout.index');
+    public function showHome() {
+        $kegiatan = Kegiatan::all();
+        return view('user.layout.index', compact('kegiatan'));
     }
 
     public function showDaftarKegiatan() {
         $kegiatan = Kegiatan::all();
         return view('user.layout.daftar-volunteer', compact('kegiatan'));
+    }
+
+    public function showDaftarKegiatanPage($id)
+    {   
+        $user = User::find($id);
+        $kegiatan = Kegiatan::all();
+        $totalKegiatan = $kegiatan->count();
+
+        return view('user.layout.daftar-volunteer', compact('kegiatan', 'user', 'totalKegiatan'));
     }
 
     public function showDetailKegiatan($id_kegiatan)
@@ -33,16 +43,6 @@ class UserController extends Controller
         }
         
         return view('user.layout.detail-kegiatan', compact('kegiatan'));
-    }
-
-    // All About Daftar Kegiatan
-    public function showDaftarKegiatanPage($id)
-    {   
-        $user = User::find($id);
-        $kegiatan = Kegiatan::all();
-        $totalKegiatan = $kegiatan->count();
-
-        return view('user.layout.daftar-volunteer', compact('kegiatan', 'user', 'totalKegiatan'));
     }
 
     // All About Detail User

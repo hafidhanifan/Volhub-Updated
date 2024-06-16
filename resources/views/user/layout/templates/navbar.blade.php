@@ -9,15 +9,15 @@
           $user = auth()->user();
       @endphp
       <ul class="">
-        <li><a href="{{ route('user.home') }}">Beranda</a></li>
-        <li><a href="{{ route('daftar.kegiatan', ['id' => $user->id]) }}">Daftar Kegiatan</a></li>
-        <li><a href="">Tentang Kami</a></li>
+        <li><a href="{{ route('home') }}">Beranda</a></li>
+        <li><a href="{{ route('user.daftarKegiatan', ['id' => $user->id]) }}">Daftar Kegiatan</a></li>
+        <li><a href="">FAQ</a></li>
       </ul>
       @else
       <ul class="">
-        <li><a href="{{ route('user.home') }}">Beranda</a></li>
-        <li><a href="{{ route('user.daftarKegiatan') }}">Daftar Kegiatan</a></li>
-        <li><a href="">Tentang Kami</a></li>
+        <li><a href="{{ route('home') }}">Beranda</a></li>
+        <li><a href="{{ route('daftar.Kegiatan') }}">Daftar Kegiatan</a></li>
+        <li><a href="">FAQ</a></li>
       </ul>
       @endif
     </nav>
