@@ -12,12 +12,12 @@ Route::prefix('admin')->group(function () {
     Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('login', [AuthController::class, 'login'])->name('login.action');
 
+    Route::middleware(['auth:admin','autologout'])->group(function () {
+        Route::get('logout', [AuthController::class, 'logout'])->name('admin.logout');
+    });
+    
     Route::middleware('auth:admin')->group(function () {
         Route::get('dashboard/{id}', [AdminController::class, 'showDashboard'])->name('admin.dashboard');
-
-        Route::middleware(['autologout'])->group(function () {
-            Route::get('logout', [AuthController::class, 'logout'])->name('admin.logout');
-        });
 
         // Route untuk Kelola Kategori
         Route::get('kategori', [AdminController::class, 'showKategoriPage'])->name('admin.kategori');

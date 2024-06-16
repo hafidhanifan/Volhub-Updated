@@ -110,7 +110,7 @@
                   <div class="profile__data-name">
                     <p>Silahkan Login Terlebih Dahulu</p>
                   </div>
-                  <form action="{{route('login.user')}}">
+                  <form action="{{route('user.login')}}">
                     <div class="profile__data-button-logout">
                       <button>Login</button>
                     </div>
