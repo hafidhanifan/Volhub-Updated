@@ -13,6 +13,6 @@
           berkembang bersama di VolHub
         </p>
       </div>
-      <button class="hero__text-button">Jelajahi Sekarang</button>
+      <a href="{{route('daftar.kegiatan')}}" class="hero__text-button">Jelajahi Sekarang</a>
     </div>
   </section>
