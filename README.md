@@ -6,7 +6,7 @@ A Volunteering Website.
 ## What I'm use here?
 
 - [Laravel 9](https://laravel.com/docs/9.x/releases) as Framework.
-- [Sweat Alert](https://realrashid.github.io/sweet-alert/) as Alert Library.
+- [Sweet Alert](https://realrashid.github.io/sweet-alert/) as Alert Library.
 
 ## How to use it?
 
