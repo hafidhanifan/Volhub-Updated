@@ -16,11 +16,21 @@ Route::post('/admin/login', [AuthController::class, 'login'])->name('login.actio
 
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/dashboard/{id}', [AdminController::class, 'showDashboard'])->name('admin.dashboard');
+
+
+
+
+
+
+
+
+    
+    Route::middleware(['autologout'])->group(function () {
+        Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
+    });
 });
 
-Route::middleware(['auth:admin', 'autologout'])->group(function () {
-    Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
-});
+
 
 
 // Route untuk Kelola Kategori
