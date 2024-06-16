@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
 
+    <link
+      rel="shortcut icon"
+      href="{{ asset('/img/logo-putih.png') }}"
+      type="image/x-icon"
+    />
+
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -64,7 +64,7 @@
             @endforeach
         </div>
         <div class="program__button">
-          <button>Selengkapnya</button>
+          <a href="{{route('daftar.kegiatan')}}">Selengkapnya</a>
         </div>
       </section>
 

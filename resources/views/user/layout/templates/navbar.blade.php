@@ -16,7 +16,7 @@
       @else
       <ul class="">
         <li><a href="{{ route('home') }}">Beranda</a></li>
-        <li><a href="{{ route('daftar.Kegiatan') }}">Daftar Kegiatan</a></li>
+        <li><a href="{{ route('daftar.kegiatan') }}">Daftar Kegiatan</a></li>
         <li><a href="">FAQ</a></li>
       </ul>
       @endif

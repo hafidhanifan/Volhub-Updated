@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="shortcut icon"
-      href="{{ asset('/images/favicon.svg') }}"
+      href="{{ asset('/img/logo-putih.png') }}"
       type="image/x-icon"
     />
     <title>PlainAdmin Demo | Bootstrap 5 Admin Template</title>

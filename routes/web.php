@@ -84,15 +84,12 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-// Route 
-// Untuk
-// User  
-
 Route::prefix('user')->group(function () {
     Route::get('login', [AuthController::class, 'showLoginUser'])->name('user.login');
     Route::post('login', [AuthController::class, 'loginUser'])->name('user.login.action');
     Route::get('register', [AuthController::class, 'showRegisterUser'])->name('user.register');
     Route::post('register', [AuthController::class, 'registerUserAction'])->name('user.register.action');
+    Route::get('Kegiatan', [UserController::class, 'showDaftarKegiatan'])->name('daftar.kegiatan');
 
     Route::middleware('auth')->group(function () {
         Route::get('logout', [AuthController::class, 'logoutUser'])->name('user.logout');
@@ -101,7 +98,6 @@ Route::prefix('user')->group(function () {
         });
 
         // (User) Route untuk Daftar Kegiatan
-        Route::get('Kegiatan', [UserController::class, 'showDaftarKegiatan'])->name('daftar.Kegiatan');
         Route::get('kegiatan/{id}', [UserController::class, 'showDaftarKegiatanPage'])->name('user.daftarKegiatan');
 
         // (User) Route untuk Detail User

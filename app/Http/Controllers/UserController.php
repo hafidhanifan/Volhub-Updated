@@ -23,7 +23,8 @@ class UserController extends Controller
 
     public function showDaftarKegiatan() {
         $kegiatan = Kegiatan::all();
-        return view('user.layout.daftar-volunteer', compact('kegiatan'));
+        $totalKegiatan = $kegiatan->count();
+        return view('user.layout.daftar-volunteer', compact('kegiatan', 'totalKegiatan'));
     }
 
     public function showDaftarKegiatanPage($id)
