@@ -49,7 +49,7 @@
                       class="card-content-location d-flex align-items-center fw-bold text-dark"
                     >
                       <i class="lni lni-map-marker"></i
-                      ><span class="ms-3 fst-italic text-muted">{{$kegiatan->lokasi_kegiatan}}</span>
+                      ><span class="ms-3 fst-italic text-muted daftar-lokasi">{{$kegiatan->lokasi_kegiatan}}</span>
                     </div>
                     <ul
                       class="d-flex flex-wrap align-items-center justify-content-between mt-25"
