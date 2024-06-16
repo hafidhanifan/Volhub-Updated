@@ -157,7 +157,7 @@ p {
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.07);
 }
 .card-style .dropdown-menu li:hover a {
-    color: #365cf5 !important;
+    color: #003452 !important;
 }
 .card-style .dropdown-menu li a {
     display: block;
@@ -555,7 +555,7 @@ h6,
 
 /* primary buttons */
 .primary-btn {
-    background: #365cf5;
+    background: #003452;
     color: #fff;
 }
 .primary-btn:hover {
@@ -564,32 +564,32 @@ h6,
 
 .primary-btn-outline {
     background: transparent;
-    color: #365cf5;
-    border-color: #365cf5;
+    color: #003452;
+    border-color: #003452;
 }
 .primary-btn-outline:hover {
     color: #fff;
-    background: #365cf5;
+    background: #003452;
 }
 
 .primary-btn-light {
     background: rgba(54, 92, 245, 0.12);
-    color: #365cf5;
+    color: #003452;
 }
 .primary-btn-light:hover {
-    color: #365cf5;
+    color: #003452;
 }
 
 .primary-btn-group {
     background: transparent;
     border: 1px solid transparent;
-    color: #365cf5;
+    color: #003452;
 }
 .primary-btn-group.active,
 .primary-btn-group:hover {
     color: #fff;
-    background: #365cf5;
-    border-color: #365cf5 !important;
+    background: #003452;
+    border-color: #003452 !important;
 }
 
 /* secondary buttons */
@@ -1643,7 +1643,7 @@ h6,
 }
 .icon-card .icon.primary {
     background: rgba(54, 92, 245, 0.1);
-    color: #365cf5;
+    color: #003452;
 }
 .icon-card .icon.orange {
     background: rgba(242, 153, 74, 0.1);
@@ -3768,7 +3768,7 @@ h6,
     .nav-item.nav-item-has-children
     > a:not(.collapsed)
     .icon {
-    color: #365cf5;
+    color: #003452;
 }
 .sidebar-nav-wrapper
     .sidebar-nav
@@ -6387,12 +6387,12 @@ h6,
 }
 
 .kegiatan-item h3 {
-    font-size: 1.2rem;
+    font-size: 1rem;
     width: 20%;
 }
 
 .kegiatan-item p {
-    font-size: 1.2rem;
+    font-size: 1rem;
 
     width: 90%;
 }
