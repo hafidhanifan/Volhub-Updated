@@ -695,6 +695,11 @@ html {
     text-overflow: ellipsis;
 }
 
+.content__data-location p {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
 .content__data-location i {
     font-size: 1.3rem;
 }
