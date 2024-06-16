@@ -195,6 +195,14 @@ html {
 }
 
 .introduction__wrapper {
+    background: url("../img/introduction-background.png");
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .introduction__content {
@@ -211,33 +219,22 @@ html {
     -webkit-backdrop-filter: blur(7.5px);
 }
 
-.introduction__text-top, 
-.introduction__text-bottom {
+.introduction__text-top {
     text-align: left;
 }
 
-.introduction__title h2 {
-    font-size: 1.5rem;
-    font-weight: 400;
+.introduction__text-bottom {
+    text-align: right;
 }
 
-.introduction__title span {
-    content: "";
-    width:  45%;
-    height: 4px;
-    display: block;
-    margin-top: 5px;
-    border-radius: 20px;
-    right: 0;
-    background: #003452;
-    transition: width 0.3s ease, right 0.3s ease;
-    margin-bottom: 20px;
+.introduction__title h2 {
+    font-size: 2rem;
+    font-weight: 400;
 }
 
 .introduction__title span,
 .introduction__description span {
     font-weight: 600;
-    font-size:1.2rem;
 }
 
 /* 
@@ -312,7 +309,9 @@ html {
     justify-content: center;
 }
 
-.program__button button {
+.program__button a {
+    text-decoration: none;
+    display: inline-block;
     font-size: 1rem;
     padding: 12px 40px;
     border-radius: 10px;
@@ -327,12 +326,13 @@ html {
 */
 
 .team {
-    margin-top: 100px;
+    margin: 100px 0 250px 0;
 }
 
 .team__header {
     text-align: center;
     line-height: 40px;
+    margin-bottom: 50px;
 }
 
 .team__header h5 {
@@ -353,6 +353,7 @@ html {
 
 .team__item {
     width: 400px;
+    height: 400px;
     background-color: white;
     border-radius: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -367,18 +368,25 @@ html {
 
 .team__item img {
     width: 100%;
-    height: 100%;
+    object-fit: cover;
 }
 
 .team__item-name {
     background-color: rgba(0, 52, 82, 0.8);
     color: white;
-    font-weight: 600;
     position: absolute;
     bottom: 0;
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
+}
+
+.team__item-name h6 {
+    font-weight: 600;
+}
+
+.team__item-name p {
+    font-weight: 200;
 }
 
 /* End of Landing Page */
@@ -1228,7 +1236,6 @@ article.text {
     padding: 1rem;
     border-radius: 20px;
     box-shadow: rgba(99, 99, 99, 0.115) 0px 2px 8px 0px;
-    
 }
 
 .status__item-logo img {

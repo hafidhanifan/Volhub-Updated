@@ -26,18 +26,5 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
-    <style>
-       .introduction__wrapper {
-            background: url("{{ asset('img/introduction-background.png') }}");
-            height: 500px;
-            background-repeat: no-repeat;
-            background-size: contain;
-            width: 60%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
   </head>
   <body>

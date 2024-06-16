@@ -17,7 +17,8 @@ class UserController extends Controller
 
     //All About Navigasi
     public function showHome() {
-        $kegiatan = Kegiatan::all();
+        $kegiatan = Kegiatan::all()
+         ->take(3) ;
         return view('user.layout.index', compact('kegiatan'));
     }
 
@@ -189,11 +190,10 @@ class UserController extends Controller
         if (!$kegiatan) {
             return redirect()->route('user.daftar-volunteer')->with('error', 'Kegiatan tidak ditemukan.');
         }
-        
-         // Mengambil 3 kegiatan terbaru tanpa mempertimbangkan kategori
-         $rekomendasi = Kegiatan::where('id_kegiatan', '!=', $id_kegiatan) // Mengecualikan kegiatan yang sedang dilihat
+       
+         $rekomendasi = Kegiatan::where('id_kegiatan', '!=', $id_kegiatan)
         //  ->latest() // Urutkan berdasarkan yang terbaru
-         ->take(3) // Ambil hanya 3 kegiatan
+         ->take(3) 
          ->get();
  
         return view('user.layout.detail-kegiatan', compact('kegiatan', 'user', 'rekomendasi'));

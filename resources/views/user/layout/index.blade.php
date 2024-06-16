@@ -2,45 +2,48 @@
 @include('user.layout.templates.navbar')
 @include('user.layout.templates.hero')
  <main>
-      <section class="introduction">
-        <div class="introduction__logo">
-          <img src="{{ asset('img/volhub-big-logo.png') }}" alt="" />
-        </div>
-        <div class="introduction__wrapper">
-          <div class="introduction__content">
-            <article class="introduction__text introduction__text-top">
-              <div class="introduction__title">
-                <h2>Tentang VolHub</h2>
-                <span></span>
-              </div>
-              <div class="introduction__description">
-                <p>
-                  VolHub merupakan platform kesukarelawanan. VolHub menjadi penghubung antara orang yang
-                  hendak menyalurkan kebaikannya kepada komunitas dan masyarakat yang membutuhkan bantuan.
-                </p>
-              </div>
-            </article>
-
-            <article class="introduction__text introduction__text-bottom">
-              <div class="introduction__description">
-                <p>
-                  VolHub memberikan berbagai kegiatan sukarelawan
-                  dengan kualitas yang tinggi, berdampak besar, dan
-                  tentunya dapat memberikan pengalaman berkesan bagi yang mengikuti.
-                </p>
-              </div>
-            </article>
+  <section class="introduction">
+    <div class="introduction__logo">
+      <img src="{{ asset('img/volhub-big-logo.png') }}" alt="" />
+    </div>
+    <div class="introduction__wrapper">
+      <div class="introduction__content">
+        <article class="introduction__text introduction__text-top">
+          <div class="introduction__title">
+            <h2>Apa itu <span>VolHub?</span></h2>
           </div>
-        </div>
-      </section>
+          <div class="introduction__description">
+            <p>
+              <span>VolHub</span> merupakan platform kesukarelawanan.
+              <span>VolHub</span> menjadi penghubung antara orang yang
+              hendak menyalurkan kebaikannya kepada komunitas dan masyarakat
+              yang membutuhkan bantuan.
+            </p>
+          </div>
+        </article>
+
+        <article class="introduction__text introduction__text-bottom">
+          <div class="introduction__title">
+            <h2>Kenapa harus <span>VolHub?</span></h2>
+          </div>
+          <div class="introduction__description">
+            <p>
+              <span>VolHub</span> memberikan berbagai kegiatan sukarelawan
+              dengan <span>kualitas yang tinggi, berdampak besar</span>, dan
+              tentunya dapat memberikan
+              <span>pengalaman berkesan</span> bagi yang mengikuti.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
       <section class="program">
         <div class="program__header">
           <h3>Lihat Acara Kami!</h3>
         </div>
         <div class="program__body">
-
-          <?php $no = 1 ?>
             @foreach($kegiatan as $kegiatan)
             <div class="content__body-item">
               <div class="content__item-image">
@@ -62,7 +65,7 @@
               </div>
             </div>
             @endforeach
-        </div>
+          </div>
         <div class="program__button">
           <a href="{{route('daftar.kegiatan')}}">Selengkapnya</a>
         </div>
@@ -76,26 +79,26 @@
 
         <div class="team__body">
           <div class="team__item">
-            <img src="{{ asset('img/hapid.jpg') }}" alt="" />
+            <img src="{{ asset('img/team-hafid.jpg') }}" alt="" />
             <div class="team__item-name">
-              <h6>Arsa Wijaya</h6>
-              <p>Bio</p>
+              <h6>Hafid Hanifan</h6>
+              <p>Fullstack Developer</p>
             </div>
           </div>
 
           <div class="team__item">
-            <img src="{{ asset('img/dinda.jpg') }}" alt="" />
+            <img src="{{ asset('img/team-dinda.jpg') }}" alt="" />
             <div class="team__item-name">
-              <h6>Arsa Wijaya</h6>
-              <p>Bio</p>
+              <h6>Dinda Farras G.</h6>
+              <p>Fullstack Developer & UI/UX Designer</p>
             </div>
           </div>
 
           <div class="team__item">
-            <img src="{{ asset('img/profile-img.jpg') }}" alt="" />
+            <img src="{{ asset('img/team-arsa.jpg') }}" alt="" />
             <div class="team__item-name">
-              <h6>Arsa Wijaya</h6>
-              <p>Bio</p>
+              <h6>Michael Arsawijaya</h6>
+              <p>UI/UX Designer, Business Development</p>
             </div>
           </div>
         </div>
