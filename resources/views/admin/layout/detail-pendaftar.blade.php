@@ -139,19 +139,8 @@
             <div class="invoice-address">
               <div class="address-item">
                 <h5 class="text-bold">CV</h5>
-                <a
-                  href="{{ asset('storage/cv/' . auth()->user()->cv) }}" target="_blank"
-                  class="d-flex align-items-center text-primary text-decoration-none"
-                  download
-                >
-                  <img
-                    src="{{ asset('img/pdf.png')}}"
-                    alt="PDF Icon"
-                    class="me-2"
-                    width="20"
-                    height="20"
-                  />
-                  {{$pendaftar->user->cv}}
+                <a href="{{ asset('storage/cv/' . auth()->user()->cv) }}" target="_blank" class="d-flex align-items-center text-primary text-decoration-none" download>
+                  <img src="{{ asset('img/pdf.png')}}" alt="PDF Icon" class="me-2" width="20" height="20"/> {{$pendaftar->user->cv}}
                 </a>
               </div>
             </div>
