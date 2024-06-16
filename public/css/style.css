@@ -195,14 +195,6 @@ html {
 }
 
 .introduction__wrapper {
-    background: url("./img/introduction-background.png");
-    height: 500px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 60%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .introduction__content {
