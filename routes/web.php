@@ -90,6 +90,7 @@ Route::prefix('user')->group(function () {
     Route::get('register', [AuthController::class, 'showRegisterUser'])->name('user.register');
     Route::post('register', [AuthController::class, 'registerUserAction'])->name('user.register.action');
     Route::get('Kegiatan', [UserController::class, 'showDaftarKegiatan'])->name('daftar.kegiatan');
+    Route::get('faq', [UserController::class, 'showFaqPage'])->name('user.faq');
 
     Route::get('/home', [UserController::class, 'showHome'])->name('home');
     Route::get('/user/detail-kegiatan/{id_kegiatan}', [UserController::class, 'showDetailKegiatan'])->name('user.detail-kegiatan');

@@ -109,3 +109,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const faqItems = document.querySelectorAll(".faq__item");
+    console.log(faqItems);
+
+    faqItems.forEach((item) => {
+        const question = item.querySelector(".faq__body-question");
+        question.addEventListener("click", () => {
+            // Toggle the active class
+            item.classList.toggle("active");
+        });
+    });
+});

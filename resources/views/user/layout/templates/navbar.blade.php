@@ -11,13 +11,13 @@
       <ul class="">
         <li><a href="{{ route('home') }}">Beranda</a></li>
         <li><a href="{{ route('user.daftarKegiatan', ['id' => $user->id]) }}">Daftar Kegiatan</a></li>
-        <li><a href="">FAQ</a></li>
+        <li><a href="{{ route('user.faq') }}">FAQ</a></li>
       </ul>
       @else
       <ul class="">
         <li><a href="{{ route('home') }}">Beranda</a></li>
         <li><a href="{{ route('daftar.kegiatan') }}">Daftar Kegiatan</a></li>
-        <li><a href="">FAQ</a></li>
+        <li><a href="{{ route('user.faq') }}">FAQ</a></li>
       </ul>
       @endif
     </nav>
