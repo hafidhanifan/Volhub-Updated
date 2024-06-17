@@ -1922,3 +1922,79 @@ h6 {
     background-color: #003452;
     color: white;
 }
+
+.faq {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 70vw;
+    margin: 50px auto 100px auto;
+}
+
+.faq__header {
+    margin-bottom: 50px;
+}
+
+.faq__body {
+    cursor: pointer;
+    width: 100%;
+}
+
+.faq__header h1 {
+    font-weight: 400;
+    position: relative;
+}
+
+.faq__header h1::after {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 3px; /* Ketebalan garis */
+    background-color: #013453; /* Warna garis */
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -10px; /* Jarak antara teks dan garis */
+    margin: 0 auto 0 auto;
+}
+
+.faq__item {
+    max-width: 100%;
+    border-radius: 10px;
+    list-style: none;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.faq__body-question {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.faq__body-question p {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.faq__body-question-icon i {
+    font-size: 1.5rem;
+}
+
+.faq__body-answer {
+    display: none;
+    padding: 0 20px 20px 20px;
+}
+
+.faq__item.active .faq__body-answer {
+    display: block;
+}
+
+.faq__body-question-icon i {
+    transition: transform 0.3s ease;
+}
+
+.faq__item.active .faq__body-question-icon i {
+    transform: rotate(180deg);
+}
