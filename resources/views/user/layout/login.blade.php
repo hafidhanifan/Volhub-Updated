@@ -12,17 +12,6 @@
                         <p class="content-left__text-up">Selamat Datang!</p>
                         <p class="content-left__text-down">Cari lowongan volunteer lagi yuk!</p>
                     </div>
-
-                    @if($errors->any())
-                  <div>
-                      <ul>
-                          @foreach ($errors->all() as $error)
-                              <li>{{ $error }}</li>
-                          @endforeach
-                      </ul>
-                  </div>
-              @endif
-              
                         <form {{ route('user.login.action') }} method="POST" class="login-form">
                             @csrf
                             <div class="form-signup">

@@ -26,5 +26,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
+    <link href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.12/dist/cropper.min.css" rel="stylesheet">
+
   </head>
   <body>

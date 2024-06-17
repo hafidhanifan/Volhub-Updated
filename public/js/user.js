@@ -90,25 +90,25 @@ document.addEventListener("DOMContentLoaded", (event) => {
 });
 
 // JS untuk upload file
-document.addEventListener("DOMContentLoaded", function () {
-    const input = document.getElementById("uploadInput");
-    const form = document.getElementById("editFotoProfileForm");
-    const img = document.querySelector(".edit-profile__picture img");
+// document.addEventListener("DOMContentLoaded", function () {
+//     const input = document.getElementById("uploadInput");
+//     const form = document.getElementById("editFotoProfileForm");
+//     const img = document.querySelector(".edit-profile__picture img");
 
-    input.addEventListener("change", function () {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
+//     input.addEventListener("change", function () {
+//         const file = this.files[0];
+//         if (file) {
+//             const reader = new FileReader();
+//             reader.onload = function (e) {
+//                 img.src = e.target.result;
+//             };
+//             reader.readAsDataURL(file);
 
-            // Submit form secara otomatis setelah memilih gambar
-            form.submit();
-        }
-    });
-});
+//             // Submit form secara otomatis setelah memilih gambar
+//             form.submit();
+//         }
+//     });
+// });
 
 document.addEventListener("DOMContentLoaded", () => {
     const faqItems = document.querySelectorAll(".faq__item");
@@ -117,8 +117,36 @@ document.addEventListener("DOMContentLoaded", () => {
     faqItems.forEach((item) => {
         const question = item.querySelector(".faq__body-question");
         question.addEventListener("click", () => {
-            // Toggle the active class
             item.classList.toggle("active");
         });
     });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const editButton = document.querySelector(".edit-icon");
+    const uploadButton = document.querySelector(".upload-edit");
+
+    if (editButton) {
+        editButton.addEventListener("click", () => {
+            uploadButton.style.display = "block";
+        });
+    }
+
+    // Menangani perubahan pada input file
+    const uploadInput = document.getElementById("uploadInput");
+
+    if (uploadInput) {
+        uploadInput.addEventListener("change", () => {
+            if (uploadInput.files.length > 0) {
+                uploadButton.style.display = "block";
+            } else {
+                uploadButton.style.display = "none";
+            }
+        });
+
+        uploadInput.addEventListener("click", () => {
+            uploadInput.value = null;
+            uploadButton.style.display = "none";
+        });
+    }
 });

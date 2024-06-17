@@ -20,20 +20,28 @@
         </div>
         <div class="edit-personal__container">
           <div class="edit-personal__wrapper">
-            <form action="{{ route('user.edit-foto-profile-action', ['id' => $user->id]) }}" method="POST" enctype="multipart/form-data" id="editFotoProfileForm">
+            <form class="button-wrapper" action="{{ route('user.edit-foto-profile-action', ['id' => $user->id]) }}" method="POST" enctype="multipart/form-data" id="editFotoProfileForm">
               @csrf
               @method('PUT')
               <div class="edit-personal__picture">
-                <img
-                  class="edit-profile__picture"
-                  src="{{ asset('storage/foto-profile/'.$user->foto_profile) }}"
-                />
-                <label for="uploadInput" id="uploadLabel">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                </label>
-                <input type="file" id="uploadInput" name="foto_profile" style="display: none;"  />
+                  @if(!empty($user->foto_profile))
+                  <img class="edit-profile__picture" src="{{ asset('storage/foto-profile/'.$user->foto_profile) }}" id="profileImage" />
+                @else
+                  <img class="edit-profile__picture" src="{{asset('img/logo-user.png')}}" alt="profile user" />
+                @endif
+                  <label for="uploadInput" id="uploadLabel">
+                      <i class="fa-regular fa-pen-to-square edit-icon"></i>
+                  </label>
+                  <input type="file" id="uploadInput" name="foto_profile" style="display: none;" />
+                  <input type="hidden" id="cropped_image" name="cropped_image">
               </div>
-            </form>
+              <button class="upload-edit" type="submit">Upload</button>
+          </form>
+      
+          <div>
+              <img id="preview">
+          </div>
+
             <div class="edit-personal__headline">
               <h2>Data Diri</h2>
             </div>

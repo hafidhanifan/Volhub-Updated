@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Skill;
 use App\Models\Kegiatan;
-use App\Models\User;
 use App\Models\Pendaftar;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+// use Intervention\Image\Image;
+use Image;
 use Illuminate\Support\Facades\File;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -119,27 +122,33 @@ class UserController extends Controller
     
     public function editFotoProfileAction(Request $request, $id)
     {
-        $request->validate([
-            'foto_profile' => 'required|image|mimes:jpeg,png,jpg,gif'
-        ]);
-
-        $user = User::find($id);
-
-        if ($request->hasFile('foto_profile')) {
+        {
+            $request->validate([
+                'cropped_image' => 'required',
+            ]);
+    
+            $user = User::find($id);
+    
+            // Menghapus gambar lama
             if ($user->foto_profile) {
                 $oldImage = storage_path('app/public/foto-profile/' . $user->foto_profile);
                 if (File::exists($oldImage)) {
                     File::delete($oldImage);
                 }
             }
-
-            $extension = $request->file('foto_profile')->getClientOriginalExtension();
-            $newName = $user->nama_user.'-'.now()->timestamp.'.'.$extension;
-            $request->file('foto_profile')->storeAs('foto-profile', $newName);
-            
-            $user->foto_profile = $request['foto_profile'] = $newName;
-
+    
+            // Mengubah base64 menjadi file
+            $cropped_image = $request->input('cropped_image');
+            $image = Image::make($cropped_image);
+            $newName = $user->nama_user . '-' . now()->timestamp . '.png';
+            $path = 'foto-profile/' . $newName;
+    
+            Storage::disk('public')->put($path, (string) $image->encode());
+    
+            // Simpan path gambar ke database
+            $user->foto_profile = $newName;
             $user->save();
+    
             return redirect()->back()->with('success', 'Foto User berhasil diupdate.');
         }
 

@@ -5,7 +5,11 @@
         <section class="abstract">
           <div class="abstract__profile">
             <div class="abstract__profile-image">
-              <img src="{{asset('storage/foto-profile/'.$user->foto_profile)}}" alt="Foto Profile User" />
+              @if(!empty($user->foto_profile))
+              <img src="{{asset('storage/foto-profile/'.$user->foto_profile)}}" alt="profile user" />
+            @else
+              <img src="{{asset('img/logo-user.png')}}" alt="profile user" />
+            @endif
             </div>
             <div class="abstract__profile-summary">
               <div class="abstract__summary-header">

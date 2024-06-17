@@ -86,9 +86,8 @@ class AuthController extends Controller
             return redirect()->intended('/user/kegiatan/{id}');
         }
 
-        return back()->withErrors([
-            'username' => 'Username atau password salah.',
-        ]);
+        Alert::error('Oops !', 'Username atau Password salah :(');
+        return back();
     }
 
     public function logoutUser(Request $request)

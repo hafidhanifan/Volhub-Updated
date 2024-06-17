@@ -46,5 +46,56 @@
         @endif
     });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.12/dist/cropper.min.js"></script>
+<script>
+  var image = document.getElementById('uploadInput');
+  var preview = document.getElementById('preview');
+  var cropper;
+
+  image.addEventListener('change', function(e) {
+      var files = e.target.files;
+      if (files && files.length > 0) {
+          var reader = new FileReader();
+          reader.onload = function(event) {
+              preview.src = event.target.result;
+              preview.style.display = 'block';
+              if (cropper) {
+                  cropper.destroy(); // Menghancurkan cropper lama jika ada
+              }
+              cropper = new Cropper(preview, {
+                  aspectRatio: 1,
+                  viewMode: 1,
+                  ready: function () {
+                      cropper.setCropBoxData({ width: 256, height: 256 });
+                  },
+                  crop(event) {
+                      var canvas = cropper.getCroppedCanvas({
+                          width: 512,
+                          height: 512,
+                          minWidth: 256,
+                          minHeight: 256,
+                          maxWidth: 256,
+                          maxHeight: 256,
+                          fillColor: '#fff',
+                          imageSmoothingEnabled: true,
+                          imageSmoothingQuality: 'high',
+                      });
+                      canvas.toBlob(function(blob) {
+                          var reader = new FileReader();
+                          reader.readAsDataURL(blob);
+                          reader.onloadend = function() {
+                              var base64data = reader.result;
+                              document.getElementById('cropped_image').value = base64data;
+                          };
+                      }, 'image/png', 1);
+                  }
+              });
+          };
+          reader.readAsDataURL(files[0]);
+      }
+  });
+</script>
+
 </body>
 </html>
