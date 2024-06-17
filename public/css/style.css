@@ -526,6 +526,7 @@ html {
     font-size: 0.9rem;
     background-color: #003452;
     color: white;
+    cursor: pointer;
 }
 
 .skill {

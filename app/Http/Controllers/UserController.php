@@ -204,6 +204,7 @@ class UserController extends Controller
         return view('user.layout.detail-kegiatan', compact('kegiatan', 'user', 'rekomendasi'));
     }
 
+    
     //All Abour Pendaftaran
     public function addPendaftaranAction(Request $request, $id, $id_kegiatan)
     {
