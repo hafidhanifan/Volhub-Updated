@@ -92,7 +92,6 @@ Route::prefix('user')->group(function () {
     Route::get('Kegiatan', [UserController::class, 'showDaftarKegiatan'])->name('daftar.kegiatan');
     Route::get('faq', [UserController::class, 'showFaqPage'])->name('user.faq');
 
-    Route::get('/home', [UserController::class, 'showHome'])->name('home');
     Route::get('/user/detail-kegiatan/{id_kegiatan}', [UserController::class, 'showDetailKegiatan'])->name('user.detail-kegiatan');
     Route::get('/signup', function () {
         return view('user/layout/signup');
@@ -125,3 +124,5 @@ Route::prefix('user')->group(function () {
         Route::post('{id}/add-pendaftaran/{id_kegiatan}', [UserController::class, 'addPendaftaranAction'])->name('user.add-pendaftaran-action');
     });
 });
+
+Route::get('/home', [UserController::class, 'showHome'])->name('home');

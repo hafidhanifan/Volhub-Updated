@@ -62,7 +62,7 @@
                     />
                   </div>
                 </div>
-                <button class="edit-akun__button">Tambah Skill</button>
+                <button class="edit-akun__button">Simpan Perubahan</button>
               </div>
             </form>
           </div>
