@@ -3948,7 +3948,7 @@ h6,
 .sidebar-nav-wrapper .sidebar-nav ul .nav-item.active > a.collapsed .icon,
 .sidebar-nav-wrapper .sidebar-nav ul .nav-item:hover > a .icon,
 .sidebar-nav-wrapper .sidebar-nav ul .nav-item:hover > a.collapsed .icon {
-    color: #365cf5;
+    color: #003452;
 }
 
 .sidebar-nav-wrapper.style-2
@@ -6466,8 +6466,8 @@ h6,
 }
 
 .status-dalam-review {
-    background-color: yellow;
-    color: black;
+    background-color: orange;
+    color: white;
 }
 
 .status-diterima {

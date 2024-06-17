@@ -46,7 +46,7 @@
                       <form action="{{ route('admin.updateStatus', $pendaftar->id_pendaftar) }}" method="POST"  id="statusForm">
                         @csrf
                         @method('PATCH')
-                        <select name="status_pendaftaran" class="main-btn warning-btn rounded btn-hover mr-15 button-review" id="statusDropdown" onchange="this.form.submit(); updateStatusClass();">
+                        <select name="status_pendaftaran" class="main-btn warning-btn rounded button-review" id="statusDropdown" onchange="this.form.submit(); updateStatusClass();">
                             <option value="Dalam Review" {{ $pendaftar->status_pendaftaran == 'Dalam Review' ? 'selected' : '' }}>Dalam Review</option>
                             <option value="Diterima" {{ $pendaftar->status_pendaftaran == 'Diterima' ? 'selected' : '' }}>Diterima</option>
                             <option value="Ditolak" {{ $pendaftar->status_pendaftaran == 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
