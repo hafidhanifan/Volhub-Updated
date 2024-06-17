@@ -12,7 +12,7 @@ class Pendaftar extends Model
     const CREATED_AT = 'tgl_pendaftaran';
     const UPDATED_AT = null;
 
-    public $timestamps = false;
+    public $timestamps = true;
     protected $table = 'data_pendaftar';
     protected $primaryKey = 'id_pendaftar';
     protected $fillable = [
@@ -21,14 +21,14 @@ class Pendaftar extends Model
         'tgl_pendaftaran'
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        static::creating(function ($model) {
-            $model->creation_date = $model->freshTimestamp();
-        });
-    }
+    //     static::creating(function ($model) {
+    //         $model->creation_date = $model->freshTimestamp();
+    //     });
+    // }
 
     public function user()
     {

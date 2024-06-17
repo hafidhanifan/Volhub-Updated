@@ -878,7 +878,7 @@ html {
     text-align: center;
 }
 
-.modal__button a {
+.modal__button button {
     display: inline-block;
     text-decoration: none;
     width: 50%;
