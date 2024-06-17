@@ -60,7 +60,7 @@
                     <div class="modal__form">
                             <p>Login Terlebih Dahulu</p>
                             <div class="modal__button">
-                                <button type="submit">Login</button>
+                                <a href="{{route('user.login')}}" type="submit">Login</a>
                             </div>
                         </form>
                     </div>
@@ -129,14 +129,14 @@
                     <h2>Benefit</h2>
                     <div class="description__benefit-body">
                         <div class="description__benefit-item">
+                            @if($kegiatan->benefits->isNotEmpty())
+                            @foreach($kegiatan->benefits as $benefit)
                             <div class="description__benefit-item-icon">
-                                @if($kegiatan->benefits->isNotEmpty())
-                                @foreach($kegiatan->benefits as $benefit)
                                 <i class="fa-solid fa-check"></i>
                                 </div>
                                 <div class="description__benefit-item-text">
                                     <p>{{ $benefit->nama_benefit }}</p>
-                                    </div>
+                                </div>
                                 @endforeach
                         </div>
                         @else
@@ -153,7 +153,16 @@
     <section class="recommendation">
         <div class="recommendation__header">
             <h2>Rekomendasi</h2>
-            <p>Selengkapnya</p>
+            @if(auth()->check())
+            @php
+              $user = auth()->user();
+            @endphp
+            <a href="{{route('user.daftarKegiatan', ['id' => $user->id])}}">Selengkapnya</a>
+            @else
+            <a href="{{route('daftar.kegiatan')}}">Selengkapnya</a>
+            @endif
+
+
         </div>
         <div class="content__body">
             @foreach($rekomendasi as $kegiatan)

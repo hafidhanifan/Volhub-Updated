@@ -6539,3 +6539,15 @@ h6,
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.benefit-button-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 400px) {
+    .benefit-button-wrapper {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+}

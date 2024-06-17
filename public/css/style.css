@@ -878,7 +878,9 @@ html {
     text-align: center;
 }
 
-.modal__button button {
+.modal__button a {
+    display: inline-block;
+    text-decoration: none;
     width: 50%;
     padding: 1rem;
     border-radius: 1rem;
@@ -1033,7 +1035,8 @@ article.text {
     align-items: center;
 }
 
-.recommendation__header p {
+.recommendation__header a {
+    text-decoration: none;
     font-weight: 600;
     color: #0b7bff;
 }

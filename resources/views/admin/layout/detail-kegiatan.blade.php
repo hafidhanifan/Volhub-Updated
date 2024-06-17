@@ -89,37 +89,42 @@
             <div class="col-lg-6">
               <!-- end card -->
               <div class="card-style mb-30">
-                <h1 class="mb-30 text-medium">Benefit</h1>
-
+                <div class="benefit-button-wrapper">
+                  <h1 class="mb-30 text-medium">Benefit</h1>
+  
+                  <form action="{{ route('admin.add-benefit-kegiatan-page', ['id' => $kegiatan->id_kegiatan]) }}" method="POST">
+                    @csrf
+                    @method('GET')
+                    <button type="submit" href="#0" class="main-btn-kategori primary-btn btn-hover right-align">Tambah Benefit</button>
+                  </form>
+                </div>
                 <ul class="custom-list">
                 <?php $no = 1 ?>
                 @foreach($kegiatan->benefits as $benefit)
                   <li>{{$benefit->nama_benefit}}</li>
                 @endforeach
                 </ul>
-                <form action="{{ route('admin.add-benefit-kegiatan-page', ['id' => $kegiatan->id_kegiatan]) }}" method="POST">
-                  @csrf
-                  @method('GET')
-                  <button type="submit" href="#0" class="main-btn-kategori primary-btn btn-hover right-align">Tambah Benefit</button>
-                </form>
               </div>
               <!-- end card -->
             </div>
             <div class="col-lg-6">
               <!-- end card -->
               <div class="card-style mb-30">
-                <h1 class="mb-30 text-medium">Kriteria</h1>
+                <div class="benefit-button-wrapper">
+                  <h1 class="mb-30 text-medium">Kriteria</h1>
+                  <form action="{{ route('admin.add-kriteria-kegiatan-page', ['id' => $kegiatan->id_kegiatan]) }}" method="POST">
+                    @csrf
+                    @method('GET')
+                    <button type="submit" href="#0" class="main-btn-kategori primary-btn btn-hover right-align benefit-button">Tambah Kriteria</button>
+                  </form>
+                </div>
                 <ul class="custom-list">
                   <?php $no = 1 ?>
                   @foreach($kegiatan->kriterias as $kriteria)
                   <li>{{$kriteria->nama_kriteria}}</li>
                   @endforeach
                 </ul>
-                <form action="{{ route('admin.add-kriteria-kegiatan-page', ['id' => $kegiatan->id_kegiatan]) }}" method="POST">
-                  @csrf
-                  @method('GET')
-                  <button type="submit" href="#0" class="main-btn-kategori primary-btn btn-hover right-align">Tambah Kriteria</button>
-                </form>
+        
               </div>
               <!-- end card -->
             </div>
