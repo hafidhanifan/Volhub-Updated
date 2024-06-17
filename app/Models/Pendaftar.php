@@ -9,6 +9,9 @@ class Pendaftar extends Model
 {
     use HasFactory;
 
+    const CREATED_AT = 'tgl_pendaftaran';
+    const UPDATED_AT = null;
+
     public $timestamps = false;
     protected $table = 'data_pendaftar';
     protected $primaryKey = 'id_pendaftar';
@@ -18,18 +21,14 @@ class Pendaftar extends Model
         'tgl_pendaftaran'
     ];
 
-    // protected static function boot()
-    // {
-    //     parent::boot();
+    protected static function boot()
+    {
+        parent::boot();
 
-    //     static::creating(function ($model) {
-    //         $model->tgl_pendaftaran = now();
-    //     });
-
-    //     static::updating(function ($pendaftar) {
-    //         // Kosongkan event ini jika tgl_pendaftaran tidak boleh diubah saat update
-    //     });
-    // }
+        static::creating(function ($model) {
+            $model->creation_date = $model->freshTimestamp();
+        });
+    }
 
     public function user()
     {

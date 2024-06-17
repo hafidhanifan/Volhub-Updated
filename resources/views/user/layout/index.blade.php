@@ -10,12 +10,12 @@
       <div class="introduction__content">
         <article class="introduction__text introduction__text-top">
           <div class="introduction__title">
-            <h2>Apa itu <span>VolHub?</span></h2>
+            <h2><span>Apa itu VolHub?</span></h2>
           </div>
           <div class="introduction__description">
             <p>
-              <span>VolHub</span> merupakan platform kesukarelawanan.
-              <span>VolHub</span> menjadi penghubung antara orang yang
+              VolHub merupakan platform kesukarelawanan.
+              VolHub menjadi penghubung antara orang yang
               hendak menyalurkan kebaikannya kepada komunitas dan masyarakat
               yang membutuhkan bantuan.
             </p>
@@ -24,7 +24,7 @@
 
         <article class="introduction__text introduction__text-bottom">
           <div class="introduction__title">
-            <h2>Kenapa harus <span>VolHub?</span></h2>
+            <h2><span>Kenapa harus VolHub?</span></h2>
           </div>
           <div class="introduction__description">
             <p>
@@ -98,7 +98,7 @@
             <img src="{{ asset('img/team-arsa.jpg') }}" alt="" />
             <div class="team__item-name">
               <h6>Michael Arsawijaya</h6>
-              <p>UI/UX Designer, Business Development</p>
+              <p>UI/UX Designer & Business Development</p>
             </div>
           </div>
         </div>

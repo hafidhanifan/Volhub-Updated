@@ -39,17 +39,9 @@
                 </div>
                 <div class="abstract__body-cv">
                   <h2>CV</h2>
-                  {{-- @php
-                  $cvPath = 'cv/' . auth()->user()->cv;
-                  @endphp --}}
-
-                  {{-- @if(isset($user->cv) && Storage::disk('public')->exists($cvPath)) --}}
                       <a href="{{ asset('storage/cv/' . auth()->user()->cv) }}" target="_blank" class="d-flex align-items-center text-primary text-decoration-none" download>
                         <img src="{{ asset('img/pdf.png')}}" alt="PDF Icon" class="me-2" width="20" height="20"/> {{$user->cv}}
                       </a>
-                    {{-- @else --}}
-                      {{-- <p class="belum-ada-data">Anda belum memasukkan cv. Silahkan mendaftar salah satu kegiatan atau isikan melalui halaman edit profile.</p> --}}
-                    {{-- @endif --}}
                 </div>
                 <div class="abstract__body-cv">
                   <h2>Gender</h2>

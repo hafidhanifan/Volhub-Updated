@@ -796,7 +796,7 @@ html {
     height: 50px;
     border-radius: 10px;
     border: none;
-    background-color: #0b7bff;
+    background-color: #003452;
     color: white;
     font-size: 1.1rem;
     font-weight: 600;
@@ -874,6 +874,7 @@ html {
 }
 
 .modal__button {
+    margin-top: 40px;
     text-align: center;
 }
 

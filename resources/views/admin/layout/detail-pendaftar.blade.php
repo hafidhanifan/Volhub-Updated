@@ -46,7 +46,7 @@
                       <form action="{{ route('admin.updateStatus', $pendaftar->id_pendaftar) }}" method="POST"  id="statusForm">
                         @csrf
                         @method('PATCH')
-                        <select name="status_pendaftaran" class="main-btn warning-btn rounded btn-hover mr-15 button-review" id="statusDropdown" onchange="this.form.submit(); updateStatusClass();">
+                        <select name="status_pendaftaran" class="main-btn warning-btn rounded button-review" id="statusDropdown" onchange="this.form.submit(); updateStatusClass();">
                             <option value="Dalam Review" {{ $pendaftar->status_pendaftaran == 'Dalam Review' ? 'selected' : '' }}>Dalam Review</option>
                             <option value="Diterima" {{ $pendaftar->status_pendaftaran == 'Diterima' ? 'selected' : '' }}>Diterima</option>
                             <option value="Ditolak" {{ $pendaftar->status_pendaftaran == 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
@@ -139,19 +139,8 @@
             <div class="invoice-address">
               <div class="address-item">
                 <h5 class="text-bold">CV</h5>
-                <a
-                  href="{{ asset('storage/cv/' . auth()->user()->cv) }}" target="_blank"
-                  class="d-flex align-items-center text-primary text-decoration-none"
-                  download
-                >
-                  <img
-                    src="{{ asset('img/pdf.png')}}"
-                    alt="PDF Icon"
-                    class="me-2"
-                    width="20"
-                    height="20"
-                  />
-                  {{$pendaftar->user->cv}}
+                <a href="{{ asset('storage/cv/' . $pendaftar->user->cv) }}" target="_blank" class="d-flex align-items-center text-primary text-decoration-none" download>
+                  <img src="{{ asset('img/pdf.png')}}" alt="PDF Icon" class="me-2" width="20" height="20"/> {{$pendaftar->user->cv}}
                 </a>
               </div>
             </div>
