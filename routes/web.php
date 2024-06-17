@@ -91,6 +91,12 @@ Route::prefix('user')->group(function () {
     Route::post('register', [AuthController::class, 'registerUserAction'])->name('user.register.action');
     Route::get('Kegiatan', [UserController::class, 'showDaftarKegiatan'])->name('daftar.kegiatan');
 
+    Route::get('/home', [UserController::class, 'showHome'])->name('home');
+    Route::get('/user/detail-kegiatan/{id_kegiatan}', [UserController::class, 'showDetailKegiatan'])->name('user.detail-kegiatan');
+    Route::get('/signup', function () {
+        return view('user/layout/signup');
+    });
+
     Route::middleware('auth')->group(function () {
         Route::get('logout', [AuthController::class, 'logoutUser'])->name('user.logout');
         Route::get('daftar-volunteer', function () {
@@ -117,10 +123,4 @@ Route::prefix('user')->group(function () {
         // (User) Route untuk Daftar Kegiatan
         Route::post('{id}/add-pendaftaran/{id_kegiatan}', [UserController::class, 'addPendaftaranAction'])->name('user.add-pendaftaran-action');
     });
-});
-
-Route::get('/home', [UserController::class, 'showHome'])->name('home');
-Route::get('/user/detail-kegiatan/{id_kegiatan}', [UserController::class, 'showDetailKegiatan'])->name('user.detail-kegiatan');
-Route::get('/signup', function () {
-    return view('user/layout/signup');
 });
