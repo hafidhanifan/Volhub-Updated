@@ -1,14 +1,6 @@
 @include('user.layout.templates.header')
 @include('user.layout.templates.navbar')
 
-@if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
-
-{{-- style="background: url('{{ asset('storage/gambar/'.$kegiatan->gambar) }}')" --}}
-
 <section class="detail-header">
     <div class="detail-header__image-wrapper">
         <img class="detail-header__image" src="{{ asset('storage/gambar/'.$kegiatan->gambar) }}" alt="">
