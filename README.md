@@ -10,8 +10,8 @@ A Volunteering Website.
 
 ## How to use it?
 
-- Open [VolHub.app](https://volhub.site/) for user
-- open [Volhub.app](https://volhub.site/admin)
+- Open [VolHub.app](https://volhub.site/) for User
+- open [Volhub.app](https://volhub.site/admin) for Admin
 
 ## How to run it locally?
 ```
