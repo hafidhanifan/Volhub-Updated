@@ -64,10 +64,10 @@
     @endif
       
     <div class="mobile-nav">
-      <li><a href="">Beranda</a></li>
-      <li><a href="">Daftar Kegiatan</a></li>
-      <li><a href="">Tentang Kami</a></li>
-      <li><a href="">Notification</a></li>
+      <li><a href="{{ route('home') }}">Beranda</a></li>
+      <li><a href="{{ route('daftar.kegiatan') }}">Daftar Kegiatan</a></li>
+      <li><a href="{{ route('user.faq') }}">FAQ</a></li>
+      <li><a href="#">Notification</a></li>
       @if(auth()->check())
       @php
           $user = auth()->user();

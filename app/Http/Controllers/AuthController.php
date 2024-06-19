@@ -26,9 +26,9 @@ class AuthController extends Controller
             return redirect()->intended(route('admin.dashboard', ['id' => Auth::guard('admin')->user()->id]));
         }
 
-        return back()->withErrors([
-            'username' => 'Username atau password salah.',
-        ])->withInput($request->except('password'));
+        Alert::error('Oops !', 'Username atau Password salah :(');
+
+        return back();
     }
 
     public function logout(Request $request)

@@ -1,5 +1,7 @@
 @include('admin.layout.templates.header')
 @include('admin.layout.templates.sidebar')
+@include('admin.layout.templates.navbar')
+
 <!-- ========== section start ========== -->
       <section class="section">
         <div class="container-fluid">
@@ -20,7 +22,7 @@
                         <a href="#0">Dashboard</a>
                       </li>
                       <li class="breadcrumb-item active" aria-current="page">
-                        eCommerce
+                        Volhub
                       </li>
                     </ol>
                   </nav>
@@ -35,7 +37,7 @@
             <div class="col-xl-3 col-lg-4 col-sm-6">
               <div class="icon-card mb-30">
                 <div class="icon purple">
-                  <i class="lni lni-cart-full"></i>
+                  <i class="lni lni-users"></i>
                 </div>
                 <div class="content">
                   <h6 class="mb-10">Total Pengguna</h6>
@@ -48,7 +50,7 @@
             <div class="col-xl-3 col-lg-4 col-sm-6">
               <div class="icon-card mb-30">
                 <div class="icon success">
-                  <i class="lni lni-dollar"></i>
+                  <i class="lni lni-network"></i>
                 </div>
                 <div class="content">
                   <h6 class="mb-10">Total Pendaftar</h6>
@@ -61,7 +63,7 @@
             <div class="col-xl-3 col-lg-4 col-sm-6">
               <div class="icon-card mb-30">
                 <div class="icon primary">
-                  <i class="lni lni-credit-cards"></i>
+                  <i class="lni lni-grow"></i>
                 </div>
                 <div class="content">
                   <h6 class="mb-10">Total Kegiatan</h6>
@@ -70,20 +72,6 @@
               </div>
               <!-- End Icon Cart -->
             </div>
-            <!-- End Col -->
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-              <div class="icon-card mb-30">
-                <div class="icon orange">
-                  <i class="lni lni-user"></i>
-                </div>
-                <div class="content">
-                  <h6 class="mb-10">Total ?</h6>
-                  <h3 class="text-bold mb-10">34567</h3>
-                </div>
-              </div>
-              <!-- End Icon Cart -->
-            </div>
-            <!-- End Col -->
           </div>
           <!-- End Row -->
 

@@ -43,4 +43,16 @@ class Kegiatan extends Model
     {
         return $this->hasMany(Pendaftar::class, 'id_kegiatan');
     }
+
+//     protected static function boot()
+//     {
+//         parent::boot();
+
+//         static::deleting(function ($kegiatan) {
+//             $kegiatan->benefits()->detach();
+//             $kegiatan->kriterias()->detach();
+//             $kegiatan->kategori()->detach();
+//         });
+// }
+
 }

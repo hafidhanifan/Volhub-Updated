@@ -41,10 +41,11 @@
                 <div class="card-style-4 profile">
                   <div class="card-image">
                     <a href="#0">
-                      <img
-                        src="{{asset('storage/foto-profile/'.$user->foto_profile)}}"
-                        alt="Foto Profile User"
-                      />
+                      @if(!empty($user->foto_profile))
+                        <img src="{{asset('storage/foto-profile/'.$user->foto_profile)}}" alt="profile user" />
+                      @else
+                        <img src="{{asset('img/logo-user.png')}}" alt="profile user" />
+                      @endif
                     </a>
                   </div>
                   <div class="profile-data">
@@ -54,19 +55,35 @@
                     </div>
                     <div class="profile-user-domisili">
                       <h3 class="text-gray mb-10">Domisili</h3>
-                      <p class="fw-bold text-black">{{$user->domisili}} Indonesia</p>
+                      @if(!empty($user->domisili))
+                        <p>{{ $user->domisili }}, Indonesia</p>
+                      @else
+                        <p class="text-danger">User belum mengisikan data domisili</p>
+                      @endif
                     </div>
                     <div class="profile-user-gender">
                       <h3 class="text-gray mb-10">Gender</h3>
-                      <p class="fw-bold text-black">{{$user->gender}}</p>
+                      @if(!empty($user->gender))
+                        <p>{{ $user->gender }}</p>
+                      @else
+                        <p class="text-danger">User belum mengisikan data gender</p>
+                      @endif
                     </div>
                     <div class="profile-user-pendidikan">
                       <h3 class="text-gray mb-10">Pendidikan Terakhir</h3>
-                      <p class="fw-bold text-black">{{$user->pendidikan_terakhir}}</p>
+                      @if(!empty($user->pendidikan_terakhir))
+                        <p>{{ $user->pendidikan_terakhir }}</p>
+                      @else
+                        <p class="text-danger">User belum mengisikan data pendidikan</p>
+                      @endif
                     </div>
                     <div class="profile-user-usia">
                       <h3 class="text-gray mb-10">Usia</h3>
-                      <p class="fw-bold text-black">{{$user->usia}} Tahun</p>
+                      @if(!empty($user->usia))
+                        <p>{{ $user->gender }}</p>
+                      @else
+                        <p class="text-danger">User belum mengisikan data usia</p>
+                      @endif
                     </div>
                   </div>
                 </div>
@@ -77,12 +94,15 @@
                 <!-- end card -->
                 <div class="card-style mb-30 mt-25">
                   <h1 class="mb-30 text-medium">Kemampuan</h1>
-
                   <ul class="custom-list">
-                    <?php $no = 1 ?>
+                    @if(!empty($user->skills) && $user->skills->count())
+                    <?php $no = 1; ?>
                     @foreach($user->skills as $skill)
-                    <li>{{$skill->nama_skill}}</li>
+                        <li>{{ $skill->nama_skill }}</li>
                     @endforeach
+                @else
+                      <p class="text-danger">User belum mengisikan data skill</p>
+                      @endif
                   </ul>
                 </div>
                 <!-- end card -->
@@ -121,16 +141,20 @@
             </div>
             <div class="address-item">
               <h5 class="text-bold">Bio</h5>
-              <p class="text-sm">
-                {{$user->bio}}
-              </p>
+              @if(!empty($user->bio))
+                <p>{{ $user->bio }}</p>
+              @else
+                <p class="text-danger">User belum mengisikan data bio</p>
+              @endif
             </div>
           </div>
           <div class="address-item">
             <h5 class="text-bold">Deskripsi</h5>
-            <p class="text-sm">
-              {{$user->deskripsi}}
-            </p>
+            @if(!empty($user->deskripsi))
+              <p>{{ $user->deskripsi }}</p>
+            @else
+            <p class="text-danger">User belum mengisikan data deskripsi</p>
+            @endif
           </div>
         </div>
         <!-- end container -->

@@ -991,9 +991,12 @@ article.text {
 
 .description__benefit {
     margin-top: 80px;
+    width: 100%;
 }
 
 .description__benefit-body {
+    width: 100%;
+
     max-width: 40rem;
     margin-top: 20px;
     background-color: #ffffff;
@@ -1006,6 +1009,7 @@ article.text {
 }
 
 .description__benefit-item {
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 1rem;

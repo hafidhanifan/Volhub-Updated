@@ -128,17 +128,17 @@
                 <div class="description__benefit-header">
                     <h2>Benefit</h2>
                     <div class="description__benefit-body">
+                        @if($kegiatan->benefits->isNotEmpty())
+                        @foreach($kegiatan->benefits as $benefit)
                         <div class="description__benefit-item">
-                            @if($kegiatan->benefits->isNotEmpty())
-                            @foreach($kegiatan->benefits as $benefit)
                             <div class="description__benefit-item-icon">
                                 <i class="fa-solid fa-check"></i>
                                 </div>
                                 <div class="description__benefit-item-text">
                                     <p>{{ $benefit->nama_benefit }}</p>
                                 </div>
-                                @endforeach
-                        </div>
+                            </div>
+                            @endforeach
                         @else
                         <div class="waiting-container">
                             <p class="waiting-admin">Mohon tunggu admin untuk mengisikan data ya :)</p>

@@ -53,7 +53,11 @@
                             <p><a href="#0">{{$user->email_user}}</a></p>
                           </td>
                           <td class="min-width">
-                            <p>{{$user->domisili}}</p>
+                            @if(!empty($user->domisili))
+                            <p>{{ $user->domisili }}, Indonesia</p>
+                            @else
+                            <p class="text-danger">User belum mengisikan data domisili</p>
+                            @endif
                           </td>
                           <td>
                             <div class="action">

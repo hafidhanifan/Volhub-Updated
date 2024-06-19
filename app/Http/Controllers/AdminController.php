@@ -376,8 +376,8 @@ class AdminController extends Controller
             return redirect()->back();
 
         } catch (\Exception $e) {
-            Alert::error('Oops !', 'Sepertinya kamu masih butuh data ini :(');
-            return redirect()->route('admin.skill');
+            Alert::error('Oops !', 'Sepertinya masih ada pendaftar yang mengikuti kegiatan ini :(');
+            return redirect()->route('admin.kegiatan');
 
         }
     }
