@@ -10,10 +10,8 @@ A Volunteering Website.
 
 ## How to use it?
 
-- Open [VolHub.app]()
-- 
-- 
-
+- Open [VolHub.app](https://volhub.site/) for user
+- open [Volhub.app](https://volhub.site/admin)
 
 ## How to run it locally?
 ```
@@ -49,3 +47,9 @@ php artisan serve
 ```
 
 * Open http://127.0.0.1:8000 with your browser to see the result
+
+##How to login for admin
+```
+#insert manual your username into database
+#go to [Bcrypt](https://bcrypt-generator.com/) for hashing your password
+#then copy the result of hashing and insert into password column in table admin
